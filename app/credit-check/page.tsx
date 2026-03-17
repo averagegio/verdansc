@@ -137,29 +137,29 @@ export default function CreditCheckPage() {
       <section className="mx-auto grid w-full max-w-6xl gap-6 md:grid-cols-[1.4fr_1fr]">
         <article className="rounded-2xl border border-cyan-400/30 bg-slate-900/65 p-7 shadow-2xl shadow-cyan-950/30">
           <p className="text-xs uppercase tracking-[0.2em] text-cyan-300">
-            API Service - Finance
+            Consumer Credit Service
           </p>
           <h1 className="mt-2 text-3xl font-semibold md:text-4xl">
-            Credit Check API
+            Get Your Credit Check in Minutes
           </h1>
           <p className="mt-4 max-w-3xl text-slate-300">
-            Create an account, complete payment, then run a credit check
-            request. This form uses a Stripe-style endpoint for secure charge
-            simulation.
+            Built for renters, buyers, landlords, and agents. Create your
+            account, complete secure checkout, and receive your report summary
+            right away.
           </p>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
             <div className="rounded-lg border border-cyan-400/20 bg-slate-950/50 px-4 py-3 text-sm text-slate-200">
-              Soft and hard inquiry support
+              One-time payment: ${CHECK_PRICE}
             </div>
             <div className="rounded-lg border border-cyan-400/20 bg-slate-950/50 px-4 py-3 text-sm text-slate-200">
-              Fraud checks and affordability scoring
+              Secure checkout with Stripe
             </div>
             <div className="rounded-lg border border-cyan-400/20 bg-slate-950/50 px-4 py-3 text-sm text-slate-200">
-              Transaction-ready approval summary
+              Instant report summary after payment
             </div>
             <div className="rounded-lg border border-cyan-400/20 bg-slate-950/50 px-4 py-3 text-sm text-slate-200">
-              Payment-gated report request flow
+              Useful for rental and buyer readiness
             </div>
           </div>
         </article>
@@ -170,8 +170,8 @@ export default function CreditCheckPage() {
           </h2>
           <p className="mt-2 text-sm text-slate-300">
             {step === 1
-              ? "Enter user credentials before payment."
-              : `Enter card details to pay $${CHECK_PRICE} for a credit check. If Stripe keys are configured, payment continues on Stripe Checkout.`}
+              ? "Enter your email and login details to begin."
+              : `Enter card details to pay $${CHECK_PRICE}. If Stripe is enabled, you will continue on secure Stripe Checkout.`}
           </p>
 
           {step === 1 ? (
@@ -179,7 +179,7 @@ export default function CreditCheckPage() {
               <input
                 className="w-full rounded-md border border-cyan-300/40 bg-slate-950/60 px-3 py-2 text-sm outline-none focus:border-cyan-300"
                 type="email"
-                placeholder="Email"
+                placeholder="Your email"
                 value={account.email}
                 onChange={(event) =>
                   setAccount({ ...account, email: event.target.value })
@@ -197,7 +197,7 @@ export default function CreditCheckPage() {
               <input
                 className="w-full rounded-md border border-cyan-300/40 bg-slate-950/60 px-3 py-2 text-sm outline-none focus:border-cyan-300"
                 type="password"
-                placeholder="Password"
+                placeholder="Create password (8+ characters)"
                 value={account.password}
                 onChange={(event) =>
                   setAccount({ ...account, password: event.target.value })
@@ -207,7 +207,7 @@ export default function CreditCheckPage() {
                 type="submit"
                 className="inline-flex rounded-md border border-cyan-300/50 px-4 py-2 text-sm text-cyan-100 hover:bg-cyan-400/10"
               >
-                Continue to payment
+                Continue to secure payment
               </button>
             </form>
           ) : (
@@ -263,7 +263,7 @@ export default function CreditCheckPage() {
                   className="inline-flex rounded-md border border-cyan-300/50 px-4 py-2 text-sm text-cyan-100 hover:bg-cyan-400/10 disabled:opacity-50"
                   disabled={charging}
                 >
-                  {charging ? "Processing..." : `Pay $${CHECK_PRICE}`}
+                  {charging ? "Processing..." : `Pay $${CHECK_PRICE} and run check`}
                 </button>
               </div>
             </form>
@@ -272,7 +272,8 @@ export default function CreditCheckPage() {
           {error ? <p className="mt-3 text-sm text-rose-300">{error}</p> : null}
           {result ? (
             <p className="mt-3 text-sm text-emerald-300">
-              {result.message} {result.paymentId ? `ID: ${result.paymentId}` : ""}
+              Payment successful. {result.message}{" "}
+              {result.paymentId ? `Confirmation: ${result.paymentId}` : ""}
             </p>
           ) : null}
           {checkingReport ? (
@@ -284,7 +285,7 @@ export default function CreditCheckPage() {
           {report ? (
             <div className="mt-3 rounded-lg border border-cyan-300/30 bg-slate-950/70 p-3">
               <p className="text-xs uppercase tracking-[0.14em] text-cyan-300">
-                Credit report result
+                Your credit check result
               </p>
               <pre className="mt-2 max-h-64 overflow-auto rounded-md bg-slate-900/80 p-3 text-xs text-cyan-100">
                 {JSON.stringify(report, null, 2)}
@@ -294,14 +295,12 @@ export default function CreditCheckPage() {
 
           <div className="mt-6 rounded-lg border border-cyan-300/30 bg-slate-950/60 p-3">
             <p className="text-xs uppercase tracking-[0.14em] text-cyan-300">
-              Suggested endpoint
+              Privacy and security
             </p>
-            <code className="mt-2 block text-sm text-cyan-100">
-              /api/credit-check
-            </code>
-            <code className="mt-2 block text-sm text-cyan-100">
-              /api/stripe/credit-check
-            </code>
+            <p className="mt-2 text-sm text-cyan-100">
+              Payment is processed through secure checkout flows. Report data is
+              generated only after successful payment.
+            </p>
           </div>
 
           <Link
