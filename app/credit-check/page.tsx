@@ -20,6 +20,8 @@ type ChargeResponse = {
   ok: boolean;
   message: string;
   paymentId?: string;
+  checkoutUrl?: string | null;
+  mode?: "mock" | "stripe-checkout";
 };
 
 const CHECK_PRICE = 19;
@@ -105,6 +107,11 @@ export default function CreditCheckPage() {
 
       setResult(payload);
 
+      if (payload.checkoutUrl) {
+        window.location.assign(payload.checkoutUrl);
+        return;
+      }
+
       setCheckingReport(true);
       const reportResponse = await fetch("/api/credit-check", {
         method: "GET",
@@ -164,7 +171,7 @@ export default function CreditCheckPage() {
           <p className="mt-2 text-sm text-slate-300">
             {step === 1
               ? "Enter user credentials before payment."
-              : `Enter card details to pay $${CHECK_PRICE} for a credit check.`}
+              : `Enter card details to pay $${CHECK_PRICE} for a credit check. If Stripe keys are configured, payment continues on Stripe Checkout.`}
           </p>
 
           {step === 1 ? (

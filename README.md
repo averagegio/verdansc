@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# VERDANSC
 
-## Getting Started
+Verdansc is a map-first real estate service portal with linked API service pages
+for credit checks, 3D tours, draft agreements, escrow, and broker matching.
 
-First, run the development server:
+## Local development
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open `http://localhost:3000`.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Stripe keys
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Copy `.env.example` to `.env.local`.
+2. Add your real Stripe keys:
+   - `STRIPE_SECRET_KEY`
+   - `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`
+3. Restart the dev server.
 
-## Learn More
+When `STRIPE_SECRET_KEY` is present, `POST /api/stripe/credit-check` creates a
+Stripe Checkout session. Without a key, it falls back to mock mode.
 
-To learn more about Next.js, take a look at the following resources:
+## Vercel deployment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Preview deploy:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run vercel:preview
+```
 
-## Deploy on Vercel
+Production deploy:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm run vercel:prod
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`vercel.json` is included for Next.js deployment defaults.
+
+## Connect `verdansc.com` DNS to Vercel
+
+1. In Vercel, open your project, then go to **Settings -> Domains**.
+2. Add `verdansc.com` and `www.verdansc.com`.
+3. At your DNS provider, add:
+   - **A record** for root (`@`) -> `76.76.21.21`
+   - **CNAME** for `www` -> `cname.vercel-dns.com`
+4. Remove conflicting old A/CNAME records for the same hostnames.
+5. Wait for propagation, then click **Refresh** in Vercel Domains until both
+   show as configured.
+6. Set `verdansc.com` as primary domain in Vercel if desired.
