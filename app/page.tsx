@@ -1,55 +1,73 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { trackEvent } from "./lib/analytics";
 
 type ApiPin = {
   id: string;
   label: string;
+  blurb: string;
   href: string;
   top: string;
   left: string;
 };
 
+type Persona = "renter" | "landlord";
+
 const API_PINS: ApiPin[] = [
   {
     id: "credit-check",
-    label: "Credit Check API",
+    label: "Credit Check",
+    blurb: "Pre-screen renters and buyers with fast payment-gated reports.",
     href: "/credit-check",
     top: "76%",
     left: "63%",
   },
   {
     id: "home-tour",
-    label: "3D Home Tour API",
+    label: "3D Home Tours",
+    blurb: "Generate walkthrough-ready property experiences for listings.",
     href: "/3d-home-tour",
     top: "49%",
     left: "44%",
   },
   {
     id: "draft-agreements",
-    label: "Draft Agreements API",
+    label: "Draft Agreements",
+    blurb: "Create transaction-ready agreement packets faster.",
     href: "/draft-agreements",
     top: "58%",
     left: "31%",
   },
   {
     id: "escrow",
-    label: "Hold In Escrow API",
+    label: "Escrow Services",
+    blurb: "Handle milestones and fund release workflows securely.",
     href: "/hold-in-escrow",
     top: "68%",
     left: "18%",
   },
   {
     id: "broker-services",
-    label: "Broker Services API",
+    label: "Broker Services",
+    blurb: "Match clients with local brokers and offer guidance.",
     href: "/broker-services",
     top: "36%",
     left: "70%",
   },
+  {
+    id: "rental-application",
+    label: "Rental Application",
+    blurb: "Collect tenant applications and review them in one flow.",
+    href: "/rental-application",
+    top: "52%",
+    left: "57%",
+  },
 ];
 
 export default function Home() {
+  const [persona, setPersona] = useState<Persona>("renter");
   const [activePin, setActivePin] = useState<string>(API_PINS[0].id);
   const [carouselIndex, setCarouselIndex] = useState(0);
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -67,6 +85,27 @@ export default function Home() {
   };
 
   const onMapLeave = () => setTilt({ x: 0, y: 0 });
+
+  useEffect(() => {
+    trackEvent("landing_view", { page: "/" });
+  }, []);
+
+  const personaText =
+    persona === "renter"
+      ? {
+          title: "For renters and buyers",
+          subtitle:
+            "Run your credit check, submit a rental request, and move forward with confidence.",
+          ctaLabel: "Start My Credit Check - $19",
+          ctaHref: "/credit-check",
+        }
+      : {
+          title: "For landlords and managers",
+          subtitle:
+            "Screen applicants, collect rental requests, and manage transaction services in one place.",
+          ctaLabel: "Review Rental Applications",
+          ctaHref: "/rental-application",
+        };
 
   return (
     <main className="map-landing">
@@ -121,12 +160,59 @@ export default function Home() {
           </div>
         </article>
 
+        <section className="persona-switch" aria-label="Choose your path">
+          <p className="persona-kicker">Choose your path</p>
+          <div className="persona-buttons" role="tablist" aria-label="Audience">
+            <button
+              type="button"
+              className={`persona-btn ${persona === "renter" ? "is-active" : ""}`}
+              onClick={() => {
+                setPersona("renter");
+                trackEvent("persona_selected", { persona: "renter" });
+              }}
+            >
+              Renter / Buyer
+            </button>
+            <button
+              type="button"
+              className={`persona-btn ${persona === "landlord" ? "is-active" : ""}`}
+              onClick={() => {
+                setPersona("landlord");
+                trackEvent("persona_selected", { persona: "landlord" });
+              }}
+            >
+              Landlord / Manager
+            </button>
+          </div>
+          <p className="persona-title">{personaText.title}</p>
+        </section>
+
         <p className="map-tagline">
-          Unified real estate service APIs for credit checks, tours, agreements,
-          escrow, and broker matching.
+          {personaText.subtitle}
         </p>
 
-        <footer className="map-footer">VERDANSC 2026 INC</footer>
+        <div className="map-cta-row">
+          <Link
+            href={personaText.ctaHref}
+            className="map-primary-cta"
+            onClick={() =>
+              trackEvent("landing_primary_cta_click", {
+                persona,
+                destination: personaText.ctaHref,
+              })
+            }
+          >
+            {personaText.ctaLabel}
+          </Link>
+        </div>
+
+        <footer className="map-footer">
+          <span>VERDANSC 2026 INC</span>
+          <nav className="footer-links">
+            <Link href="/privacy">Privacy</Link>
+            <Link href="/terms">Terms</Link>
+          </nav>
+        </footer>
       </section>
 
       <button
@@ -171,16 +257,16 @@ export default function Home() {
                 className={`api-card ${activePin === pin.id ? "is-active" : ""}`}
                 onMouseEnter={() => setActivePin(pin.id)}
               >
-                <p className="api-card-kicker">API NODE</p>
+                <p className="api-card-kicker">SERVICE</p>
                 <h3>{pin.label}</h3>
-                <p>Open the service page and endpoint tools.</p>
+                <p>{pin.blurb}</p>
                 <Link
                   href={pin.href}
                   className="api-card-link"
                   onFocus={() => setActivePin(pin.id)}
                   onClick={() => setDrawerOpen(false)}
                 >
-                  Open service
+                  View service
                 </Link>
               </article>
             ))}

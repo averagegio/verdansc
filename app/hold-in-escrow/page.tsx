@@ -3,21 +3,15 @@ import ApiServicePage from "../components/ApiServicePage";
 export default function HoldInEscrowPage() {
   return (
     <ApiServicePage
-      eyebrow="API Service - Compliance"
-      title="Hold In Escrow API"
-      summary="Manage secure transaction funds through programmable milestones, release approvals, and full audit trails for buyers, sellers, and brokers."
+      eyebrow="Transaction Security Service"
+      title="Escrow Services"
+      summary="Protect buyer and seller funds with guided escrow milestones, approval checkpoints, and transparent release tracking."
       features={[
-        "Escrow account creation with beneficiary mapping",
-        "Milestone-based release policies and approval gates",
-        "Disbursement ledger with immutable event history",
-        "Dispute state handling and notification webhooks",
+        "Escrow setup tied to property and transaction terms",
+        "Milestone-based payment release approvals",
+        "Clear status timeline for all stakeholders",
+        "Dispute and hold handling with audit history",
       ]}
-      workflow={[
-        "Create an escrow record tied to transaction terms.",
-        "Attach milestone triggers and signer approvals.",
-        "Execute release events with complete audit output.",
-      ]}
-      endpoint="/api/hold-in-escrow"
     />
   );
 }

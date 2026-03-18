@@ -3,21 +3,15 @@ import ApiServicePage from "../components/ApiServicePage";
 export default function HomeTourPage() {
   return (
     <ApiServicePage
-      eyebrow="API Service - Visualization"
-      title="3D Home Tour API"
-      summary="Convert floorplans and image sets into guided virtual tours with room anchors, measurement overlays, and shareable walkthrough links."
+      eyebrow="Home Marketing Service"
+      title="3D Home Tours"
+      summary="Show properties with immersive walkthroughs that help renters and buyers decide faster before scheduling in-person visits."
       features={[
-        "Scene stitching with camera path smoothing",
-        "Room labels, hotspots, and measurement overlays",
-        "Optional virtual staging layer for empty properties",
-        "Embeddable viewer configuration per listing",
+        "Interactive room-by-room walk-through experience",
+        "Listing-ready media links for faster lead engagement",
+        "Virtual staging options for empty properties",
+        "Shareable tour links for agents and landlords",
       ]}
-      workflow={[
-        "Upload property media and structured room metadata.",
-        "Tour engine generates connected scenes and route hints.",
-        "Publish a signed URL for portal and CRM integrations.",
-      ]}
-      endpoint="/api/3d-home-tour"
     />
   );
 }

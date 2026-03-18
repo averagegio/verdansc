@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
           username: body.username,
           cardLast4: body.cardLast4,
         },
-        success_url: `${origin}/credit-check?payment=success&session_id={CHECKOUT_SESSION_ID}`,
+        success_url: `${origin}/credit-check/success?source=stripe&session_id={CHECKOUT_SESSION_ID}`,
         cancel_url: `${origin}/credit-check?payment=cancel`,
       });
 

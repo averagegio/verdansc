@@ -3,21 +3,15 @@ import ApiServicePage from "../components/ApiServicePage";
 export default function BrokerServicesPage() {
   return (
     <ApiServicePage
-      eyebrow="API Service - Advisory"
-      title="Broker Services API"
-      summary="Match clients with qualified brokers, benchmark local market conditions, and generate offer guidance based on live neighborhood activity."
+      eyebrow="Local Advisory Service"
+      title="Broker Services"
+      summary="Connect renters, buyers, and owners with local brokers who match budget, goals, and neighborhood priorities."
       features={[
-        "Broker ranking by specialty, area, and performance",
-        "Local market snapshot with velocity indicators",
-        "Offer strategy suggestions per competition profile",
-        "Engagement routing to CRM and scheduling systems",
+        "Broker matching by area, specialty, and performance",
+        "Local market pace and competition snapshot",
+        "Offer and negotiation guidance recommendations",
+        "Quick handoff into scheduling and follow-up tools",
       ]}
-      workflow={[
-        "Provide client preferences, budget, and target zones.",
-        "Ranking engine filters and scores broker candidates.",
-        "Return recommendations and action-ready intro data.",
-      ]}
-      endpoint="/api/broker-services"
     />
   );
 }

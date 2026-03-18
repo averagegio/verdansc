@@ -1,7 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { FormEvent, useState } from "react";
+import { useRouter } from "next/navigation";
+import { FormEvent, useEffect, useState } from "react";
+import ServiceTopBar from "../components/ServiceTopBar";
+import { trackEvent } from "../lib/analytics";
 
 type AccountFields = {
   email: string;
@@ -27,6 +30,7 @@ type ChargeResponse = {
 const CHECK_PRICE = 19;
 
 export default function CreditCheckPage() {
+  const router = useRouter();
   const [step, setStep] = useState<1 | 2>(1);
   const [account, setAccount] = useState<AccountFields>({
     email: "",
@@ -46,6 +50,34 @@ export default function CreditCheckPage() {
   const [reportError, setReportError] = useState("");
   const [report, setReport] = useState<unknown>(null);
 
+  const isAccountValid =
+    account.email.trim().length > 0 &&
+    account.username.trim().length > 0 &&
+    account.password.length >= 8;
+  const cardDigits = payment.cardNumber.replace(/\D/g, "");
+  const isPaymentValid =
+    payment.cardName.trim().length > 0 &&
+    cardDigits.length >= 12 &&
+    /^\d{2}\/\d{2}$/.test(payment.expiry) &&
+    /^\d{3,4}$/.test(payment.cvc);
+
+  const formatCardNumber = (value: string) => {
+    const digits = value.replace(/\D/g, "").slice(0, 16);
+    return digits.replace(/(\d{4})(?=\d)/g, "$1 ").trim();
+  };
+
+  const formatExpiry = (value: string) => {
+    const digits = value.replace(/\D/g, "").slice(0, 4);
+    if (digits.length <= 2) return digits;
+    return `${digits.slice(0, 2)}/${digits.slice(2)}`;
+  };
+
+  const formatCvc = (value: string) => value.replace(/\D/g, "").slice(0, 4);
+
+  useEffect(() => {
+    trackEvent("credit_check_view", { page: "/credit-check" });
+  }, []);
+
   const onAccountNext = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError("");
@@ -63,6 +95,10 @@ export default function CreditCheckPage() {
       return;
     }
 
+    trackEvent("credit_check_account_continue", {
+      hasEmail: account.email.trim().length > 0,
+      hasUsername: account.username.trim().length > 0,
+    });
     setStep(2);
   };
 
@@ -84,6 +120,7 @@ export default function CreditCheckPage() {
     }
 
     setCharging(true);
+    trackEvent("credit_check_payment_submit", { amount: CHECK_PRICE });
 
     try {
       const response = await fetch("/api/stripe/credit-check", {
@@ -102,12 +139,16 @@ export default function CreditCheckPage() {
       const payload = (await response.json()) as ChargeResponse;
       if (!response.ok) {
         setError(payload.message ?? "Payment request failed.");
+        trackEvent("credit_check_payment_error", { stage: "payment_request" });
         return;
       }
 
       setResult(payload);
 
       if (payload.checkoutUrl) {
+        trackEvent("credit_check_redirect_stripe", {
+          mode: payload.mode ?? "stripe-checkout",
+        });
         window.location.assign(payload.checkoutUrl);
         return;
       }
@@ -121,11 +162,22 @@ export default function CreditCheckPage() {
 
       if (!reportResponse.ok) {
         setReportError("Payment went through, but credit report lookup failed.");
+        trackEvent("credit_check_payment_error", { stage: "report_fetch" });
       } else {
         setReport(reportPayload);
+        const paymentId = payload.paymentId ?? "pending";
+        trackEvent("credit_check_payment_success", {
+          source: "mock",
+          paymentId,
+          amount: CHECK_PRICE,
+        });
+        router.push(
+          `/credit-check/success?source=mock&payment_id=${encodeURIComponent(paymentId)}`,
+        );
       }
     } catch {
       setError("Could not process payment. Please try again.");
+      trackEvent("credit_check_payment_error", { stage: "network" });
     } finally {
       setCharging(false);
       setCheckingReport(false);
@@ -134,6 +186,7 @@ export default function CreditCheckPage() {
 
   return (
     <main className="min-h-screen bg-slate-950 px-6 py-16 text-slate-100">
+      <ServiceTopBar />
       <section className="mx-auto grid w-full max-w-6xl gap-6 md:grid-cols-[1.4fr_1fr]">
         <article className="rounded-2xl border border-cyan-400/30 bg-slate-900/65 p-7 shadow-2xl shadow-cyan-950/30">
           <p className="text-xs uppercase tracking-[0.2em] text-cyan-300">
@@ -203,9 +256,13 @@ export default function CreditCheckPage() {
                   setAccount({ ...account, password: event.target.value })
                 }
               />
+              <p className="text-xs text-cyan-200/90">
+                Use at least 8 characters for your password.
+              </p>
               <button
                 type="submit"
-                className="inline-flex rounded-md border border-cyan-300/50 px-4 py-2 text-sm text-cyan-100 hover:bg-cyan-400/10"
+                className="inline-flex rounded-md border border-cyan-300/50 px-4 py-2 text-sm text-cyan-100 hover:bg-cyan-400/10 disabled:cursor-not-allowed disabled:opacity-50"
+                disabled={!isAccountValid}
               >
                 Continue to secure payment
               </button>
@@ -227,8 +284,12 @@ export default function CreditCheckPage() {
                 placeholder="Card number"
                 value={payment.cardNumber}
                 onChange={(event) =>
-                  setPayment({ ...payment, cardNumber: event.target.value })
+                  setPayment({
+                    ...payment,
+                    cardNumber: formatCardNumber(event.target.value),
+                  })
                 }
+                inputMode="numeric"
               />
               <div className="grid grid-cols-2 gap-3">
                 <input
@@ -237,8 +298,12 @@ export default function CreditCheckPage() {
                   placeholder="MM/YY"
                   value={payment.expiry}
                   onChange={(event) =>
-                    setPayment({ ...payment, expiry: event.target.value })
+                    setPayment({
+                      ...payment,
+                      expiry: formatExpiry(event.target.value),
+                    })
                   }
+                  inputMode="numeric"
                 />
                 <input
                   className="w-full rounded-md border border-cyan-300/40 bg-slate-950/60 px-3 py-2 text-sm outline-none focus:border-cyan-300"
@@ -246,10 +311,17 @@ export default function CreditCheckPage() {
                   placeholder="CVC"
                   value={payment.cvc}
                   onChange={(event) =>
-                    setPayment({ ...payment, cvc: event.target.value })
+                    setPayment({
+                      ...payment,
+                      cvc: formatCvc(event.target.value),
+                    })
                   }
+                  inputMode="numeric"
                 />
               </div>
+              <p className="text-xs text-cyan-200/90">
+                Enter a valid card number, expiry (MM/YY), and CVC to continue.
+              </p>
               <div className="flex gap-2">
                 <button
                   type="button"
@@ -261,7 +333,7 @@ export default function CreditCheckPage() {
                 <button
                   type="submit"
                   className="inline-flex rounded-md border border-cyan-300/50 px-4 py-2 text-sm text-cyan-100 hover:bg-cyan-400/10 disabled:opacity-50"
-                  disabled={charging}
+                  disabled={charging || !isPaymentValid}
                 >
                   {charging ? "Processing..." : `Pay $${CHECK_PRICE} and run check`}
                 </button>
