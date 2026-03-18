@@ -1,29 +1,19 @@
-"use client";
-
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
-import { useEffect } from "react";
-import { trackEvent } from "../../lib/analytics";
+type CreditCheckSuccessPageProps = {
+  searchParams?: Promise<{
+    source?: string;
+    payment_id?: string;
+    session_id?: string;
+  }>;
+};
 
-export default function CreditCheckSuccessPage() {
-  const searchParams = useSearchParams();
-  const source = searchParams.get("source") ?? "payment";
-  const sessionId = searchParams.get("session_id") ?? "unknown";
-  const confirmationId =
-    searchParams.get("payment_id") ??
-    sessionId ??
-    "Confirmation pending";
-
-  useEffect(() => {
-    trackEvent("credit_check_success_view", { source });
-
-    if (source === "stripe") {
-      trackEvent("credit_check_payment_success", {
-        source: "stripe",
-        sessionId,
-      });
-    }
-  }, [source, sessionId]);
+export default async function CreditCheckSuccessPage({
+  searchParams,
+}: CreditCheckSuccessPageProps) {
+  const params = (await searchParams) ?? {};
+  const source = params.source ?? "payment";
+  const sessionId = params.session_id ?? "unknown";
+  const confirmationId = params.payment_id ?? sessionId ?? "Confirmation pending";
 
   return (
     <main className="min-h-screen bg-slate-950 px-6 py-20 text-slate-100">
