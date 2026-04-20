@@ -78,12 +78,12 @@ export default function ApiServicePage({
               Submit request
             </button>
           </form>
-          <button
-            type="button"
-            className="mt-3 text-sm text-cyan-200 underline decoration-cyan-400/70 underline-offset-2"
+          <Link
+            href="/login"
+            className="mt-3 inline-flex text-sm text-cyan-200 underline decoration-cyan-400/70 underline-offset-2"
           >
             Returning user? Login
-          </button>
+          </Link>
 
           <Link
             href="/"

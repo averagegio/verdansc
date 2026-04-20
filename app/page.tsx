@@ -58,11 +58,35 @@ const API_PINS: ApiPin[] = [
   },
   {
     id: "rental-application",
-    label: "Rental Application",
-    blurb: "Collect tenant applications and review them in one flow.",
+    label: "Applicant Intake Setup",
+    blurb: "Configure landlord intake and screening workflow in one flow.",
     href: "/rental-application",
     top: "52%",
     left: "57%",
+  },
+  {
+    id: "rental-application-listings",
+    label: "Rental Application Listings",
+    blurb: "Browse active listings and compare application fees before applying.",
+    href: "/listings",
+    top: "43%",
+    left: "53%",
+  },
+  {
+    id: "move-in-planner",
+    label: "Move-In Planner",
+    blurb: "Track move-in readiness tasks for deposits, utilities, and insurance.",
+    href: "/move-in-planner",
+    top: "47%",
+    left: "62%",
+  },
+  {
+    id: "move-out-tracker",
+    label: "Move-Out Tracker",
+    blurb: "Track notice, ledger, and documentation readiness for move-out workflows.",
+    href: "/move-out-tracker",
+    top: "60%",
+    left: "66%",
   },
 ];
 
@@ -102,8 +126,8 @@ export default function Home() {
       : {
           title: "For landlords and managers",
           subtitle:
-            "Screen applicants, collect rental requests, and manage transaction services in one place.",
-          ctaLabel: "Review Rental Applications",
+            "Set up applicant intake, screen renters, and manage transaction services in one place.",
+          ctaLabel: "Set Up Applicant Intake",
           ctaHref: "/rental-application",
         };
 
@@ -204,11 +228,24 @@ export default function Home() {
           >
             {personaText.ctaLabel}
           </Link>
+          <Link
+            href="/pricing"
+            className="map-secondary-cta"
+            onClick={() =>
+              trackEvent("landing_membership_cta_click", {
+                persona,
+                destination: "/pricing",
+              })
+            }
+          >
+            Explore membership plans
+          </Link>
         </div>
 
         <footer className="map-footer">
           <span>VERDANSC 2026 INC</span>
           <nav className="footer-links">
+            <Link href="/pricing">Pricing</Link>
             <Link href="/privacy">Privacy</Link>
             <Link href="/terms">Terms</Link>
           </nav>
@@ -235,9 +272,9 @@ export default function Home() {
           VG
         </div>
         <p className="drawer-title">Verdansc Operator</p>
-        <button type="button" className="drawer-login">
+        <Link href="/login" className="drawer-login">
           Login
-        </button>
+        </Link>
         <p className="drawer-subtitle">
           Hover or select a service to highlight its map endpoint.
         </p>

@@ -6,17 +6,17 @@ import { FormEvent, useEffect, useState } from "react";
 import ServiceTopBar from "../components/ServiceTopBar";
 import { trackEvent } from "../lib/analytics";
 
-type AccountFields = {
+type DetailsFields = {
+  fullName: string;
   email: string;
-  username: string;
-  password: string;
-};
-
-type PaymentFields = {
-  cardName: string;
-  cardNumber: string;
-  expiry: string;
-  cvc: string;
+  phone: string;
+  addressLine1: string;
+  city: string;
+  state: string;
+  postalCode: string;
+  dob: string;
+  ssnLast4: string;
+  acceptedConsent: boolean;
 };
 
 type ChargeResponse = {
@@ -32,16 +32,17 @@ const CHECK_PRICE = 19;
 export default function CreditCheckPage() {
   const router = useRouter();
   const [step, setStep] = useState<1 | 2>(1);
-  const [account, setAccount] = useState<AccountFields>({
+  const [details, setDetails] = useState<DetailsFields>({
+    fullName: "",
     email: "",
-    username: "",
-    password: "",
-  });
-  const [payment, setPayment] = useState<PaymentFields>({
-    cardName: "",
-    cardNumber: "",
-    expiry: "",
-    cvc: "",
+    phone: "",
+    addressLine1: "",
+    city: "",
+    state: "",
+    postalCode: "",
+    dob: "",
+    ssnLast4: "",
+    acceptedConsent: false,
   });
   const [error, setError] = useState("");
   const [charging, setCharging] = useState(false);
@@ -50,54 +51,38 @@ export default function CreditCheckPage() {
   const [reportError, setReportError] = useState("");
   const [report, setReport] = useState<unknown>(null);
 
-  const isAccountValid =
-    account.email.trim().length > 0 &&
-    account.username.trim().length > 0 &&
-    account.password.length >= 8;
-  const cardDigits = payment.cardNumber.replace(/\D/g, "");
-  const isPaymentValid =
-    payment.cardName.trim().length > 0 &&
-    cardDigits.length >= 12 &&
-    /^\d{2}\/\d{2}$/.test(payment.expiry) &&
-    /^\d{3,4}$/.test(payment.cvc);
-
-  const formatCardNumber = (value: string) => {
-    const digits = value.replace(/\D/g, "").slice(0, 16);
-    return digits.replace(/(\d{4})(?=\d)/g, "$1 ").trim();
-  };
-
-  const formatExpiry = (value: string) => {
-    const digits = value.replace(/\D/g, "").slice(0, 4);
-    if (digits.length <= 2) return digits;
-    return `${digits.slice(0, 2)}/${digits.slice(2)}`;
-  };
-
-  const formatCvc = (value: string) => value.replace(/\D/g, "").slice(0, 4);
+  const isDetailsValid =
+    details.fullName.trim().length > 1 &&
+    details.email.trim().length > 0 &&
+    details.phone.trim().length >= 10 &&
+    details.addressLine1.trim().length > 3 &&
+    details.city.trim().length > 1 &&
+    details.state.trim().length > 1 &&
+    details.postalCode.trim().length >= 5 &&
+    /^\d{4}$/.test(details.ssnLast4) &&
+    details.dob.trim().length > 0 &&
+    details.acceptedConsent;
 
   useEffect(() => {
     trackEvent("credit_check_view", { page: "/credit-check" });
   }, []);
 
-  const onAccountNext = (event: FormEvent<HTMLFormElement>) => {
+  const onDetailsNext = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setError("");
     setResult(null);
     setReport(null);
     setReportError("");
 
-    if (!account.email || !account.username || !account.password) {
-      setError("Please fill out email, username, and password.");
-      return;
-    }
-
-    if (account.password.length < 8) {
-      setError("Password must be at least 8 characters.");
+    if (!isDetailsValid) {
+      setError("Please complete all required details and consent to continue.");
       return;
     }
 
     trackEvent("credit_check_account_continue", {
-      hasEmail: account.email.trim().length > 0,
-      hasUsername: account.username.trim().length > 0,
+      hasEmail: details.email.trim().length > 0,
+      hasFullName: details.fullName.trim().length > 0,
+      hasAddress: details.addressLine1.trim().length > 0,
     });
     setStep(2);
   };
@@ -109,16 +94,6 @@ export default function CreditCheckPage() {
     setReport(null);
     setReportError("");
 
-    if (
-      !payment.cardName ||
-      !payment.cardNumber ||
-      !payment.expiry ||
-      !payment.cvc
-    ) {
-      setError("Please complete all credit card fields.");
-      return;
-    }
-
     setCharging(true);
     trackEvent("credit_check_payment_submit", { amount: CHECK_PRICE });
 
@@ -129,10 +104,10 @@ export default function CreditCheckPage() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          email: account.email,
-          username: account.username,
+          email: details.email,
+          username:
+            details.email.split("@")[0] || details.fullName.replace(/\s+/g, "_"),
           amount: CHECK_PRICE,
-          cardLast4: payment.cardNumber.replace(/\s/g, "").slice(-4),
         }),
       });
 
@@ -219,110 +194,161 @@ export default function CreditCheckPage() {
 
         <aside className="rounded-2xl border border-cyan-400/30 bg-slate-900/65 p-7">
           <h2 className="text-lg font-semibold text-cyan-100">
-            {step === 1 ? "Step 1: Account Setup" : "Step 2: Payment"}
+            {step === 1
+              ? "Step 1: Your details"
+              : "Step 2: Continue to secure checkout"}
           </h2>
           <p className="mt-2 text-sm text-slate-300">
             {step === 1
-              ? "Enter your email and login details to begin."
-              : `Enter card details to pay $${CHECK_PRICE}. If Stripe is enabled, you will continue on secure Stripe Checkout.`}
+              ? "Enter your details to prepare your one-time soft credit check request."
+              : `Review your request and continue to Stripe Checkout to pay $${CHECK_PRICE} securely.`}
+          </p>
+          <p className="mt-2 text-xs text-cyan-200/90">
+            Soft inquiry only. This check does not affect your credit score.
           </p>
 
           {step === 1 ? (
-            <form className="mt-4 space-y-3" onSubmit={onAccountNext}>
+            <form className="mt-4 space-y-3" onSubmit={onDetailsNext}>
+              <input
+                className="w-full rounded-md border border-cyan-300/40 bg-slate-950/60 px-3 py-2 text-sm outline-none focus:border-cyan-300"
+                type="text"
+                placeholder="Full legal name"
+                value={details.fullName}
+                onChange={(event) =>
+                  setDetails({ ...details, fullName: event.target.value })
+                }
+              />
               <input
                 className="w-full rounded-md border border-cyan-300/40 bg-slate-950/60 px-3 py-2 text-sm outline-none focus:border-cyan-300"
                 type="email"
                 placeholder="Your email"
-                value={account.email}
+                value={details.email}
                 onChange={(event) =>
-                  setAccount({ ...account, email: event.target.value })
+                  setDetails({ ...details, email: event.target.value })
                 }
               />
               <input
                 className="w-full rounded-md border border-cyan-300/40 bg-slate-950/60 px-3 py-2 text-sm outline-none focus:border-cyan-300"
                 type="text"
-                placeholder="Create username"
-                value={account.username}
+                placeholder="Phone number"
+                value={details.phone}
                 onChange={(event) =>
-                  setAccount({ ...account, username: event.target.value })
-                }
-              />
-              <input
-                className="w-full rounded-md border border-cyan-300/40 bg-slate-950/60 px-3 py-2 text-sm outline-none focus:border-cyan-300"
-                type="password"
-                placeholder="Create password (8+ characters)"
-                value={account.password}
-                onChange={(event) =>
-                  setAccount({ ...account, password: event.target.value })
-                }
-              />
-              <p className="text-xs text-cyan-200/90">
-                Use at least 8 characters for your password.
-              </p>
-              <button
-                type="submit"
-                className="inline-flex rounded-md border border-cyan-300/50 px-4 py-2 text-sm text-cyan-100 hover:bg-cyan-400/10 disabled:cursor-not-allowed disabled:opacity-50"
-                disabled={!isAccountValid}
-              >
-                Continue to secure payment
-              </button>
-            </form>
-          ) : (
-            <form className="mt-4 space-y-3" onSubmit={onCharge}>
-              <input
-                className="w-full rounded-md border border-cyan-300/40 bg-slate-950/60 px-3 py-2 text-sm outline-none focus:border-cyan-300"
-                type="text"
-                placeholder="Name on card"
-                value={payment.cardName}
-                onChange={(event) =>
-                  setPayment({ ...payment, cardName: event.target.value })
+                  setDetails({ ...details, phone: event.target.value })
                 }
               />
               <input
                 className="w-full rounded-md border border-cyan-300/40 bg-slate-950/60 px-3 py-2 text-sm outline-none focus:border-cyan-300"
                 type="text"
-                placeholder="Card number"
-                value={payment.cardNumber}
+                placeholder="Street address"
+                value={details.addressLine1}
                 onChange={(event) =>
-                  setPayment({
-                    ...payment,
-                    cardNumber: formatCardNumber(event.target.value),
-                  })
+                  setDetails({ ...details, addressLine1: event.target.value })
                 }
-                inputMode="numeric"
               />
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-3 gap-3">
                 <input
                   className="w-full rounded-md border border-cyan-300/40 bg-slate-950/60 px-3 py-2 text-sm outline-none focus:border-cyan-300"
                   type="text"
-                  placeholder="MM/YY"
-                  value={payment.expiry}
+                  placeholder="City"
+                  value={details.city}
                   onChange={(event) =>
-                    setPayment({
-                      ...payment,
-                      expiry: formatExpiry(event.target.value),
-                    })
+                    setDetails({ ...details, city: event.target.value })
                   }
-                  inputMode="numeric"
                 />
                 <input
                   className="w-full rounded-md border border-cyan-300/40 bg-slate-950/60 px-3 py-2 text-sm outline-none focus:border-cyan-300"
                   type="text"
-                  placeholder="CVC"
-                  value={payment.cvc}
+                  placeholder="State"
+                  value={details.state}
                   onChange={(event) =>
-                    setPayment({
-                      ...payment,
-                      cvc: formatCvc(event.target.value),
+                    setDetails({ ...details, state: event.target.value })
+                  }
+                />
+                <input
+                  className="w-full rounded-md border border-cyan-300/40 bg-slate-950/60 px-3 py-2 text-sm outline-none focus:border-cyan-300"
+                  type="text"
+                  placeholder="ZIP code"
+                  value={details.postalCode}
+                  onChange={(event) =>
+                    setDetails({ ...details, postalCode: event.target.value })
+                  }
+                />
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                <input
+                  className="w-full rounded-md border border-cyan-300/40 bg-slate-950/60 px-3 py-2 text-sm outline-none focus:border-cyan-300"
+                  type="date"
+                  value={details.dob}
+                  onChange={(event) =>
+                    setDetails({ ...details, dob: event.target.value })
+                  }
+                />
+                <input
+                  className="w-full rounded-md border border-cyan-300/40 bg-slate-950/60 px-3 py-2 text-sm outline-none focus:border-cyan-300"
+                  type="text"
+                  placeholder="SSN last 4"
+                  value={details.ssnLast4}
+                  onChange={(event) =>
+                    setDetails({
+                      ...details,
+                      ssnLast4: event.target.value.replace(/\D/g, "").slice(0, 4),
                     })
                   }
                   inputMode="numeric"
                 />
               </div>
+              <label className="flex items-start gap-2 text-xs text-slate-300">
+                <input
+                  className="mt-1"
+                  type="checkbox"
+                  checked={details.acceptedConsent}
+                  onChange={(event) =>
+                    setDetails({ ...details, acceptedConsent: event.target.checked })
+                  }
+                />
+                I authorize a soft credit inquiry and agree to Verdansc terms and
+                privacy policy.
+              </label>
               <p className="text-xs text-cyan-200/90">
-                Enter a valid card number, expiry (MM/YY), and CVC to continue.
+                We only ask for the details needed to process your one-time request.
               </p>
               <div className="flex gap-2">
+                <Link
+                  href="/"
+                  className="inline-flex rounded-md border border-slate-500/60 px-4 py-2 text-sm text-slate-100 hover:bg-slate-700/30"
+                >
+                  Cancel and return
+                </Link>
+                <button
+                  type="submit"
+                  className="inline-flex rounded-md border border-cyan-300/50 px-4 py-2 text-sm text-cyan-100 hover:bg-cyan-400/10 disabled:cursor-not-allowed disabled:opacity-50"
+                  disabled={!isDetailsValid}
+                >
+                  Continue to secure payment
+                </button>
+              </div>
+            </form>
+          ) : (
+            <form className="mt-4 space-y-3" onSubmit={onCharge}>
+              <div className="rounded-md border border-cyan-300/30 bg-slate-950/60 p-3 text-sm text-cyan-100">
+                <p>
+                  You will pay <strong>${CHECK_PRICE}</strong> on Stripe&apos;s
+                  hosted checkout.
+                </p>
+                <p className="mt-1 text-xs text-cyan-200/90">
+                  No card details are entered on Verdansc.
+                </p>
+              </div>
+              <p className="text-xs text-cyan-200/90">
+                You will be redirected to Stripe to complete payment.
+              </p>
+              <div className="flex gap-2">
+                <Link
+                  href="/"
+                  className="inline-flex rounded-md border border-slate-500/60 px-4 py-2 text-sm text-slate-100 hover:bg-slate-700/30"
+                >
+                  Cancel and return
+                </Link>
                 <button
                   type="button"
                   className="inline-flex rounded-md border border-slate-500/50 px-4 py-2 text-sm text-slate-200 hover:bg-slate-700/30"
@@ -333,7 +359,7 @@ export default function CreditCheckPage() {
                 <button
                   type="submit"
                   className="inline-flex rounded-md border border-cyan-300/50 px-4 py-2 text-sm text-cyan-100 hover:bg-cyan-400/10 disabled:opacity-50"
-                  disabled={charging || !isPaymentValid}
+                  disabled={charging}
                 >
                   {charging ? "Processing..." : `Pay $${CHECK_PRICE} and run check`}
                 </button>

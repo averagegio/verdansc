@@ -12,6 +12,11 @@ npm run dev
 
 Open `http://localhost:3000`.
 
+## User storage
+
+- Add `POSTGRES_URL` in `.env.local` to persist users and subscription state (Neon/Postgres).
+- Without `POSTGRES_URL`, the app uses in-memory storage for local testing only.
+
 ## Stripe keys
 
 1. Copy `.env.example` to `.env.local`.
@@ -22,6 +27,27 @@ Open `http://localhost:3000`.
 
 When `STRIPE_SECRET_KEY` is present, `POST /api/stripe/credit-check` creates a
 Stripe Checkout session. Without a key, it falls back to mock mode.
+
+### Stripe test-mode checklist
+
+1. Add all required Stripe env vars in `.env.local`:
+   - `STRIPE_SECRET_KEY`
+   - `STRIPE_WEBHOOK_SECRET`
+   - `STRIPE_PRICE_RENTER_READY`
+   - `STRIPE_PRICE_RENTER_PLUS`
+   - `STRIPE_PRICE_LANDLORD_GROWTH`
+   - `STRIPE_PRICE_LANDLORD_PRO`
+2. Verify config health:
+   - `GET /api/integration/stripe-health`
+3. Start Stripe webhook listener locally:
+   - `stripe listen --forward-to localhost:3000/api/stripe/webhook`
+4. Copy the generated signing secret (`whsec_...`) into
+   `STRIPE_WEBHOOK_SECRET`.
+5. Test both billing flows:
+   - one-time credit check checkout
+   - subscription checkout from dashboard
+6. Confirm dashboard status changes after webhook events
+   (`checkout_completed`, `active`, `canceled`).
 
 ## Vercel deployment
 
