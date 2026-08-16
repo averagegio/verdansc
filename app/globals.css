@@ -621,3 +621,684 @@ body {
     gap: 0.9rem;
   }
 }
+
+/* ——— VERDANSC horizontal pitch deck ——— */
+.pitch-deck {
+  --pitch-bg: #040a14;
+  --pitch-ink: #e8f4ff;
+  --pitch-muted: #8fb4d4;
+  --pitch-line: rgba(103, 232, 249, 0.28);
+  --pitch-accent: #22d3ee;
+  --pitch-accent-2: #14b8a6;
+  --pitch-panel: rgba(8, 22, 42, 0.72);
+  position: relative;
+  height: 100dvh;
+  overflow: hidden;
+  color: var(--pitch-ink);
+  background:
+    radial-gradient(ellipse 80% 60% at 10% 0%, rgba(34, 211, 238, 0.16), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 90% 100%, rgba(20, 184, 166, 0.14), transparent 50%),
+    linear-gradient(135deg, #02060d 0%, #071526 48%, #04101c 100%);
+  font-family: var(--font-geist-sans), "Segoe UI", sans-serif;
+}
+
+.pitch-chrome {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 30;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.85rem clamp(1rem, 3vw, 2rem);
+  pointer-events: none;
+}
+
+.pitch-chrome > * {
+  pointer-events: auto;
+}
+
+.pitch-brand {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  letter-spacing: 0.12em;
+  font-size: 0.95rem;
+  color: #f0f9ff;
+  text-decoration: none;
+  -webkit-text-stroke: 0.5px rgba(34, 211, 238, 0.55);
+}
+
+.pitch-dots {
+  display: flex;
+  gap: 0.45rem;
+  justify-content: center;
+}
+
+.pitch-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  border: 1px solid rgba(125, 211, 252, 0.55);
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  transition: transform 220ms ease, background 220ms ease, width 220ms ease;
+}
+
+.pitch-dot.is-active {
+  width: 28px;
+  background: var(--pitch-accent);
+  border-color: var(--pitch-accent);
+  transform: scale(1.05);
+}
+
+.pitch-hint {
+  margin: 0;
+  justify-self: end;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--pitch-muted);
+}
+
+.pitch-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 31;
+  height: 2px;
+  background: rgba(148, 163, 184, 0.15);
+}
+
+.pitch-progress span {
+  display: block;
+  height: 100%;
+  width: 100%;
+  transform-origin: left center;
+  background: linear-gradient(90deg, var(--pitch-accent), var(--pitch-accent-2));
+  transition: transform 80ms linear;
+}
+
+.pitch-scroller {
+  display: flex;
+  height: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  outline: none;
+}
+
+.pitch-scroller::-webkit-scrollbar {
+  height: 0;
+}
+
+.pitch-slide {
+  position: relative;
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  display: grid;
+  align-items: center;
+  padding: clamp(4.5rem, 10vh, 6rem) clamp(1.25rem, 4vw, 3.5rem) clamp(2rem, 5vh, 3rem);
+  box-sizing: border-box;
+}
+
+.pitch-slide-inner {
+  width: min(1100px, 100%);
+  margin-inline: auto;
+  animation: pitch-rise 560ms ease both;
+}
+
+.pitch-slide--open,
+.pitch-slide--close {
+  place-items: center;
+  text-align: center;
+}
+
+.pitch-atmosphere {
+  position: absolute;
+  inset: 12% 8%;
+  border-radius: 40% 60% 55% 45% / 45% 40% 60% 55%;
+  background:
+    radial-gradient(circle at 30% 40%, rgba(34, 211, 238, 0.22), transparent 55%),
+    radial-gradient(circle at 70% 60%, rgba(20, 184, 166, 0.18), transparent 50%);
+  filter: blur(8px);
+  animation: pitch-drift 14s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+.pitch-atmosphere--close {
+  inset: 18% 18%;
+  animation-duration: 10s;
+}
+
+.pitch-open-copy {
+  position: relative;
+  z-index: 1;
+  width: min(820px, 100%);
+}
+
+.pitch-kicker {
+  margin: 0 0 0.75rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #67e8f9;
+}
+
+.pitch-logo {
+  margin: 0;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: clamp(3.2rem, 12vw, 7rem);
+  letter-spacing: 0.1em;
+  line-height: 0.95;
+  color: #f0f9ff;
+  -webkit-text-stroke: 1px rgba(34, 211, 238, 0.7);
+  text-shadow: 0 0 40px rgba(34, 211, 238, 0.28);
+  animation: pitch-glow 3.2s ease-in-out infinite alternate;
+}
+
+.pitch-logo--sm {
+  font-size: clamp(2.4rem, 8vw, 4.5rem);
+}
+
+.pitch-slogan {
+  margin: 1rem 0 0;
+  font-size: clamp(1.35rem, 3.4vw, 2.15rem);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: #dbeafe;
+}
+
+.pitch-lede {
+  margin: 1rem auto 0;
+  max-width: 38rem;
+  font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+  line-height: 1.55;
+  color: var(--pitch-muted);
+}
+
+.pitch-open-meta {
+  margin-top: 1.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.65rem;
+}
+
+.pitch-open-meta span {
+  border: 1px solid var(--pitch-line);
+  padding: 0.4rem 0.85rem;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #bae6fd;
+  background: rgba(8, 22, 42, 0.45);
+}
+
+.pitch-title {
+  margin: 0;
+  font-size: clamp(1.7rem, 4vw, 2.75rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  max-width: 18ch;
+}
+
+.pitch-sub {
+  margin: 0.85rem 0 0;
+  max-width: 42rem;
+  color: var(--pitch-muted);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.pitch-service-grid {
+  list-style: none;
+  margin: 1.6rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.pitch-service {
+  border-top: 1px solid var(--pitch-line);
+  padding: 0.9rem 0.15rem 0.35rem;
+  background: linear-gradient(180deg, rgba(34, 211, 238, 0.06), transparent 70%);
+  transition: transform 220ms ease, border-color 220ms ease;
+}
+
+.pitch-service:hover {
+  transform: translateY(-3px);
+  border-color: rgba(34, 211, 238, 0.55);
+}
+
+.pitch-service-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  align-items: baseline;
+}
+
+.pitch-service h3 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.pitch-service-top span {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #67e8f9;
+}
+
+.pitch-service p {
+  margin: 0.45rem 0 0;
+  font-size: 0.82rem;
+  line-height: 1.4;
+  color: var(--pitch-muted);
+}
+
+.pitch-funnel {
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.pitch-funnel-step {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.85rem 1rem;
+  border: 1px solid transparent;
+  border-left: 3px solid var(--pitch-accent);
+  background: var(--pitch-panel);
+  animation: pitch-rise 500ms ease both;
+}
+
+.pitch-funnel-step:nth-child(1) { animation-delay: 40ms; }
+.pitch-funnel-step:nth-child(2) { animation-delay: 100ms; }
+.pitch-funnel-step:nth-child(3) { animation-delay: 160ms; }
+.pitch-funnel-step:nth-child(4) { animation-delay: 220ms; }
+.pitch-funnel-step:nth-child(5) { animation-delay: 280ms; }
+
+.pitch-funnel-index {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 0.8rem;
+  color: #67e8f9;
+}
+
+.pitch-funnel-step h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.pitch-funnel-step p {
+  margin: 0.15rem 0 0;
+  font-size: 0.85rem;
+  color: var(--pitch-muted);
+}
+
+.pitch-funnel-step strong {
+  font-size: 1.15rem;
+  color: #a5f3fc;
+}
+
+.pitch-mau-row {
+  margin-top: 1.75rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  min-height: 280px;
+}
+
+.pitch-mau-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.25rem;
+  border: 1px solid var(--pitch-line);
+  background: rgba(8, 22, 42, 0.55);
+  overflow: hidden;
+  animation: pitch-rise 560ms ease both;
+}
+
+.pitch-mau-year {
+  margin: 0;
+  position: relative;
+  z-index: 1;
+  font-size: 0.75rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #67e8f9;
+}
+
+.pitch-mau-value {
+  margin: 0.35rem 0 0;
+  position: relative;
+  z-index: 1;
+  font-size: clamp(2.4rem, 6vw, 3.6rem);
+  font-weight: 650;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.pitch-mau-label {
+  margin: 0.45rem 0 0;
+  position: relative;
+  z-index: 1;
+  color: var(--pitch-muted);
+  font-size: 0.9rem;
+}
+
+.pitch-mau-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(180deg, transparent, rgba(34, 211, 238, 0.28));
+  animation: pitch-fill 900ms ease both;
+}
+
+.pitch-footnote {
+  margin: 1.25rem 0 0;
+  font-size: 0.85rem;
+  color: var(--pitch-muted);
+}
+
+.pitch-table-wrap {
+  margin-top: 1.5rem;
+  overflow-x: auto;
+  border: 1px solid var(--pitch-line);
+  background: rgba(8, 22, 42, 0.5);
+}
+
+.pitch-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 520px;
+}
+
+.pitch-table th,
+.pitch-table td {
+  padding: 1rem 1.1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+}
+
+.pitch-table th {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #67e8f9;
+  font-weight: 550;
+}
+
+.pitch-table td {
+  font-size: 1.15rem;
+}
+
+.pitch-table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.pitch-table tbody tr {
+  transition: background 180ms ease;
+}
+
+.pitch-table tbody tr:hover {
+  background: rgba(34, 211, 238, 0.06);
+}
+
+.pitch-unit-economics {
+  list-style: none;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.pitch-unit-economics li {
+  display: grid;
+  gap: 0.25rem;
+  padding: 0.85rem 0.2rem 0;
+  border-top: 1px solid var(--pitch-line);
+}
+
+.pitch-unit-economics strong {
+  font-size: 1.35rem;
+  color: #a5f3fc;
+}
+
+.pitch-unit-economics span {
+  font-size: 0.82rem;
+  color: var(--pitch-muted);
+}
+
+.pitch-growth-grid {
+  margin-top: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.pitch-growth-card {
+  padding: 1.15rem 1.2rem;
+  border: 1px solid var(--pitch-line);
+  background:
+    linear-gradient(145deg, rgba(34, 211, 238, 0.08), transparent 55%),
+    rgba(8, 22, 42, 0.55);
+  transition: transform 240ms ease, border-color 240ms ease;
+}
+
+.pitch-growth-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(34, 211, 238, 0.5);
+}
+
+.pitch-growth-card h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.pitch-growth-card p {
+  margin: 0.55rem 0 0;
+  color: var(--pitch-muted);
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.pitch-ask-hero {
+  margin: 1.35rem 0 1.1rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.85rem 1.25rem;
+}
+
+.pitch-ask-amount {
+  margin: 0;
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 650;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  background: linear-gradient(90deg, #e0f2fe, #22d3ee 55%, #14b8a6);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.pitch-ask-note {
+  margin: 0;
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--pitch-muted);
+}
+
+.pitch-funds {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+
+.pitch-funds li {
+  display: grid;
+  grid-template-columns: 4.5rem 1fr;
+  gap: 1rem;
+  align-items: start;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.14);
+}
+
+.pitch-funds strong {
+  font-size: 1.35rem;
+  color: #67e8f9;
+}
+
+.pitch-funds h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.pitch-funds p {
+  margin: 0.2rem 0 0;
+  font-size: 0.86rem;
+  color: var(--pitch-muted);
+}
+
+.pitch-cta-row {
+  margin-top: 1.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.pitch-cta-primary,
+.pitch-cta-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 0.65rem 1.25rem;
+  text-decoration: none;
+  font-size: 0.92rem;
+  transition: transform 200ms ease, background 200ms ease, border-color 200ms ease;
+}
+
+.pitch-cta-primary {
+  border: 1px solid rgba(34, 211, 238, 0.65);
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.28), rgba(20, 184, 166, 0.18));
+  color: #ecfeff;
+}
+
+.pitch-cta-secondary {
+  border: 1px solid transparent;
+  color: #bae6fd;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.pitch-cta-primary:hover,
+.pitch-cta-secondary:hover {
+  transform: translateY(-2px);
+}
+
+@keyframes pitch-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pitch-glow {
+  from {
+    text-shadow: 0 0 18px rgba(34, 211, 238, 0.2);
+  }
+  to {
+    text-shadow: 0 0 42px rgba(34, 211, 238, 0.45);
+  }
+}
+
+@keyframes pitch-drift {
+  from {
+    transform: translate(-2%, -1%) rotate(-2deg) scale(1);
+  }
+  to {
+    transform: translate(3%, 2%) rotate(3deg) scale(1.06);
+  }
+}
+
+@keyframes pitch-fill {
+  from {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+  to {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+}
+
+@media (max-width: 900px) {
+  .pitch-service-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .pitch-growth-grid,
+  .pitch-unit-economics,
+  .pitch-mau-row {
+    grid-template-columns: 1fr;
+  }
+
+  .pitch-mau-row {
+    min-height: 0;
+  }
+
+  .pitch-mau-bar {
+    display: none;
+  }
+
+  .pitch-title {
+    max-width: none;
+  }
+
+  .pitch-chrome {
+    grid-template-columns: auto 1fr;
+  }
+
+  .pitch-hint {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .pitch-service-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pitch-funnel-step {
+    grid-template-columns: auto 1fr;
+  }
+
+  .pitch-funnel-step strong {
+    grid-column: 2;
+  }
+}
