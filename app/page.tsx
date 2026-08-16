@@ -245,6 +245,7 @@ export default function Home() {
         <footer className="map-footer">
           <span>VERDANSC 2026 INC</span>
           <nav className="footer-links">
+            <Link href="/pitch">Pitch</Link>
             <Link href="/pricing">Pricing</Link>
             <Link href="/privacy">Privacy</Link>
             <Link href="/terms">Terms</Link>
