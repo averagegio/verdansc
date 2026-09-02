@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Pitch Deck",
   description:
-    "VERDANSC seed pitch: map-first real estate services, MAU projections, growth strategy, and funding ask.",
+    "VERDANSC marketplace pitch: tenants search, credit-check, and apply; landlords list properties in Albuquerque and Rio Rancho.",
 };
 
 export default function PitchLayout({
