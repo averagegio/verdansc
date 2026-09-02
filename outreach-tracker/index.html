@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#0a0806" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Outreach" />
+    <meta
+      name="description"
+      content="Verdansc outreach tracker — mark Facebook and Craigslist slots on your phone. Does not send."
+    />
+    <title>Verdansc Outreach</title>
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icons/icon-192.png" type="image/png" />
+    <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <main class="app">
+      <header>
+        <h1 class="wordmark">VERDANSC</h1>
+        <p class="eyebrow">Outreach tracker</p>
+      </header>
+
+      <section id="view-home">
+        <div class="clock">
+          <p id="clock-date" class="clock-date"></p>
+          <p id="clock-sub" class="clock-sub"></p>
+        </div>
+        <div id="countdown-card" class="countdown-card">
+          <p class="kicker" id="countdown-kicker">Starts in</p>
+          <p id="countdown-time" class="countdown-time" role="timer" aria-live="off">—</p>
+          <p id="countdown-sub" class="countdown-sub"></p>
+        </div>
+        <div class="stats">
+          <div class="stat">
+            <strong id="remain-today">—</strong>
+            <span>Left today</span>
+          </div>
+          <div class="stat">
+            <strong id="remain-week">—</strong>
+            <span>Left this week</span>
+          </div>
+        </div>
+        <div id="next-card" class="next-card"></div>
+        <div id="today-list" class="slot-list"></div>
+        <p id="install-hint" class="install">
+          Add to Home Screen for a phone widget. iPhone: Share → Add to Home
+          Screen. Android: browser menu → Install app. No password. This app
+          does not send posts or email.
+        </p>
+      </section>
+
+      <section id="view-week" class="week hidden">
+        <div id="week-list" class="week"></div>
+        <p class="fine">40 slots · Sep 2–9 2026 · America/Denver · local marks only</p>
+      </section>
+    </main>
+    <nav class="nav">
+      <button id="nav-home" class="is-on" type="button">Widget</button>
+      <button id="nav-week" type="button">Full week</button>
+    </nav>
+    <script src="./slots.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
