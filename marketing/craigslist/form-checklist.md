@@ -2,7 +2,8 @@
 
 Prepare files locally, then a human pastes into each form. Nothing in this repo posts to Craigslist.
 
-Schedule: **1 housing-wanted post per day**, **7:00–10:00 a.m. MT**, starting **2026-09-03**.  
+Schedule: **1 housing-wanted post per day** (slots S02, S07, S11, S17, S22, S27, S32), **7:00–10:00 a.m. MT**, starting **2026-09-03**.  
+Exact time is **7:40 a.m. MT** except Saturday **S11 at 7:00 a.m. MT**.  
 Use today’s file in `variants/`.
 
 ---
@@ -35,8 +36,9 @@ Preview check before publish:
 - [ ] First link is https://verdansc.com/credit-check
 - [ ] Second link is https://verdansc.com/listings (or a real `/apply/{id}`)
 - [ ] Not cross-posted to extra categories
-- [ ] This is the only Craigslist slot today
-- [ ] Posted in the 7:00–10:00 a.m. MT window (starting 2026-09-03)
+- [ ] This is the only Craigslist slot today (S02 / S07 / S11 / S17 / S22 / S27 / S32)
+- [ ] Posted at the slot time (7:40 a.m. MT, or 7:00 a.m. MT for S11)
+- [ ] No Verdansc split-ad attached
 
 ---
 

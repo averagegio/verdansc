@@ -1,11 +1,12 @@
-# Day 1 — Thu 2026-09-03 — metro mix
+# Day 1 — S02 — Thu 2026-09-03 7:40 a.m. MT — metro mix
 
-Post between **7:00 and 10:00 a.m. Mountain Time**. One slot. Do not auto-post.
+Slot **S02** (housing wanted, 1 of 1 that day). Do not auto-post.
 
 **Category:** housing wanted  
-**Neighborhood:** Downtown / Nob Hill / Rio Rancho  
+**Neighborhood:** Downtown ABQ, Nob Hill, Rio Rancho  
 **Postal code (area hint only):** `87102`  
-**Price:** blank
+**Price:** blank  
+**Legacy name:** Post A
 
 **Title** (42 characters):
 
@@ -44,3 +45,5 @@ Finish the credit check first.
 4. `rio-rancho-apartment-exterior.png`
 5. `rio-rancho-flat-kitchen.png`
 6. `abq-balcony-sandia-view.png`
+
+Do not attach Verdansc split-ads.

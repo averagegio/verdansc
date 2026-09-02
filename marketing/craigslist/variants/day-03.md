@@ -1,11 +1,12 @@
-# Day 3 — Sat 2026-09-05 — downtown loft / Nob Hill
+# Day 3 — S11 — Sat 2026-09-05 7:00 a.m. MT — downtown loft / Nob Hill
 
-Post between **7:00 and 10:00 a.m. Mountain Time**. One slot. Do not auto-post.
+Slot **S11** (housing wanted, 1 of 1 that day). Weekend slot is **7:00 a.m.** MT. Do not auto-post.
 
 **Category:** housing wanted  
-**Neighborhood:** Downtown / Nob Hill  
+**Neighborhood:** Downtown Albuquerque + Nob Hill  
 **Postal code (area hint only):** `87102`  
-**Price:** blank
+**Price:** blank  
+**Legacy name:** Post C
 
 **Title** (41 characters):
 
@@ -34,7 +35,7 @@ https://verdansc.com/listings
 If you have a Verdansc apply link, send it after the credit check.
 ```
 
-**Photos** (from `images/`, this order; first = thumbnail):
+**Photos** (loft-first; first = thumbnail):
 
 1. `downtown-abq-loft-exterior.png`
 2. `downtown-abq-loft-interior.png`
@@ -42,3 +43,5 @@ If you have a Verdansc apply link, send it after the credit check.
 4. `downtown-abq-apartment-living.png`
 5. `nob-hill-courtyard-apartments.png`
 6. `abq-balcony-sandia-view.png`
+
+Do not attach Verdansc split-ads.

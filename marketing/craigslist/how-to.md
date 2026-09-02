@@ -13,13 +13,15 @@ Primary category: **housing → housing wanted**
 
 | | |
 | --- | --- |
-| Slots | **1 Craigslist post per day** |
-| Clock | **7:00–10:00 a.m. Mountain Time** |
-| First day | **2026-09-03** |
-| Which copy | `variants/day-01.md` on 2026-09-03, then Day 2–7 |
+| Slots | **1 Craigslist post per day** — S02, S07, S11, S17, S22, S27, S32 |
+| Clock | **7:00–10:00 a.m. America/Denver** |
+| Exact time | **7:40 a.m. MT** except Saturday **S11 at 7:00 a.m. MT** |
+| First day | **2026-09-03** (S02 → `variants/day-01.md`) |
+| Which copy | `variants/day-01.md` … `day-07.md` (legacy Post A/B/C = Days 1/2/3) |
 
 Do not post a second housing-wanted variant the same day.  
 Do not also dump the same body into apts/housing, rooms, or services.  
+Do not attach Verdansc split-ads (`marketing/ads/exports/`).  
 If the site throttles you, wait until the next day’s window.
 
 ---

@@ -8,12 +8,14 @@ Copy and photos for a **human** to paste into Craigslist **housing wanted**.
 
 | | |
 | --- | --- |
-| Cadence | **1 Craigslist slot per day** (one live housing-wanted post) |
-| Window | **7:00–10:00 a.m. Mountain Time** |
-| Start | **2026-09-03** (Thursday) |
-| Rotation | `variants/day-01.md` … `day-07.md`, then repeat |
+| Cadence | **1 Craigslist slot per day** (housing wanted) |
+| Window | **7:00–10:00 a.m. America/Denver** |
+| Exact times | **7:40 a.m. MT** (Sat **S11** is **7:00 a.m. MT**) |
+| Start | **2026-09-03** |
+| Slots | **S02, S07, S11, S17, S22, S27, S32** |
+| Rotation | `variants/day-01.md` … `day-07.md` |
 
-If Craigslist rejects a second post the same day, skip. Do not open extra accounts.
+If Craigslist rejects a second post the same day, skip. Do not open extra accounts. Do not attach Verdansc split-ads.
 
 ## Folder
 

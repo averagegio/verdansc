@@ -1,11 +1,12 @@
-# Day 2 — Fri 2026-09-04 — 1–2 bedroom
+# Day 2 — S07 — Fri 2026-09-04 7:40 a.m. MT — 1–2 bedroom
 
-Post between **7:00 and 10:00 a.m. Mountain Time**. One slot. Do not auto-post.
+Slot **S07** (housing wanted, 1 of 1 that day). Do not auto-post.
 
 **Category:** housing wanted  
-**Neighborhood:** Albuquerque / Rio Rancho  
+**Neighborhood:** greater Albuquerque  
 **Postal code (area hint only):** `87108`  
-**Price:** blank
+**Price:** blank  
+**Legacy name:** Post B
 
 **Title** (44 characters):
 
@@ -41,3 +42,5 @@ Please do not ask for a deposit by Venmo or a random PDF.
 4. `abq-southwest-flat-bedroom.png`
 5. `rio-rancho-flat-kitchen.png`
 6. `rio-rancho-flat-bath.png`
+
+Do not attach Verdansc split-ads.

@@ -1,11 +1,12 @@
-# Day 7 — Wed 2026-09-09 — flats and lofts, wide area
+# Day 7 — S32 — Wed 2026-09-09 7:40 a.m. MT — flats and lofts, Rio + metro
 
-Post between **7:00 and 10:00 a.m. Mountain Time**. One slot. Do not auto-post.
+Slot **S32** (housing wanted, 1 of 1 that day). Do not auto-post.
 
 **Category:** housing wanted  
-**Neighborhood:** Downtown / Nob Hill / Rio Rancho  
-**Postal code (area hint only):** `87102`  
-**Price:** blank
+**Neighborhood:** Rio Rancho + greater Albuquerque  
+**Postal code (area hint only):** `87124`  
+**Price:** blank  
+**Legacy name:** Post A, Rio + metro
 
 **Title** (48 characters):
 
@@ -34,11 +35,13 @@ https://verdansc.com/listings
 Reply if you list on Verdansc. Credit check first.
 ```
 
-**Photos** (from `images/`, this order; first = thumbnail):
+**Photos** (Rio-first; different 6-pack than Sunday S17):
 
-1. `abq-balcony-sandia-view.png`
-2. `abq-southwest-flat-bedroom.png`
-3. `rio-rancho-flat-kitchen.png`
-4. `downtown-abq-apartment-living.png`
-5. `nob-hill-apartment-living.png`
-6. `rio-rancho-apartment-exterior.png`
+1. `rio-rancho-apartment-exterior.png`
+2. `rio-rancho-flat-kitchen.png`
+3. `rio-rancho-apartment-living.png`
+4. `downtown-abq-loft-exterior.png`
+5. `nob-hill-courtyard-apartments.png`
+6. `abq-balcony-sandia-view.png`
+
+Do not attach Verdansc split-ads.

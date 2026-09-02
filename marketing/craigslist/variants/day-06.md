@@ -1,41 +1,45 @@
-# Day 6 — Tue 2026-09-08 — credit-ready seeker
+# Day 6 — S27 — Tue 2026-09-08 7:40 a.m. MT — Nob Hill courtyard
 
-Post between **7:00 and 10:00 a.m. Mountain Time**. One slot. Do not auto-post.
+Slot **S27** (housing wanted, 1 of 1 that day). Do not auto-post.
 
 **Category:** housing wanted  
-**Neighborhood:** Albuquerque / Rio Rancho  
-**Postal code (area hint only):** `87102`  
-**Price:** blank
+**Neighborhood:** Downtown + Nob Hill  
+**Postal code (area hint only):** `87108`  
+**Price:** blank  
+**Legacy name:** Post C, Nob Hill (not a repeat of Saturday’s loft title)
 
-**Title** (45 characters):
+**Title** (46 characters):
 
 ```
-Credit-ready renter seeking ABQ or Rio Rancho
+Nob Hill courtyard apt or walkable flat wanted
 ```
 
 **Body (paste):**
 
 ```
-Seeker: apartment, loft, or flat.
-Albuquerque or Rio Rancho.
+Looking for a courtyard apartment or walkable flat.
+Nob Hill or nearby Albuquerque.
+Rio Rancho is fine if the apply link is on Verdansc.
 
-I complete a paid credit check before I apply.
-Photos are generated style samples, not a listed unit.
+Photos are generated style samples of that look.
+They are not a unit for lease.
 
-Start here ($19):
+Credit check first ($19):
 https://verdansc.com/credit-check
 
-Then listings and apply:
+Then apply from listings:
 https://verdansc.com/listings
 
-I will not fill a Google Form or wire a deposit.
+No holding deposits off-platform.
 ```
 
-**Photos** (from `images/`, this order; first = thumbnail):
+**Photos** (courtyard-first, not Saturday’s loft-first set):
 
-1. `rio-rancho-apartment-living.png`
-2. `nob-hill-courtyard-apartments.png`
-3. `downtown-abq-loft-kitchen.png`
-4. `rio-rancho-flat-kitchen.png`
-5. `downtown-abq-loft-exterior.png`
-6. `abq-southwest-flat-bedroom.png`
+1. `nob-hill-courtyard-apartments.png`
+2. `nob-hill-apartment-living.png`
+3. `abq-southwest-flat-bedroom.png`
+4. `downtown-abq-loft-interior.png`
+5. `downtown-abq-apartment-living.png`
+6. `abq-balcony-sandia-view.png`
+
+Do not attach Verdansc split-ads.

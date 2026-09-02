@@ -23,7 +23,7 @@ Repo `public/` only contains Next.js default SVGs (no owned property photos). Th
 
 Use **6 photos**. First photo becomes the thumbnail.
 
-Daily rotation (start 2026-09-03) lists a 6-photo order in each `../variants/day-0N.md`. Default set:
+Daily rotation (slots S02–S32, start 2026-09-03) lists a 6-photo order in each `../variants/day-0N.md`. Default set (S02):
 
 1. `nob-hill-courtyard-apartments.png` (thumbnail — area look)
 2. `downtown-abq-loft-exterior.png`
