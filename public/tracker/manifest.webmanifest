@@ -3,7 +3,7 @@
   "name": "Verdansc Outreach",
   "short_name": "Outreach",
   "description": "Phone widget for Verdansc outreach task tracking. Marks only. Does not send.",
-  "start_url": "/tracker/index.html",
+  "start_url": "/tracker/app.html",
   "scope": "/tracker/",
   "display": "standalone",
   "orientation": "portrait",

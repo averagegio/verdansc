@@ -14,9 +14,7 @@ Do **not** rewrite this cadence to the PM-email kit window (Tue–Thu
 9:00–11:30am). That kit is drafts only and is not this PWA’s schedule.
 
 Hosted copy: `public/tracker/slots.js` must stay byte-identical to this
-`slots.js` (40 slots: `S-TODAY-01`…`05` + `S01`–`S35`). After merge, open
-https://www.verdansc.com/tracker (redirects to `/tracker/index.html`) and Add
-to Home Screen.
+`slots.js` (40 slots: `S-TODAY-01`…`05` + `S01`–`S35`). After merge, open https://www.verdansc.com/tracker/app.html and Add to Home Screen.
 
 ## Open on your phone
 
