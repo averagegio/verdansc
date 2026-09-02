@@ -488,7 +488,7 @@ export default function PitchDeck() {
               <span>Credit check $19</span>
               <span>ABQ / Rio Rancho</span>
             </div>
-            <div className="pitch-cta-row">
+            <div className="pitch-cta-row" data-no-drag>
               <button type="button" className="pitch-cta-primary" onClick={() => goTo(1)}>
                 Start the deck
               </button>
@@ -806,7 +806,7 @@ export default function PitchDeck() {
               credit check, or publish intake for a property in Albuquerque or
               Rio Rancho.
             </p>
-            <div className="pitch-cta-row">
+            <div className="pitch-cta-row" data-no-drag>
               <Link href="/signup" className="pitch-cta-primary">
                 Sign up
               </Link>
@@ -817,7 +817,7 @@ export default function PitchDeck() {
                 List a property
               </Link>
             </div>
-            <div className="pitch-cta-row">
+            <div className="pitch-cta-row" data-no-drag>
               <Link href="/credit-check" className="pitch-cta-secondary">
                 Credit check · $19
               </Link>
