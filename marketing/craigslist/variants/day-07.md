@@ -26,13 +26,16 @@ Not a specific vacant unit.
 
 Apply path:
 
-1) Credit check ($19):
-https://verdansc.com/credit-check
+1) Sign up / subscribe:
+https://www.verdansc.com/signup
 
-2) Rental application:
-https://verdansc.com/listings
+2) Credit check ($19):
+https://www.verdansc.com/credit-check
 
-Reply if you list on Verdansc. Credit check first.
+3) Rental application:
+https://www.verdansc.com/listings
+
+Reply if you list on Verdansc. Account and credit check first.
 ```
 
 **Photos** (Rio-first; different 6-pack than Sunday S17):

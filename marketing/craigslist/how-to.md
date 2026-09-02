@@ -31,14 +31,15 @@ If the site throttles you, wait until the next day’s window.
 
 ## Goal
 
-Get a **sale on Verdansc**: a qualified applicant pays for screening, then pays to apply.
+Get a **sale on Verdansc**: a subscriber / account, then a paid credit check, then a paid rental application.
 
 Link order in every post (required):
 
-1. Credit check — https://verdansc.com/credit-check ($19)
-2. Rental application — https://verdansc.com/listings (or a specific `/apply/{listingId}` URL)
+1. Sign up / subscribe — https://www.verdansc.com/signup
+2. Credit check — https://www.verdansc.com/credit-check ($19)
+3. Rental application — https://www.verdansc.com/listings (or a specific `/apply/{listingId}` URL)
 
-Never put the application link above the credit check.
+Never put the application link above signup or the credit check.
 
 ---
 
@@ -77,9 +78,10 @@ Short version:
 
 ## 3. Conversion path after they click
 
-1. Applicant opens https://verdansc.com/credit-check, consents, pays $19 (Stripe Checkout when keys are configured).
-2. They open https://verdansc.com/listings, pick a listing, and submit `/apply/{listingId}` (application fee set by the landlord; intake form defaults to $35).
-3. If there are no listings yet, a landlord must log in and create an intake link at https://verdansc.com/rental-application (landlord role).
+1. Applicant opens https://www.verdansc.com/signup and creates an account (choose a renter plan on that page).
+2. They open https://www.verdansc.com/credit-check, consent, and pay $19 (Stripe Checkout when keys are configured).
+3. They open https://www.verdansc.com/listings, pick a listing, and submit `/apply/{listingId}` (application fee set by the landlord; intake form defaults to $35).
+4. If there are no listings yet, a landlord must log in and create an intake link at https://www.verdansc.com/rental-application (landlord role).
 
 Honest product split:
 
@@ -87,7 +89,7 @@ Honest product split:
 - Landlords buy intake setup / membership and receive applicants.
 
 Verdansc intake fields are title, address, fee, and requirements.  
-**There is no listing photo upload on** https://verdansc.com/rental-application.  
+**There is no listing photo upload on** https://www.verdansc.com/rental-application.  
 Photos stay on Craigslist (housing wanted) or on the landlord’s own files (housing offered).
 
 ---
@@ -108,6 +110,7 @@ Photos stay on Craigslist (housing wanted) or on the landlord’s own files (hou
 
 ## 5. After the post is up
 
-- Replies that skip step 1: send only the credit-check URL.
-- Replies that finished credit check: send https://verdansc.com/listings or the specific apply URL.
+- Replies that skip step 1: send only https://www.verdansc.com/signup (or https://www.verdansc.com/ ).
+- Replies that have an account: send the credit-check URL.
+- Replies that finished credit check: send https://www.verdansc.com/listings or the specific apply URL.
 - If conversion is weak and you control a real vacancy, switch **a later day’s slot** to a housing-offered post with a real unit and a real `/apply/{id}` link. Still one Craigslist slot that day.

@@ -24,17 +24,18 @@ Downtown, Nob Hill, or Rio Rancho.
 Photos are generated style samples.
 They show the look I want — not a specific unit.
 
-I apply on Verdansc only.
-Credit check first, then the rental application.
+Join Verdansc first. Then screen. Then apply.
 
-1) Credit check ($19):
-https://verdansc.com/credit-check
+1) Sign up / create an account:
+https://www.verdansc.com/signup
 
-2) Browse listings and apply:
-https://verdansc.com/listings
+2) Credit check ($19):
+https://www.verdansc.com/credit-check
+
+3) Browse listings and apply:
+https://www.verdansc.com/listings
 
 No wires. No off-site PDFs.
-Finish the credit check first.
 ```
 
 **Photos** (from `images/`, this order; first = thumbnail):

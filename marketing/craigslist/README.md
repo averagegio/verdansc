@@ -32,10 +32,13 @@ If Craigslist rejects a second post the same day, skip. Do not open extra accoun
 
 ## Sale path (link order is required)
 
-1. https://verdansc.com/credit-check — $19 one-time soft credit check
-2. https://verdansc.com/listings — rental application (`/apply/{listingId}`)
+1. https://www.verdansc.com/signup — create a Verdansc account (subscribe / membership)
+2. https://www.verdansc.com/credit-check — $19 one-time soft credit check
+3. https://www.verdansc.com/listings — rental application (`/apply/{listingId}`)
 
-Landlord intake that **creates** apply links: https://verdansc.com/rental-application  
+Join / home: https://www.verdansc.com/
+
+Landlord intake that **creates** apply links: https://www.verdansc.com/rental-application  
 That page is **not** the renter form. It has **no listing photo upload**.
 
 ## Photo honesty

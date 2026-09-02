@@ -11,10 +11,11 @@ Legacy names Post A / B / C in the week calendar map to Day 1 / 2 / 3.
 
 These posts send room-seekers into Verdansc in this order:
 
-1. **Credit check** ($19): https://verdansc.com/credit-check
-2. **Rental application**: https://verdansc.com/listings
+1. **Sign up / subscribe** (create an account): https://www.verdansc.com/signup
+2. **Credit check** ($19): https://www.verdansc.com/credit-check
+3. **Rental application**: https://www.verdansc.com/listings
 
-Do not reverse that order.
+Do not reverse that order. Homepage join: https://www.verdansc.com/
 
 Photos in `images/` are **generated style samples**. Every housing-wanted post must say the pictures show the *type* of apartment, loft, or flat sought — not a unit you manage.
 
@@ -24,16 +25,17 @@ Photos in `images/` are **generated style samples**. Every housing-wanted post m
 
 | Step | Who | Route | What it sells |
 | --- | --- | --- | --- |
-| 1. Credit check | renter | https://verdansc.com/credit-check | $19 one-time soft credit check |
-| 2. Rental listings / apply | renter | https://verdansc.com/listings then `/apply/{listingId}` | landlord-set application fee (intake default $35) |
-| Landlord intake (creates apply links) | landlord | https://verdansc.com/rental-application | intake link + listing on `/listings` |
-| Pricing / membership | both | https://verdansc.com/pricing | Rental Ready Club $15/mo, landlord plans |
-| Signup | renter | https://verdansc.com/signup?role=renter&plan=renter-ready | account before repeat applies |
+| 0. Join / home | both | https://www.verdansc.com/ | live site; start here if you only paste one URL |
+| 1. Sign up / subscribe | renter | https://www.verdansc.com/signup | create account; optional `?role=renter&plan=renter-ready` |
+| 2. Credit check | renter | https://www.verdansc.com/credit-check | $19 one-time soft credit check |
+| 3. Rental listings / apply | renter | https://www.verdansc.com/listings then `/apply/{listingId}` | landlord-set application fee (intake default $35) |
+| Landlord intake (creates apply links) | landlord | https://www.verdansc.com/rental-application | intake link + listing on `/listings` |
+| Pricing / membership | both | https://www.verdansc.com/pricing | Rental Ready Club $15/mo, landlord plans |
 
 `/rental-application` is **landlord intake setup**, not the renter form.  
 Intake has **no listing photo upload**. Photos stay on Craigslist.
 
-Housing-wanted posts use https://verdansc.com/listings.  
+Housing-wanted posts use https://www.verdansc.com/signup, then `/credit-check`, then `/listings`.  
 Use `/rental-application` only in the optional housing-offered notes for landlords.
 
 ---
@@ -73,17 +75,18 @@ Downtown, Nob Hill, or Rio Rancho.
 Photos are generated style samples.
 They show the look I want — not a specific unit.
 
-I apply on Verdansc only.
-Credit check first, then the rental application.
+Join Verdansc first. Then screen. Then apply.
 
-1) Credit check ($19):
-https://verdansc.com/credit-check
+1) Sign up / create an account:
+https://www.verdansc.com/signup
 
-2) Browse listings and apply:
-https://verdansc.com/listings
+2) Credit check ($19):
+https://www.verdansc.com/credit-check
+
+3) Browse listings and apply:
+https://www.verdansc.com/listings
 
 No wires. No off-site PDFs.
-Finish the credit check first.
 
 ---
 
@@ -99,13 +102,16 @@ Albuquerque or Rio Rancho.
 Photos are generated style samples of that layout.
 Not a vacancy I rent or manage.
 
-Landlords: I screen and apply on Verdansc.
+Landlords: I sign up on Verdansc, then screen and apply there.
 
-1) Credit check ($19):
-https://verdansc.com/credit-check
+1) Create an account:
+https://www.verdansc.com/signup
 
-2) Rental application:
-https://verdansc.com/listings
+2) Credit check ($19):
+https://www.verdansc.com/credit-check
+
+3) Rental application:
+https://www.verdansc.com/listings
 
 Please do not ask for a deposit by Venmo or a random PDF.
 
@@ -126,13 +132,16 @@ Not photos of a unit I control.
 
 This order only:
 
-Credit check ($19):
-https://verdansc.com/credit-check
+1) Sign up:
+https://www.verdansc.com/signup
 
-Then the rental application:
-https://verdansc.com/listings
+2) Credit check ($19):
+https://www.verdansc.com/credit-check
 
-If you have a Verdansc apply link, send it after the credit check.
+3) Rental application:
+https://www.verdansc.com/listings
+
+If you have a Verdansc apply link, send it after I am signed up and credit-checked.
 
 ---
 
@@ -151,11 +160,14 @@ Not a specific complex or street address.
 
 How I apply:
 
-1) Credit check ($19):
-https://verdansc.com/credit-check
+1) Sign up on Verdansc:
+https://www.verdansc.com/signup
 
-2) Listings / apply:
-https://verdansc.com/listings
+2) Credit check ($19):
+https://www.verdansc.com/credit-check
+
+3) Listings / apply:
+https://www.verdansc.com/listings
 
 Serious replies only. I will not email documents outside Verdansc.
 
@@ -170,14 +182,17 @@ Serious replies only. I will not email documents outside Verdansc.
 Seeker: apartment, loft, or flat.
 Albuquerque or Rio Rancho.
 
-I complete a paid credit check before I apply.
+I create a Verdansc account, then complete a paid credit check before I apply.
 Photos are generated style samples, not a listed unit.
 
-Start here ($19):
-https://verdansc.com/credit-check
+1) Sign up:
+https://www.verdansc.com/signup
 
-Then listings and apply:
-https://verdansc.com/listings
+2) Credit check ($19):
+https://www.verdansc.com/credit-check
+
+3) Listings and apply:
+https://www.verdansc.com/listings
 
 I will not fill a Google Form or wire a deposit.
 
@@ -196,11 +211,16 @@ Rio Rancho is fine if the apply link is on Verdansc.
 Photos are generated style samples of that look.
 They are not a unit for lease.
 
-Credit check first ($19):
-https://verdansc.com/credit-check
+Join first, then screen, then apply.
 
-Then apply from listings:
-https://verdansc.com/listings
+1) Sign up:
+https://www.verdansc.com/signup
+
+2) Credit check ($19):
+https://www.verdansc.com/credit-check
+
+3) Apply from listings:
+https://www.verdansc.com/listings
 
 No holding deposits off-platform.
 
@@ -221,13 +241,16 @@ Not a specific vacant unit.
 
 Apply path:
 
-1) Credit check ($19):
-https://verdansc.com/credit-check
+1) Sign up / subscribe:
+https://www.verdansc.com/signup
 
-2) Rental application:
-https://verdansc.com/listings
+2) Credit check ($19):
+https://www.verdansc.com/credit-check
 
-Reply if you list on Verdansc. Credit check first.
+3) Rental application:
+https://www.verdansc.com/listings
+
+Reply if you list on Verdansc. Account and credit check first.
 
 ---
 
@@ -238,7 +261,7 @@ That category often converts better for landlords. It is **not** the 1-slot/day 
 
 Do not attach generated samples as if they are that unit. Use your own photos.
 
-**Title example:** `Rio Rancho 2BR — apply on Verdansc (credit check first)`
+**Title example:** `Rio Rancho 2BR — sign up, credit check, apply on Verdansc`
 
 **Body (replace bracketed fields with real facts):**
 
@@ -251,11 +274,12 @@ Photos are of this unit.
 
 To apply:
 
-1) Credit check — https://verdansc.com/credit-check
-2) Rental application — [live apply URL, example https://verdansc.com/apply/lst_xxxxxxxx ]
+1) Sign up — https://www.verdansc.com/signup
+2) Credit check — https://www.verdansc.com/credit-check
+3) Rental application — [live apply URL, example https://www.verdansc.com/apply/lst_xxxxxxxx ]
 
-Create the apply URL first on https://verdansc.com/rental-application
-(landlord account required). Then paste it as step 2.
+Create the apply URL first on https://www.verdansc.com/rental-application
+(landlord account required). Then paste it as step 3.
 
 Do not send renters to `/rental-application`.
 That page is intake setup, not the renter form.
@@ -270,7 +294,7 @@ Screening and the application fee run on Verdansc.
 
 - Seekers browse **apts/housing for rent**, not housing wanted.
 - Housing wanted is easy to flag if it reads like a service ad or uses photos of units you do not control.
-- A real apply link (`/apply/{id}`) plus a real rent and neighborhood is a cleaner sale: $19 credit check, then the listing application fee.
+- A real apply link (`/apply/{id}`) plus a real rent and neighborhood is a cleaner sale: sign up, $19 credit check, then the listing application fee.
 
 Keep housing wanted as the scheduled daily post only when you are honestly a seeker (or posting on behalf of seekers) and the photos are labeled as style samples.
 
@@ -278,7 +302,8 @@ Keep housing wanted as the scheduled daily post only when you are honestly a see
 
 ## CTA order (do not change)
 
-1. https://verdansc.com/credit-check
-2. https://verdansc.com/listings (or a specific `https://verdansc.com/apply/{listingId}` once a landlord has created one)
+1. https://www.verdansc.com/signup (or https://www.verdansc.com/ )
+2. https://www.verdansc.com/credit-check
+3. https://www.verdansc.com/listings (or a specific `https://www.verdansc.com/apply/{listingId}` once a landlord has created one)
 
-Sale path: qualified applicant → paid credit check → paid rental application on Verdansc.
+Sale path: Verdansc subscriber / account → paid $19 credit check → paid rental application on Verdansc.

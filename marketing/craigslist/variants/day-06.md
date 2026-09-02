@@ -24,11 +24,16 @@ Rio Rancho is fine if the apply link is on Verdansc.
 Photos are generated style samples of that look.
 They are not a unit for lease.
 
-Credit check first ($19):
-https://verdansc.com/credit-check
+Join first, then screen, then apply.
 
-Then apply from listings:
-https://verdansc.com/listings
+1) Sign up:
+https://www.verdansc.com/signup
+
+2) Credit check ($19):
+https://www.verdansc.com/credit-check
+
+3) Apply from listings:
+https://www.verdansc.com/listings
 
 No holding deposits off-platform.
 ```

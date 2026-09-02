@@ -19,9 +19,10 @@ Do not post two Craigslist variants the same day. Do not attach Verdansc split-a
 
 Each body:
 
-1. Credit check URL first: https://verdansc.com/credit-check
-2. Then listings/apply: https://verdansc.com/listings
-3. States that photos are generated style samples, not a specific unit
+1. Sign up / subscribe first: https://www.verdansc.com/signup
+2. Then credit check: https://www.verdansc.com/credit-check
+3. Then listings/apply: https://www.verdansc.com/listings
+4. States that photos are generated style samples, not a specific unit
 
 Photo files live in `../images/`. Do not regenerate them.
 

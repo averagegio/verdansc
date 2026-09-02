@@ -23,13 +23,16 @@ Albuquerque or Rio Rancho.
 Photos are generated style samples of that layout.
 Not a vacancy I rent or manage.
 
-Landlords: I screen and apply on Verdansc.
+Landlords: I sign up on Verdansc, then screen and apply there.
 
-1) Credit check ($19):
-https://verdansc.com/credit-check
+1) Create an account:
+https://www.verdansc.com/signup
 
-2) Rental application:
-https://verdansc.com/listings
+2) Credit check ($19):
+https://www.verdansc.com/credit-check
+
+3) Rental application:
+https://www.verdansc.com/listings
 
 Please do not ask for a deposit by Venmo or a random PDF.
 ```

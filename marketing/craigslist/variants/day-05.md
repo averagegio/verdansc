@@ -20,14 +20,17 @@ Credit-ready renter seeking ABQ or Rio Rancho
 Seeker: apartment, loft, or flat.
 Albuquerque or Rio Rancho.
 
-I complete a paid credit check before I apply.
+I create a Verdansc account, then complete a paid credit check before I apply.
 Photos are generated style samples, not a listed unit.
 
-Start here ($19):
-https://verdansc.com/credit-check
+1) Sign up:
+https://www.verdansc.com/signup
 
-Then listings and apply:
-https://verdansc.com/listings
+2) Credit check ($19):
+https://www.verdansc.com/credit-check
+
+3) Listings and apply:
+https://www.verdansc.com/listings
 
 I will not fill a Google Form or wire a deposit.
 ```

@@ -26,11 +26,14 @@ Not a specific complex or street address.
 
 How I apply:
 
-1) Credit check ($19):
-https://verdansc.com/credit-check
+1) Sign up on Verdansc:
+https://www.verdansc.com/signup
 
-2) Listings / apply:
-https://verdansc.com/listings
+2) Credit check ($19):
+https://www.verdansc.com/credit-check
+
+3) Listings / apply:
+https://www.verdansc.com/listings
 
 Serious replies only. I will not email documents outside Verdansc.
 ```

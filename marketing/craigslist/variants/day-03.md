@@ -26,13 +26,16 @@ Not photos of a unit I control.
 
 This order only:
 
-Credit check ($19):
-https://verdansc.com/credit-check
+1) Sign up:
+https://www.verdansc.com/signup
 
-Then the rental application:
-https://verdansc.com/listings
+2) Credit check ($19):
+https://www.verdansc.com/credit-check
 
-If you have a Verdansc apply link, send it after the credit check.
+3) Rental application:
+https://www.verdansc.com/listings
+
+If you have a Verdansc apply link, send it after I am signed up and credit-checked.
 ```
 
 **Photos** (loft-first; first = thumbnail):
