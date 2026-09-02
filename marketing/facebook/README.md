@@ -1,5 +1,7 @@
 # Verdansc Facebook group invitations
 
+**Operator paste packs (one file per group):** [`copy-paste/README.md`](copy-paste/README.md) · scroll-and-copy: [`copy-paste/ALL.md`](copy-paste/ALL.md)
+
 Attach-ready drafts for inviting **Albuquerque / Rio Rancho** Facebook groups to try [Verdansc](https://www.verdansc.com). A human posts these. **This environment cannot log into Facebook.** **Do not treat this kit as proof that anything was posted or DMed.**
 
 Primary CTA domain: `https://www.verdansc.com` (apex `verdansc.com` redirects here)  
