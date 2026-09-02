@@ -1,6 +1,6 @@
 # Facebook attachment map
 
-Attach-ready mapping for every copy file in this kit. **This environment cannot log into Facebook.** Nothing here was posted or DMed.
+Attach-ready mapping for every copy file in this kit. **This environment cannot log into Facebook.** Nothing here was posted or DMed. Wait for `marketing/schedule/roadblocks.md`.
 
 Canonical still (feed + DMs): `marketing/ads/exports/verdansc-split-ad-4x5.jpg` (1080×1350, smaller upload). PNG twin: `marketing/ads/exports/verdansc-split-ad-4x5.png`.
 
@@ -8,7 +8,9 @@ Optional reel (groups that allow video only): `marketing/ads/exports/verdansc-sp
 
 Ad overlay on the still includes “Photograph. Upload. Get a tenant.” That line is **lifestyle / narrative**, not a live product claim. Intake is title, address, fee, and requirements. Do not caption the still as listing-photo upload. Video alert cards are **ad treatments**, not push notifications.
 
-Slot IDs **S01–S35** are owned by `marketing/schedule/week-2026-09-03.md` on `origin/cursor/outreach-schedule-6306`. Facebook rows and exact files: `scheduled-slots.md`.
+Slot IDs **S01–S35** are owned by `marketing/schedule/week-2026-09-03.md`. Facebook rows, **exact group titles**, and exact files: `scheduled-slots.md`.
+
+This week’s rooms are local small-business groups. **SB copy only.** `real-estate-short.md` / `real-estate-long.md` have **no** scheduled slots.
 
 ## Alt text (use on every still)
 
@@ -26,28 +28,31 @@ If you attached the 9:16 video, add the video honesty line from the same file.
 
 ## Map
 
-| Copy file | Schedule slots | Attach | Optional video | Alt text | First comment / caption |
+| Copy file | Schedule slots | Facebook group(s) | Attach | Optional video | First comment / caption |
 | --- | --- | --- | --- | --- | --- |
-| `real-estate-short.md` | **S06**, **S26** | **4×5 still:** `marketing/ads/exports/verdansc-split-ad-4x5.jpg` (or `.png`) | **S06 / S26:** `marketing/ads/exports/verdansc-split-ad-30s-9x16.mp4` only if that group allows video; otherwise still only | Short alt above | S06: `first-comment-hashtags-alt.md`. S26: `replies-and-dms.md` |
-| `real-estate-long.md` | **S12**, **S21** | Same 4×5 still | Still only (schedule does not assign video) | Short alt above | S13 / S23 (`replies-and-dms.md`) |
-| `small-business-short.md` | **S01**, **S31** | Same 4×5 still | Still only | Short alt above | S01: `replies-and-dms.md`. S33 for S31 |
-| `small-business-long.md` | **S16** | Same 4×5 still | 9:16 MP4 only if the Rio Rancho group allows video (**not** 16:9) | Short alt above | S18 (`first-comment-hashtags-alt.md`, optional `#RioRancho`) |
-| `replies-and-dms.md` → first comment | **S13**, **S23**, **S33** (and same-sitting comments on S01/S26) | Do not attach a second image | Never | n/a | The comment body itself (includes graphic honesty line) |
-| `replies-and-dms.md` → FAQ / reply window | **S15**, **S19**, **S35** | No new creative | Never | n/a | Reply snippets in that file |
-| `replies-and-dms.md` → DM follow-up | **S03**, **S08**, **S14**, **S20**, **S25**, **S28**, **S34** (inbound only; skip if empty) | **4×5 JPG still only** (not the calendar’s 1×1; not vendored here) | **Never** send the MP4 | Messenger rarely shows alt; if a field exists, use the short alt | DM still caption in `replies-and-dms.md` |
-| `first-comment-hashtags-alt.md` | **S06** first comment; **S18** | Same 4×5 still as the parent post | Same as parent post | Short + long alts (copied there too) | Shorter first-comment variant in that file |
-| `utm-links.md` | Links only | None | None | n/a | n/a |
-| `scheduled-slots.md` | S01–S35 Facebook subset | None | None | n/a | n/a |
+| `small-business-short.md` | **S01**, **S06**, **S21**, **S26**, **S31** | Albuquerque Small Business Community; New Mexico Small Businesses; ABQ Community Services / Small Business; Albuquerque Business Owners; Albuquerque Small Business Owners | **4×5 still:** `marketing/ads/exports/verdansc-split-ad-4x5.jpg` (or `.png`) | S06 / S26 only if that group allows video; **S01 still only** | S01 / S26: `replies-and-dms.md`. S06: `first-comment-hashtags-alt.md`. S23 for S21. S33 for S31 |
+| `small-business-long.md` | **S12**, **S16** | ABQ SMALL BUSINESS; Support Small Business, Albuquerque, Los Lunas, Rio Rancho, Edgewood | Same 4×5 still | S16: 9:16 MP4 only if that group allows video (**not** 16:9) | S13 / S18 (`replies-and-dms.md` / `first-comment-hashtags-alt.md`, optional `#Albuquerque`) |
+| `real-estate-short.md` | *(none this week)* | unused — rooms are SB, not investor/realtor | Same 4×5 still | n/a | n/a |
+| `real-estate-long.md` | *(none this week)* | unused — rooms are SB, not housing/PM | Same 4×5 still | n/a | n/a |
+| `replies-and-dms.md` → first comment | **S13**, **S23**, **S33** (and same-sitting comments on S01/S26) | parent group | Do not attach a second image | Never | The comment body itself (includes graphic honesty line) |
+| `replies-and-dms.md` → FAQ / reply window | **S15**, **S19**, **S35** | open threads from the seven SB groups | No new creative | Never | Reply snippets in that file |
+| `replies-and-dms.md` → DM follow-up | **S03**, **S08**, **S14**, **S20**, **S25**, **S28**, **S34** (inbound only; skip if empty) | same day’s group | **4×5 JPG still only** | **Never** send the MP4 | DM still caption in `replies-and-dms.md` |
+| `first-comment-hashtags-alt.md` | **S06** first comment; **S18** | New Mexico Small Businesses; Support Small Business metro | Same 4×5 still as the parent post | Same as parent post | Shorter first-comment variant in that file |
+| `utm-links.md` | Links only | n/a | None | None | n/a |
+| `scheduled-slots.md` | S01–S35 Facebook subset | exact titles | None | None | n/a |
+
+**Unused this week (do not schedule):** Anime Memes & Things; New Mexico Film Casting and more; BLACK GIRLS.  
+**Backup groups (no slot unless a scheduled group is skipped):** ABQ Small Business Networking, Barter & Trade; Albuquerque Wellness Professionals.
 
 ## Attach this image before posting (composer order)
 
-1. Log in as the Facebook **user or Page** that is already a **member** of the target group. This Cloud Agent cannot sign in.
+1. Log in as the Facebook **user or Page** that is already a **member** of that day’s exact group. This Cloud Agent cannot sign in.
 2. Open that group’s composer. Do **not** blast every group in the same hour.
 3. **Add photo first:** `verdansc-split-ad-4x5.jpg` (preferred) or `.png`.
-4. Paste the post body from the matching copy file.
+4. Paste the post body from the matching **small-business** copy file.
 5. Paste short alt text.
 6. Publish, then paste the first comment.
-7. Attach the 9:16 MP4 **instead of or in addition to** the still only when the group rules allow video. If unsure, still only.
+7. Attach the 9:16 MP4 **instead of or in addition to** the still only when the group rules allow video. If unsure, still only. S01 is still-only.
 8. For DMs: attach the JPG + short DM caption. Do not send video.
 
 ## Honesty vs the creative

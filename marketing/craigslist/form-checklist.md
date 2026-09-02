@@ -24,7 +24,7 @@ Flow: `post` → `housing wanted` → continue
 | Neighborhood | Downtown / Nob Hill / Rio Rancho | Type the area name; do not invent a street |
 | Description / body | Paste today’s **Body** from `variants/` | Credit-check URL must appear **before** the listings/apply URL |
 | Photos | Upload in the order listed in today’s variant | First image = search thumbnail. All are generated samples |
-| Contact email | Operator email | Use Craigslist’s anonymized email relay |
+| Contact email | Account is **`mrigwe234@gmail.com`** | Use Craigslist’s anonymized email relay on the public post |
 | Phone / text | Optional | Skip unless it is a real person who will answer |
 | Show on map | Off | No fake pin. Map only for a real unit in housing offered |
 | Other CL housing details (laundry, parking, sqft, beds) | Leave unset | Those fields imply you are offering a unit |

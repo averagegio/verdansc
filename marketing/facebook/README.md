@@ -6,13 +6,15 @@ Primary CTA domain: `https://www.verdansc.com` (apex `verdansc.com` redirects he
 Brand: **VERDANSC** (wordmark) / Verdansc in sentences  
 Slogan (use sparingly): “Real estate, mapped to action.”
 
+**Wait for the user on `marketing/schedule/roadblocks.md` before posting.** This week uses only local business/professional groups (exact titles in `scheduled-slots.md`). Do not post to Anime Memes & Things, New Mexico Film Casting and more, or BLACK GIRLS. Group copy this week is **small-business-short / small-business-long** only.
+
 ## Attach this image before posting
 
 Do this in the Facebook composer **before** you hit Post. Full map: `attachments.md`. Slots: `scheduled-slots.md`.
 
 1. **Log in** as the Facebook **user** (and Verdansc **Page**, if you post as a Page) that is already a **member** of the target group. Pages cannot post in groups they have not been added to; many groups require a personal profile.
 2. Confirm **group membership** and read the rules (promo, video, links in comments). Skip the group if you are not a member or the rules forbid this.
-3. Open that group’s composer. **Do not blast** every group in the same hour. One post per group. Follow slot IDs **S01–S35** in `scheduled-slots.md` (sibling calendar `marketing/schedule/week-2026-09-03.md`; 5/day, 7–10am MT, start 2026-09-03). Do not post Craigslist or email slots from this kit.
+3. Open **that day’s exact group** from `scheduled-slots.md`. **Do not blast** every group in the same hour. One post per group. Follow slot IDs **S01–S35** (sibling calendar `marketing/schedule/week-2026-09-03.md`; 5/day, 7–10am MT, start 2026-09-03). Do not post Craigslist or email slots from this kit.
 4. **Attach the still first:** `marketing/ads/exports/verdansc-split-ad-4x5.jpg` (preferred) or `verdansc-split-ad-4x5.png` (1080×1350).
 5. Paste the post body from the matching copy file. Paste **short alt text** from `attachments.md`.
 6. Optional: attach `marketing/ads/exports/verdansc-split-ad-30s-9x16.mp4` **only if this group allows video / Reels**. If unsure, still only.
@@ -25,10 +27,10 @@ The still overlay says “Photograph. Upload. Get a tenant.” That is lifestyle
 
 | File | Audience | Length | Use when |
 | --- | --- | --- | --- |
-| `real-estate-short.md` | Realtor, investor, property-manager, MLS, and housing groups | Under ~80 words | Groups that cap post length, or a first intro in an active thread |
-| `small-business-short.md` | Chambers, local biz, landlord/investor, owner-operator groups | Under ~80 words | Same as above, when the room is owners and small operators |
-| `real-estate-long.md` | Real estate groups that allow value posts | Longer, with bullets | Weekly value post, “tools we use” threads, or pinned intros |
-| `small-business-long.md` | Small-business / investor groups | Longer, with bullets | Same, when talking to people who own or manage a few units |
+| `real-estate-short.md` | Realtor, investor, property-manager, MLS, and housing groups | Under ~80 words | **Unused this week** — scheduled rooms are SB groups |
+| `small-business-short.md` | Chambers, local biz, owner-operator groups | Under ~80 words | **This week’s default** (S01, S06, S21, S26, S31). S01 + 4×5 still |
+| `real-estate-long.md` | Real estate groups that allow value posts | Longer, with bullets | **Unused this week** — scheduled rooms are SB groups |
+| `small-business-long.md` | Small-business / owner-operator groups | Longer, with bullets | This week: S12 (ABQ SMALL BUSINESS), S16 (Support Small Business metro) |
 | `replies-and-dms.md` | Anyone who comments or messages | Snippets | First comment, FAQ replies, and one non-pushy DM follow-up |
 | `first-comment-hashtags-alt.md` | All posts | Supporting | Suggested first comment, sparse hashtags, image alt-text |
 | `attachments.md` | All posts and DMs | Map | Which ad file, alt text, first comment, honesty notes |

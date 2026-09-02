@@ -5,7 +5,10 @@ A person copies the text, attaches photos, and submits the form.
 This polish pass did **not** post.
 
 Site: [https://albuquerque.craigslist.org](https://albuquerque.craigslist.org)  
-Primary category: **housing → housing wanted**
+Account: **`mrigwe234@gmail.com`** (personal Gmail). Do **not** post as `founder@verdansc.com` or `founder@peaksees.com`.  
+Do **not** click a Craigslist magic login-link email from a Cloud Agent VM — the human operator uses that link on their own device if needed.  
+Primary category: **housing → housing wanted**  
+Wait for `marketing/schedule/roadblocks.md` before posting.
 
 ---
 

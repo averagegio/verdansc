@@ -1,54 +1,70 @@
 # Do not send until the user logs in
 
-**Gate:** every slot in `week-2026-09-03.md` / `queue.csv` stays `queued` until this page is complete. Sibling agents must not Send, Post, or Publish on the operator’s behalf.
+**Gate:** every slot in `week-2026-09-03.md` / `queue.csv` stays `queued` until [`roadblocks.md`](roadblocks.md) is answered **and** this page is complete. Sibling agents must not Send, Post, or Publish on the operator’s behalf.
+
+**This Cloud Agent VM has no Facebook, Zoho Mail, or Craigslist session.** A human must execute the calendar or grant a live session. Do not invent a send.
 
 Date operator signed in (fill when true): `[ ]` _______________  
-Operator name / From name: `[ ]` _______________
+Operator name / From name: `[ ]` George Igwe / founder
 
 ---
 
-## 1. Facebook
+## 1. Facebook (user and/or Verdansc Page)
 
 Sign in before any `facebook_group`, `facebook_first_comment`, `facebook_dm`, or `facebook_reply_window` slot.
 
-- [ ] Logged into the Facebook account (or Page) that will post as Verdansc
+Confirmed membership list (Your groups · Most visited). **This week’s posts** use the seven core SB groups only.
+
+- [ ] Logged into the Facebook **user** and/or Verdansc **Page** that will post as Verdansc
 - [ ] Profile or Page name matches the disclosed affiliation (“I’m with Verdansc”)
-- [ ] Joined each group named this week (search + confirm live title; see calendar)
-- [ ] Read each group’s rules (promo, approval queue, no-link comments)
+- [ ] Confirmed member of each **scheduled** group (exact titles):
+  - [ ] Albuquerque Small Business Community (S01)
+  - [ ] New Mexico Small Businesses (S06)
+  - [ ] ABQ SMALL BUSINESS (S12)
+  - [ ] Support Small Business, Albuquerque, Los Lunas, Rio Rancho, Edgewood (S16)
+  - [ ] ABQ Community Services / Small Business (S21)
+  - [ ] Albuquerque Business Owners (S26)
+  - [ ] Albuquerque Small Business Owners (S31)
+- [ ] Backup only if a scheduled group is skipped: ABQ Small Business Networking, Barter & Trade
+- [ ] Optional 9th (not core SB): Albuquerque Wellness Professionals
+- [ ] Will **not** post to excluded rooms: Anime Memes & Things; New Mexico Film Casting and more; BLACK GIRLS (unless the user overrides `roadblocks.md`)
+- [ ] Read each scheduled group’s rules (promo, approval queue, video, no-link comments)
 - [ ] Messenger is open for **inbound-only** DMs (no cold outreach)
-- [ ] Can attach `marketing/ads/exports/verdansc-split-ad-4x5.png` and, if the group allows video, `verdansc-split-ad-30s-9x16.mp4`
+- [ ] Can attach `marketing/ads/exports/verdansc-split-ad-4x5.png` (or `.jpg`) and, if a group allows video, `verdansc-split-ad-30s-9x16.mp4`
 
 If Facebook login fails, **skip all Facebook slots** that day. Do not dump those touches onto email or Craigslist.
 
 ---
 
-## 2. Email (Gmail / Google Workspace SMTP)
+## 2. Email (Zoho Mail — `founder@verdansc.com`)
 
-Sign in before any `email` slot.
+Sign in before any `email` slot. **Not** Gmail / Google Workspace SMTP.
 
-- [ ] Sending as a real person from `@verdansc.com` (e.g. `support@verdansc.com` or a named mailbox) — not a spoofed PM-looking domain
-- [ ] Reply-to reaches a human (no no-reply)
-- [ ] Gmail or Google Workspace SMTP is authenticated for that mailbox
-- [ ] SPF, DKIM, and DMARC on `verdansc.com` are in place (or sending is deferred until they are)
+- [ ] Sending as **`founder@verdansc.com`** from **Zoho Mail** (George Igwe). Reply-to reaches a human.
+- [ ] Will **not** send as `founder@peaksees.com` (that mailbox exists on the same Zoho switcher; do not use it)
+- [ ] Zoho web or SMTP later-send only: host `smtp.zoho.com` (typically 465 SSL or 587 TLS) — this VM must not send
+- [ ] SPF, DKIM, and DMARC on `verdansc.com` include Zoho (or sending is deferred until they do)
 - [ ] One-click unsubscribe / List-Unsubscribe can be honored within 10 business days
 - [ ] Suppression list exists (unsub, bounce, “do not contact”)
 - [ ] Can attach `marketing/ads/exports/verdansc-split-ad-16x9.jpg` (do not attach the 30s MP4 on first-wave mail)
 
-If SMTP login fails, **skip email slots**. Do not BCC a personal Gmail as a workaround.
+If Zoho login fails, **skip email slots**. Do not BCC a personal Gmail or Peaksees as a workaround.
 
 ---
 
-## 3. Craigslist
+## 3. Craigslist (`mrigwe234@gmail.com`)
 
 Sign in before any `craigslist` slot.
 
-- [ ] Logged into [albuquerque.craigslist.org](https://albuquerque.craigslist.org)
-- [ ] Account email/phone is an operator alias you monitor (prefer Craigslist anonymized relay)
+- [ ] Logged into [albuquerque.craigslist.org](https://albuquerque.craigslist.org) as **`mrigwe234@gmail.com`** (personal Gmail, not `@verdansc.com`)
+- [ ] Did **not** consume a magic login-link email from this VM (human clicks that link on their own device if needed)
+- [ ] Account email/phone is monitored; prefer Craigslist anonymized relay on the public post
 - [ ] Know how to post **housing → housing wanted** (not apts/housing for rent)
 - [ ] Local copies of `marketing/craigslist/images/` are on disk for the 6-photo attach set
 - [ ] Will not use automation, clone posts, or post the same title twice in one day
+- [ ] Will not post from a second Craigslist account
 
-If Craigslist login fails, **skip the day’s housing-wanted slot**. Do not post it from a second account.
+If Craigslist login fails, **skip the day’s housing-wanted slot**. Do not post it from `founder@verdansc.com` or Peaksees.
 
 ---
 
@@ -85,8 +101,10 @@ Pull or check out the source branches if they are not on `main` yet.
 
 | Missing | Action |
 | --- | --- |
+| Unanswered [`roadblocks.md`](roadblocks.md) | **Wait for the user.** Do not send. |
+| No live Facebook / Zoho / Craigslist session on this VM | Human executes, or skip that channel. |
 | Any unchecked box in §1–4 | Keep status `queued`. Do not send. |
 | No inbound Facebook message at a DM slot | Mark that slot `skipped`. Do not cold-DM. |
 | Prospect row still `[COMPANY_EMAIL]` | Do not guess an address. |
-| Group bans promo | Skip that group post. Do not re-use a group already scheduled this week. |
+| Group bans promo | Skip that group post. Use the unused backup SB group — do not reuse a group already scheduled this week. |
 | User has not logged in | **Do not send anything.** |

@@ -2,7 +2,9 @@
 
 Copy and photos for a **human** to paste into Craigslist **housing wanted**.
 
-**Do not post from this repo.** Nothing here auto-posts. This polish pass did not post.
+**Do not post from this repo.** Nothing here auto-posts. This pass did not post and did not click any Craigslist login link.
+
+**Account:** log in / post as **`mrigwe234@gmail.com`** on [albuquerque.craigslist.org](https://albuquerque.craigslist.org). This is a personal Gmail identity, not `founder@verdansc.com`. Wait for `marketing/schedule/roadblocks.md`.
 
 ## Schedule (do not exceed)
 
