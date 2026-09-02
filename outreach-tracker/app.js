@@ -29,9 +29,15 @@
     weekList: document.getElementById("week-list"),
     toast: document.getElementById("toast"),
     install: document.getElementById("install-hint"),
+    countdownCard: document.getElementById("countdown-card"),
+    countdownKicker: document.getElementById("countdown-kicker"),
+    countdownTime: document.getElementById("countdown-time"),
+    countdownSub: document.getElementById("countdown-sub"),
   };
 
   let toastTimer = 0;
+  let lastListKey = "";
+  let lastCountKey = "";
 
   function loadMarks() {
     try {
@@ -53,19 +59,55 @@
       day: "2-digit",
       hour: "2-digit",
       minute: "2-digit",
+      second: "2-digit",
       weekday: "long",
       hourCycle: "h23",
     }).formatToParts(date);
     const g = Object.fromEntries(
       parts.filter((p) => p.type !== "literal").map((p) => [p.type, p.value])
     );
+    const hour = Number(g.hour) % 24;
+    const minute = Number(g.minute);
     return {
       date: `${g.year}-${g.month}-${g.day}`,
-      time: `${g.hour}:${g.minute}`,
-      minutes: Number(g.hour) * 60 + Number(g.minute),
+      time: `${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`,
+      minutes: hour * 60 + minute,
       weekday: g.weekday,
       pretty: `${g.weekday}, ${prettyMonth(g.month)} ${Number(g.day)}`,
     };
+  }
+
+  function tzOffsetMs(date) {
+    const parts = new Intl.DateTimeFormat("en-US", {
+      timeZone: TZ,
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hourCycle: "h23",
+    }).formatToParts(date);
+    const g = Object.fromEntries(
+      parts.filter((p) => p.type !== "literal").map((p) => [p.type, p.value])
+    );
+    const asUtc = Date.UTC(
+      Number(g.year),
+      Number(g.month) - 1,
+      Number(g.day),
+      Number(g.hour) % 24,
+      Number(g.minute),
+      Number(g.second)
+    );
+    return asUtc - date.getTime();
+  }
+
+  function wallTimeMs(isoDate, hhmm) {
+    const [year, month, day] = isoDate.split("-").map(Number);
+    const [hour, minute] = hhmm.split(":").map(Number);
+    const utcGuess = Date.UTC(year, month - 1, day, hour, minute, 0);
+    const instant = utcGuess - tzOffsetMs(new Date(utcGuess));
+    return utcGuess - tzOffsetMs(new Date(instant));
   }
 
   function prettyMonth(mm) {
@@ -97,6 +139,14 @@
     return h * 60 + m;
   }
 
+  function formatHMS(ms) {
+    const total = Math.max(0, Math.floor(ms / 1000));
+    const h = Math.floor(total / 3600);
+    const m = Math.floor((total % 3600) / 60);
+    const s = total % 60;
+    return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+  }
+
   function statusOf(slot, marks) {
     if (slot.blocked || slot.channel === "email") return "blocked";
     return marks[slot.id]?.status || "queued";
@@ -112,17 +162,8 @@
     return "fb";
   }
 
-  function inMorningWindow(parts) {
-    return parts.minutes >= minutesOf("07:00") && parts.minutes < minutesOf("10:00");
-  }
-
-  function dueNowId(parts, marks) {
-    if (!inMorningWindow(parts)) return null;
-    const todays = SLOTS.filter((s) => s.date === parts.date);
-    const open = todays.filter((s) => statusOf(s, marks) === "queued" && isActionable(s));
-    if (!open.length) return null;
-    const current = [...open].reverse().find((s) => minutesOf(s.time) <= parts.minutes);
-    return (current || open[0]).id;
+  function queuedActionable(list, marks) {
+    return list.filter((s) => isActionable(s) && statusOf(s, marks) === "queued");
   }
 
   function widgetDay(parts) {
@@ -131,17 +172,34 @@
     return window.OUTREACH_WEEK.end;
   }
 
+  function dueNowId(parts, marks) {
+    if (parts.date < window.OUTREACH_WEEK.start) return null;
+    const day = widgetDay(parts);
+    if (day !== parts.date) return null;
+    const open = queuedActionable(SLOTS.filter((s) => s.date === day), marks);
+    if (!open.length) return null;
+    const current = [...open].reverse().find((s) => minutesOf(s.time) <= parts.minutes);
+    return current ? current.id : null;
+  }
+
   function nextDue(parts, marks) {
     const dueId = dueNowId(parts, marks);
     if (dueId) return SLOTS.find((s) => s.id === dueId);
-    return SLOTS.find((s) => {
-      if (!isActionable(s) || statusOf(s, marks) !== "queued") return false;
-      return s.date > parts.date || (s.date === parts.date && minutesOf(s.time) >= parts.minutes);
-    }) || SLOTS.find((s) => isActionable(s) && statusOf(s, marks) === "queued");
+    return (
+      SLOTS.find((s) => {
+        if (!isActionable(s) || statusOf(s, marks) !== "queued") return false;
+        return s.date > parts.date || (s.date === parts.date && minutesOf(s.time) >= parts.minutes);
+      }) || queuedActionable(SLOTS, marks)[0]
+    );
+  }
+
+  function countdownSlot(parts, marks) {
+    const day = widgetDay(parts);
+    return queuedActionable(SLOTS.filter((s) => s.date === day), marks)[0] || null;
   }
 
   function remaining(list, marks) {
-    return list.filter((s) => isActionable(s) && statusOf(s, marks) === "queued").length;
+    return queuedActionable(list, marks).length;
   }
 
   function toast(message) {
@@ -151,10 +209,20 @@
     toastTimer = setTimeout(() => el.toast.classList.remove("is-on"), 3200);
   }
 
+  function flashCount(node, value) {
+    const next = String(value);
+    if (node.textContent === next) return;
+    node.textContent = next;
+    node.classList.remove("is-flash");
+    void node.offsetWidth;
+    node.classList.add("is-flash");
+  }
+
   function setStatus(id, status) {
     const slot = SLOTS.find((s) => s.id === id);
     if (!slot || !isActionable(slot)) return;
     const marks = loadMarks();
+    if (marks[id]?.status && marks[id].status !== "queued") return;
     marks[id] = { status, at: new Date().toISOString() };
     saveMarks(marks);
     if (status === "done") {
@@ -162,7 +230,7 @@
     } else {
       toast(`${id} skipped`);
     }
-    render();
+    render({ forceLists: true });
   }
 
   function slotCard(slot, marks, dueId) {
@@ -201,32 +269,75 @@
     const done = document.createElement("button");
     done.className = "done-btn";
     done.type = "button";
+    done.dataset.act = "done";
+    done.dataset.id = slot.id;
     done.textContent = status === "done" ? "Completed" : "Mark complete";
     done.disabled = status !== "queued";
-    done.addEventListener("click", () => setStatus(slot.id, "done"));
     const skip = document.createElement("button");
     skip.type = "button";
+    skip.dataset.act = "skipped";
+    skip.dataset.id = slot.id;
     skip.textContent = status === "skipped" ? "Skipped" : "Skip";
     skip.disabled = status !== "queued";
-    skip.addEventListener("click", () => setStatus(slot.id, "skipped"));
     actions.append(done, skip);
     article.appendChild(actions);
     return article;
   }
 
-  function renderHome(parts, marks, dueId) {
+  function paintCountdown(now, parts, marks) {
+    const slot = countdownSlot(parts, marks);
+    const weekLeft = remaining(SLOTS, marks);
+
+    if (!slot) {
+      el.countdownCard.className = "countdown-card is-done";
+      el.countdownKicker.textContent = weekLeft ? "Window complete" : "Week clear";
+      el.countdownTime.textContent = weekLeft ? "Done for today" : "All clear";
+      el.countdownSub.textContent = weekLeft
+        ? "No remaining Facebook or Craigslist slots today."
+        : "No remaining Facebook or Craigslist slots.";
+      return;
+    }
+
+    const start = wallTimeMs(slot.date, slot.time);
+    const delta = start - now.getTime();
+    const label = `${prettyDate(slot.date)} · ${prettyTime(slot.time)} MT · ${CHANNEL_LABEL[slot.channel]}`;
+
+    if (delta <= 0) {
+      el.countdownCard.className = "countdown-card is-live";
+      el.countdownKicker.textContent = "Due now";
+      el.countdownTime.textContent = prettyTime(slot.time);
+      el.countdownSub.textContent = `${CHANNEL_LABEL[slot.channel]} · ${slot.title}`;
+      return;
+    }
+
+    el.countdownCard.className = "countdown-card";
+    el.countdownKicker.textContent = "Starts in";
+    el.countdownTime.textContent = formatHMS(delta);
+    el.countdownSub.textContent = label;
+  }
+
+  function paintChrome(now, parts, marks, dueId) {
     const day = widgetDay(parts);
     const todays = SLOTS.filter((s) => s.date === day);
     const next = nextDue(parts, marks);
     const showingOtherDay = day !== parts.date;
+    const todayLeft = remaining(todays, marks);
+    const weekLeft = remaining(SLOTS, marks);
 
     el.clockDate.textContent = parts.pretty;
     el.clockSub.textContent = showingOtherDay
       ? `${parts.time} America/Denver · showing ${prettyDate(day)} slots`
       : `${parts.time} America/Denver · 7:00–10:00 window`;
 
-    el.remainToday.textContent = String(remaining(todays, marks));
-    el.remainWeek.textContent = String(remaining(SLOTS, marks));
+    const countKey = `${todayLeft}|${weekLeft}`;
+    if (countKey !== lastCountKey) {
+      flashCount(el.remainToday, todayLeft);
+      flashCount(el.remainWeek, weekLeft);
+      lastCountKey = countKey;
+    } else {
+      el.remainToday.textContent = String(todayLeft);
+      el.remainWeek.textContent = String(weekLeft);
+    }
 
     if (next) {
       const nextIsDue = next.id === dueId;
@@ -241,18 +352,34 @@
       el.nextCard.innerHTML = `<p class="kicker">Next due</p><h2>Week clear</h2><p>No remaining Facebook or Craigslist slots.</p>`;
     }
 
-    el.todayList.replaceChildren(...todays.map((s) => slotCard(s, marks, dueId)));
+    paintCountdown(now, parts, marks);
   }
 
-  function renderWeek(parts, marks, dueId) {
+  function paintHomeList(parts, marks, dueId) {
+    const day = widgetDay(parts);
+    const todays = SLOTS.filter((s) => s.date === day);
+    const visible = todays.filter((s) => {
+      const status = statusOf(s, marks);
+      return status === "queued" || status === "blocked";
+    });
+    el.todayList.replaceChildren(...visible.map((s) => slotCard(s, marks, dueId)));
+  }
+
+  function paintWeek(parts, marks, dueId) {
+    const openDates = new Set(
+      [...el.weekList.querySelectorAll(".day.is-open")].map((node) => node.dataset.date)
+    );
     const dates = [...new Set(SLOTS.map((s) => s.date))];
+    const widget = widgetDay(parts);
     el.weekList.replaceChildren(
       ...dates.map((date) => {
         const daySlots = SLOTS.filter((s) => s.date === date);
         const open = remaining(daySlots, marks);
         const section = document.createElement("section");
-        const isToday = date === parts.date || date === widgetDay(parts);
-        section.className = `day${isToday ? " is-open" : ""}`;
+        const isToday = date === parts.date || date === widget;
+        const stayOpen = openDates.size ? openDates.has(date) : isToday;
+        section.className = `day${stayOpen ? " is-open" : ""}`;
+        section.dataset.date = date;
         const head = document.createElement("button");
         head.type = "button";
         head.className = "day-head";
@@ -275,14 +402,31 @@
     el.nav.week.classList.toggle("is-on", week);
   }
 
-  function render() {
-    const parts = denverParts();
+  function render(opts = {}) {
+    const now = new Date();
+    const parts = denverParts(now);
     const marks = loadMarks();
     const dueId = dueNowId(parts, marks);
-    renderHome(parts, marks, dueId);
-    renderWeek(parts, marks, dueId);
+    const day = widgetDay(parts);
+    const listKey = `${day}|${dueId || ""}|${JSON.stringify(marks)}`;
+    paintChrome(now, parts, marks, dueId);
+    if (opts.forceLists || listKey !== lastListKey) {
+      lastListKey = listKey;
+      paintHomeList(parts, marks, dueId);
+      paintWeek(parts, marks, dueId);
+    }
     route();
   }
+
+  function onActionClick(event) {
+    const btn = event.target.closest("button[data-act]");
+    if (!btn || btn.disabled) return;
+    event.preventDefault();
+    setStatus(btn.dataset.id, btn.dataset.act);
+  }
+
+  el.todayList.addEventListener("click", onActionClick);
+  el.weekList.addEventListener("click", onActionClick);
 
   el.nav.home.addEventListener("click", () => {
     location.hash = "#/";
@@ -296,6 +440,9 @@
     route();
     window.scrollTo(0, 0);
   });
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") render({ forceLists: true });
+  });
 
   if (window.matchMedia("(display-mode: standalone)").matches) {
     el.install.classList.add("hidden");
@@ -305,6 +452,6 @@
     navigator.serviceWorker.register("./sw.js");
   }
 
-  render();
-  setInterval(render, 30000);
+  render({ forceLists: true });
+  setInterval(render, 1000);
 })();

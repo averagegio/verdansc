@@ -45,6 +45,7 @@ Marks live in this device’s `localStorage`. Clearing site data clears the week
 ## What it does
 
 - Widget: today’s Mountain date, next due, five daily slots, remaining counts
+- Live HH:MM:SS countdown to the next remaining sendable slot (America/Denver); remaining counts and next-due update as soon as you mark complete or skip
 - Full week: all 35 slots, named ABQ / NM small-business Facebook groups
 - Facebook + Craigslist: **Mark complete** or **Skip**, with a banner alert
 - Email: stays **blocked** — no send button
