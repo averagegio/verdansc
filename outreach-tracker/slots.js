@@ -1,15 +1,16 @@
 /* Copied from origin/cursor/outreach-accounts-6306
  * marketing/schedule/queue.csv + facebook/scheduled-slots.md
  * Week: 2026-09-02 through 2026-09-09, America/Denver
- * Times: 7:00 / 7:40 / 8:20 / 9:00 / 9:40
- * Tracker only — no send, no scrape, no login.
- * Wed Sep 2 added so today’s tasks queue at the same 5-slot cadence.
+ * Times: 7:00 / 7:40 / 8:00 (LinkedIn weekdays) / 8:20 / 9:00 / 9:40
+ * Tracker only — no send, no scrape, no login, no LinkedIn publish.
+ * Wed Sep 2 added so today’s tasks queue at the same cadence.
+ * LinkedIn: one feed post per weekday (not Sat/Sun), 8:00 AM MT.
  */
 window.OUTREACH_WEEK = {
   tz: "America/Denver",
   start: "2026-09-02",
   end: "2026-09-09",
-  times: ["07:00", "07:40", "08:20", "09:00", "09:40"],
+  times: ["07:00", "07:40", "08:00", "08:20", "09:00", "09:40"],
   windowStart: "07:00",
   windowEnd: "10:00",
 };
@@ -33,6 +34,16 @@ window.OUTREACH_SLOTS = [
     group: "",
     title: "Craigslist housing-wanted",
     detail: "Downtown ABQ, Nob Hill, Rio Rancho · day-01 variant (Post A) · 1 of 1 today",
+  },
+  {
+    id: "S-LI-01",
+    date: "2026-09-02",
+    time: "08:00",
+    channel: "linkedin",
+    group: "",
+    title: "LinkedIn feed post",
+    detail:
+      "Short professional post + 16:9 video (verdansc_higgsfield_ad_30s.mp4 / Ken Burns export) + verdansc.com/pitch",
   },
   {
     id: "S-TODAY-03",
@@ -82,6 +93,16 @@ window.OUTREACH_SLOTS = [
     detail: "Downtown ABQ, Nob Hill, Rio Rancho · Post A · 1 of 1 today",
   },
   {
+    id: "S-LI-02",
+    date: "2026-09-03",
+    time: "08:00",
+    channel: "linkedin",
+    group: "",
+    title: "LinkedIn feed post",
+    detail:
+      "Short professional post + 16:9 video (verdansc_higgsfield_ad_30s.mp4 / Ken Burns export) + verdansc.com/pitch",
+  },
+  {
     id: "S03",
     date: "2026-09-03",
     time: "08:20",
@@ -127,6 +148,16 @@ window.OUTREACH_SLOTS = [
     group: "",
     title: "Craigslist housing-wanted",
     detail: "Greater Albuquerque · Post B · 1 of 1 today",
+  },
+  {
+    id: "S-LI-03",
+    date: "2026-09-04",
+    time: "08:00",
+    channel: "linkedin",
+    group: "",
+    title: "LinkedIn feed post",
+    detail:
+      "Short professional post + 16:9 video (verdansc_higgsfield_ad_30s.mp4 / Ken Burns export) + verdansc.com/pitch",
   },
   {
     id: "S08",
@@ -266,6 +297,16 @@ window.OUTREACH_SLOTS = [
     detail: "Metro ABQ + Rio Rancho · Post B",
   },
   {
+    id: "S-LI-04",
+    date: "2026-09-07",
+    time: "08:00",
+    channel: "linkedin",
+    group: "",
+    title: "LinkedIn feed post",
+    detail:
+      "Short professional post + 16:9 video (verdansc_higgsfield_ad_30s.mp4 / Ken Burns export) + verdansc.com/pitch",
+  },
+  {
     id: "S23",
     date: "2026-09-07",
     time: "08:20",
@@ -310,6 +351,16 @@ window.OUTREACH_SLOTS = [
     group: "",
     title: "Craigslist housing-wanted",
     detail: "Downtown + Nob Hill · Post C",
+  },
+  {
+    id: "S-LI-05",
+    date: "2026-09-08",
+    time: "08:00",
+    channel: "linkedin",
+    group: "",
+    title: "LinkedIn feed post",
+    detail:
+      "Short professional post + 16:9 video (verdansc_higgsfield_ad_30s.mp4 / Ken Burns export) + verdansc.com/pitch",
   },
   {
     id: "S28",
@@ -357,6 +408,16 @@ window.OUTREACH_SLOTS = [
     group: "",
     title: "Craigslist housing-wanted",
     detail: "Rio Rancho + greater Albuquerque · Post A",
+  },
+  {
+    id: "S-LI-06",
+    date: "2026-09-09",
+    time: "08:00",
+    channel: "linkedin",
+    group: "",
+    title: "LinkedIn feed post",
+    detail:
+      "Short professional post + 16:9 video (verdansc_higgsfield_ad_30s.mp4 / Ken Burns export) + verdansc.com/pitch",
   },
   {
     id: "S33",

@@ -8,6 +8,7 @@
     facebook_first_comment: "FB comment",
     facebook_reply_window: "FB reply",
     craigslist: "Craigslist",
+    linkedin: "LinkedIn",
     email: "Email",
   };
 
@@ -159,6 +160,7 @@
   function channelClass(channel) {
     if (channel === "email") return "email";
     if (channel === "craigslist") return "cl";
+    if (channel === "linkedin") return "li";
     return "fb";
   }
 
@@ -193,9 +195,10 @@
     );
   }
 
-  function countdownSlot(parts, marks) {
-    const day = widgetDay(parts);
-    return queuedActionable(SLOTS.filter((s) => s.date === day), marks)[0] || null;
+  function countdownSlot(_parts, marks) {
+    // First remaining sendable slot across the week: today 7:00 AM MT
+    // while still before that window, otherwise the next unfinished slot.
+    return queuedActionable(SLOTS, marks)[0] || null;
   }
 
   function remaining(list, marks) {
@@ -293,8 +296,8 @@
       el.countdownKicker.textContent = weekLeft ? "Window complete" : "Week clear";
       el.countdownTime.textContent = weekLeft ? "Done for today" : "All clear";
       el.countdownSub.textContent = weekLeft
-        ? "No remaining Facebook or Craigslist slots today."
-        : "No remaining Facebook or Craigslist slots.";
+        ? "No remaining Facebook, Craigslist, or LinkedIn slots today."
+        : "No remaining Facebook, Craigslist, or LinkedIn slots.";
       return;
     }
 
@@ -349,7 +352,7 @@
       `;
     } else {
       el.nextCard.className = "next-card";
-      el.nextCard.innerHTML = `<p class="kicker">Next due</p><h2>Week clear</h2><p>No remaining Facebook or Craigslist slots.</p>`;
+      el.nextCard.innerHTML = `<p class="kicker">Next due</p><h2>Week clear</h2><p>No remaining Facebook, Craigslist, or LinkedIn slots.</p>`;
     }
 
     paintCountdown(now, parts, marks);
@@ -383,7 +386,7 @@
         const head = document.createElement("button");
         head.type = "button";
         head.className = "day-head";
-        head.innerHTML = `<h2>${prettyDate(date)}</h2><small>${open} left · 5 slots</small>`;
+        head.innerHTML = `<h2>${prettyDate(date)}</h2><small>${open} left · ${daySlots.length} slots</small>`;
         head.addEventListener("click", () => section.classList.toggle("is-open"));
         const body = document.createElement("div");
         body.className = "day-body";
