@@ -2,8 +2,8 @@
   "framework": "nextjs",
   "buildCommand": "npm run build",
   "installCommand": "npm install",
-  "rewrites": [
-    { "source": "/tracker", "destination": "/tracker/index.html" },
-    { "source": "/tracker/", "destination": "/tracker/index.html" }
+  "redirects": [
+    { "source": "/tracker", "destination": "/tracker/index.html", "permanent": false },
+    { "source": "/tracker/", "destination": "/tracker/index.html", "permanent": false }
   ]
 }
