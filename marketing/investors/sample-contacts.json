@@ -1,0 +1,34 @@
+{
+  "note": "Fake schema examples only. Do not treat as real people. The full extract is gitignored at contacts.extracted.json.",
+  "fields": ["first_name", "firm", "email", "type", "thesis"],
+  "contacts": [
+    {
+      "first_name": "Alex",
+      "firm": "Example Housing Partners",
+      "email": "alex@example-housing.invalid",
+      "type": "proptech",
+      "thesis": "proptech and residential marketplaces"
+    },
+    {
+      "first_name": "Jordan",
+      "firm": "Example Seed Fund",
+      "email": "jordan@example-seed.invalid",
+      "type": "seed",
+      "thesis": "seed-stage marketplaces and local network effects"
+    },
+    {
+      "first_name": "Sam",
+      "firm": "Example Angel Group",
+      "email": "sam@example-angels.invalid",
+      "type": "angel",
+      "thesis": "early marketplace and consumer infrastructure"
+    }
+  ],
+  "redacted_row_shape": {
+    "first_name": "J.",
+    "firm": "[FIRM]",
+    "email": "j***@[firm-domain]",
+    "type": "generalist",
+    "thesis": "two-sided marketplaces and local software"
+  }
+}
