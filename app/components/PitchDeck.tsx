@@ -20,7 +20,7 @@ const SLIDES = [
 
 type SlideId = (typeof SLIDES)[number]["id"];
 
-const INTERACTIVE_SELECTOR = "a, button, input, textarea, select, [data-no-drag]";
+const INTERACTIVE_SELECTOR = "button, input, textarea, select, [data-no-drag]";
 
 const SERVICES = [
   {
@@ -246,19 +246,29 @@ export default function PitchDeck() {
     setProgress(max > 0 ? el.scrollLeft / max : 0);
   }, []);
 
+  const currentIndex = useCallback(() => {
+    const el = scrollerRef.current;
+    if (!el) return 0;
+    return Math.round(el.scrollLeft / (el.clientWidth || 1));
+  }, []);
+
   const goTo = useCallback((index: number) => {
     const el = scrollerRef.current;
     if (!el) return;
     const next = Math.min(Math.max(index, 0), SLIDES.length - 1);
-    el.scrollTo({ left: next * el.clientWidth, behavior: "smooth" });
+    const from = Math.round(el.scrollLeft / (el.clientWidth || 1));
+    el.scrollTo({
+      left: next * el.clientWidth,
+      behavior: Math.abs(next - from) > 1 ? "auto" : "smooth",
+    });
     setActive(next);
   }, []);
 
   const goBy = useCallback(
     (delta: number) => {
-      goTo(active + delta);
+      goTo(currentIndex() + delta);
     },
-    [active, goTo],
+    [currentIndex, goTo],
   );
 
   const toggleExpand = useCallback((id: SlideId) => {
@@ -438,7 +448,7 @@ export default function PitchDeck() {
         aria-label="VERDANSC pitch deck"
         aria-describedby={liveId}
       >
-        <section className="pitch-slide" aria-roledescription="slide" aria-label="Opening">
+        <section className="pitch-slide" aria-roledescription="slide" aria-label="Opening" aria-hidden={active !== 0} inert={active !== 0}>
           <article className="pitch-card pitch-card--hero">
             <div className="pitch-atmosphere" aria-hidden />
             <p className="pitch-kicker">Marketplace pitch · Albuquerque &amp; Rio Rancho</p>
@@ -465,7 +475,7 @@ export default function PitchDeck() {
           </article>
         </section>
 
-        <section className="pitch-slide" aria-roledescription="slide" aria-label="The problem">
+        <section className="pitch-slide" aria-roledescription="slide" aria-label="The problem" aria-hidden={active !== 1} inert={active !== 1}>
           <article className="pitch-card">
             <p className="pitch-kicker">The problem</p>
             <h2 className="pitch-title">Leasing is a pile of tabs, PDFs, and guesswork.</h2>
@@ -512,7 +522,7 @@ export default function PitchDeck() {
           </article>
         </section>
 
-        <section className="pitch-slide" aria-roledescription="slide" aria-label="The product">
+        <section className="pitch-slide" aria-roledescription="slide" aria-label="The product" aria-hidden={active !== 2} inert={active !== 2}>
           <article className="pitch-card">
             <p className="pitch-kicker">The product</p>
             <h2 className="pitch-title">One map. Two personas. Every lease action.</h2>
@@ -546,7 +556,7 @@ export default function PitchDeck() {
           </article>
         </section>
 
-        <section className="pitch-slide" aria-roledescription="slide" aria-label="Tenant path">
+        <section className="pitch-slide" aria-roledescription="slide" aria-label="Tenant path" aria-hidden={active !== 3} inert={active !== 3}>
           <article className="pitch-card pitch-card--split">
             <div>
               <p className="pitch-kicker">Tenant flow</p>
@@ -575,7 +585,7 @@ export default function PitchDeck() {
           </article>
         </section>
 
-        <section className="pitch-slide" aria-roledescription="slide" aria-label="Landlord path">
+        <section className="pitch-slide" aria-roledescription="slide" aria-label="Landlord path" aria-hidden={active !== 4} inert={active !== 4}>
           <article className="pitch-card pitch-card--split">
             <div>
               <p className="pitch-kicker">Landlord flow</p>
@@ -604,7 +614,7 @@ export default function PitchDeck() {
           </article>
         </section>
 
-        <section className="pitch-slide" aria-roledescription="slide" aria-label="Matching">
+        <section className="pitch-slide" aria-roledescription="slide" aria-label="Matching" aria-hidden={active !== 5} inert={active !== 5}>
           <article className="pitch-card pitch-card--split">
             <div>
               <p className="pitch-kicker">Matching &amp; notifications</p>
@@ -632,7 +642,7 @@ export default function PitchDeck() {
           </article>
         </section>
 
-        <section className="pitch-slide" aria-roledescription="slide" aria-label="Launch market">
+        <section className="pitch-slide" aria-roledescription="slide" aria-label="Launch market" aria-hidden={active !== 6} inert={active !== 6}>
           <article className="pitch-card">
             <p className="pitch-kicker">Launch market</p>
             <h2 className="pitch-title">Win Albuquerque. Densify Rio Rancho.</h2>
@@ -678,7 +688,7 @@ export default function PitchDeck() {
           </article>
         </section>
 
-        <section className="pitch-slide" aria-roledescription="slide" aria-label="Services">
+        <section className="pitch-slide" aria-roledescription="slide" aria-label="Services" aria-hidden={active !== 7} inert={active !== 7}>
           <article className="pitch-card">
             <p className="pitch-kicker">Service breakdown</p>
             <h2 className="pitch-title">Every pin is a product surface.</h2>
@@ -702,7 +712,7 @@ export default function PitchDeck() {
           </article>
         </section>
 
-        <section className="pitch-slide" aria-roledescription="slide" aria-label="Memberships">
+        <section className="pitch-slide" aria-roledescription="slide" aria-label="Memberships" aria-hidden={active !== 8} inert={active !== 8}>
           <article className="pitch-card">
             <p className="pitch-kicker">Memberships</p>
             <h2 className="pitch-title">Convert one action into a recurring plan.</h2>
@@ -735,7 +745,7 @@ export default function PitchDeck() {
           </article>
         </section>
 
-        <section className="pitch-slide" aria-roledescription="slide" aria-label="Flywheel">
+        <section className="pitch-slide" aria-roledescription="slide" aria-label="Flywheel" aria-hidden={active !== 9} inert={active !== 9}>
           <article className="pitch-card">
             <p className="pitch-kicker">Two-sided flywheel</p>
             <h2 className="pitch-title">Renters bring applications. Landlords bring inventory.</h2>
@@ -761,7 +771,7 @@ export default function PitchDeck() {
           </article>
         </section>
 
-        <section className="pitch-slide" aria-roledescription="slide" aria-label="Get started">
+        <section className="pitch-slide" aria-roledescription="slide" aria-label="Get started" aria-hidden={active !== 10} inert={active !== 10}>
           <article className="pitch-card pitch-card--hero">
             <div className="pitch-atmosphere pitch-atmosphere--close" aria-hidden />
             <p className="pitch-kicker">Next step</p>
