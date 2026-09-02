@@ -6,9 +6,9 @@ Use in chambers, local-biz, landlord/investor, and owner-operator groups. Under 
 
 ---
 
-Hi folks — I’m with Verdansc. If you own or manage a rental in Albuquerque or Rio Rancho, you can set up an applicant intake link, collect applications with your fee, and point people to a $19 soft credit check.
+Hi folks — I’m with Verdansc. If you own or manage a rental in Albuquerque or Rio Rancho, you can set up an applicant intake link and collect applications with your fee.
 
-Renters on your side can browse listings and apply without a paper packet.
+Ask renters to join or subscribe at https://www.verdansc.com , then run the $19 soft credit check and apply. Intake does not take listing photos.
 
 Take a look: https://www.verdansc.com/rental-application?utm_source=facebook&utm_medium=group&utm_campaign=abq_sb_invite&utm_content=short
 

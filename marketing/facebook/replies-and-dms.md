@@ -12,8 +12,9 @@ The graphic is a demo still (Harborline Flats 2B is fictional). The house photo 
 
 Quick paths:
 
-- Renters: credit check ($19 soft inquiry) https://www.verdansc.com/credit-check?utm_source=facebook&utm_medium=group&utm_campaign=abq_invite&utm_content=first_comment
-- Browse applications: https://www.verdansc.com/listings?utm_source=facebook&utm_medium=group&utm_campaign=abq_invite&utm_content=first_comment
+- Renters: join / subscribe https://www.verdansc.com/signup?role=renter&utm_source=facebook&utm_medium=group&utm_campaign=abq_invite&utm_content=first_comment
+- Then credit check ($19 soft inquiry) https://www.verdansc.com/credit-check?utm_source=facebook&utm_medium=group&utm_campaign=abq_invite&utm_content=first_comment
+- Then apply from listings https://www.verdansc.com/listings?utm_source=facebook&utm_medium=group&utm_campaign=abq_invite&utm_content=first_comment
 - Landlords: set up an intake link https://www.verdansc.com/rental-application?utm_source=facebook&utm_medium=group&utm_campaign=abq_invite&utm_content=first_comment
 
 If a group forbids links in comments, drop the URLs and say “links are in the post.”
@@ -79,8 +80,9 @@ Keep one note. No sequences, no “bumping you.”
 
 Hi — thanks for writing. I’m with Verdansc.
 
-If you’re **renting or buying**, the usual start is the $19 soft credit check or the listings feed:
+If you’re **renting or buying**, join or subscribe first, then the $19 soft credit check, then apply:
 
+https://www.verdansc.com/signup?role=renter&utm_source=facebook&utm_medium=dm&utm_campaign=abq_invite&utm_content=followup
 https://www.verdansc.com/credit-check?utm_source=facebook&utm_medium=dm&utm_campaign=abq_invite&utm_content=followup
 https://www.verdansc.com/listings?utm_source=facebook&utm_medium=dm&utm_campaign=abq_invite&utm_content=followup
 
@@ -99,6 +101,6 @@ Attach: `marketing/ads/exports/verdansc-split-ad-4x5.jpg`
 
 Caption (paste with the photo):
 
-Verdansc demo still — Harborline Flats 2B is fictional. Renters: search, $19 soft credit check, apply. Landlords: intake link (title, address, fee), not listing-photo upload. https://www.verdansc.com/?utm_source=facebook&utm_medium=dm&utm_campaign=abq_invite&utm_content=followup_still
+Verdansc demo still — Harborline Flats 2B is fictional. Renters: join/subscribe, $19 soft credit check, apply. Landlords: intake link (title, address, fee), not listing-photo upload. https://www.verdansc.com/?utm_source=facebook&utm_medium=dm&utm_campaign=abq_invite&utm_content=followup_still
 
 Attach the still only if they asked what it looks like or you are answering their message. Do not send the 9:16 video in Messenger (too large, and the alert cards read like push notifications). Do not attach unrelated documents. Do not request credit information in Messenger.

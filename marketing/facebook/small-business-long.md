@@ -20,6 +20,8 @@ A lot of small owners still juggle texts, paper applications, and a separate cre
 
 **If you share this with renters**
 
+- Join or subscribe first at https://www.verdansc.com (sign up: `/signup`)
+- Then get credit-ready with the $19 soft check and apply from listings
 - Browse listings and see the fee before applying
 - Apply online, save a draft, then pay the fee to submit
 - Optional Rental Ready Club at $15/month if they apply more than once

@@ -58,9 +58,10 @@ Verified against the live app routes (see `utm-links.md`):
 
 **For renters / buyers**
 
+- Join / subscribe first (`/` or `/signup?role=renter`)
+- Run a $19 soft credit check with Stripe checkout (`/credit-check`)
 - Browse rental application listings and compare application fees (`/listings`)
 - Apply to a listing, save a draft, pay the landlord’s application fee, track status (`/apply/[listingId]`)
-- Run a $19 soft credit check with Stripe checkout (`/credit-check`)
 - Optional membership: Rental Ready Club ($15/mo) or Rental Ready Plus ($29/mo) (`/signup?role=renter`, `/pricing`)
 - Move-in planner with optional photo evidence for condition / utilities / insurance (`/move-in-planner`) — membership-oriented workflow
 

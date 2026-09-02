@@ -8,8 +8,9 @@ Copy from `replies-and-dms.md`, or this shorter variant:
 
 Affiliation note: I’m with Verdansc. Graphic is a demo still (Harborline Flats 2B is fictional); photographing the house is lifestyle, not listing-photo intake. Concrete links (same as the post):
 
-Renters → https://www.verdansc.com/credit-check?utm_source=facebook&utm_medium=group&utm_campaign=abq_invite&utm_content=first_comment
-Listings → https://www.verdansc.com/listings?utm_source=facebook&utm_medium=group&utm_campaign=abq_invite&utm_content=first_comment
+Renters join / subscribe → https://www.verdansc.com/signup?role=renter&utm_source=facebook&utm_medium=group&utm_campaign=abq_invite&utm_content=first_comment
+Then credit check → https://www.verdansc.com/credit-check?utm_source=facebook&utm_medium=group&utm_campaign=abq_invite&utm_content=first_comment
+Then listings → https://www.verdansc.com/listings?utm_source=facebook&utm_medium=group&utm_campaign=abq_invite&utm_content=first_comment
 Landlords → https://www.verdansc.com/rental-application?utm_source=facebook&utm_medium=group&utm_campaign=abq_invite&utm_content=first_comment
 
 ## Hashtags (sparing)

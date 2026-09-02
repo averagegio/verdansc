@@ -35,6 +35,16 @@ Fictional only: Maya Chen (tenant), Jordan Hale (landlord), Harborline Flats 2B.
 - Application and intake, linked
 - The match lands in both inboxes
 
+## Verbal / social caption (not baked into the still)
+
+Baked overlay stays **Search. Credit check. Apply.** Do not rewrite the exported 4×5 / 9:16 files in this pass.
+
+When you type a caption or first comment, prefer the live conversion order:
+
+**Sign up. Credit check. Apply.**
+
+Join: https://www.verdansc.com/ · account: `/signup` · $19 soft check: `/credit-check` · apply: `/listings`
+
 ## Brand colors (from `app/globals.css`)
 
 - Navy background `#02060d`
