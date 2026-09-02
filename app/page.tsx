@@ -152,9 +152,14 @@ export default function Home() {
             <p>Intelligent Real Estate API Map</p>
           </header>
 
-          <Link href="/pitch" className="map-pitch-link">
-            Pitch deck
-          </Link>
+          <div className="map-header-actions">
+            <Link href="/ops" className="map-ops-link">
+              Ops
+            </Link>
+            <Link href="/pitch" className="map-pitch-link">
+              Pitch deck
+            </Link>
+          </div>
         </div>
 
         <article
@@ -282,6 +287,9 @@ export default function Home() {
         </Link>
         <Link href="/pitch" className="drawer-login" onClick={() => setDrawerOpen(false)}>
           Pitch deck
+        </Link>
+        <Link href="/ops" className="drawer-login" onClick={() => setDrawerOpen(false)}>
+          Ops
         </Link>
         <p className="drawer-subtitle">
           Hover or select a service to highlight its map endpoint.

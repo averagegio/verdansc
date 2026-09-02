@@ -95,8 +95,39 @@ body {
   background: #d8f9ff;
 }
 
-.map-pitch-link {
+.map-header-actions {
   justify-self: end;
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.map-ops-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0.2rem 0.55rem;
+  border-radius: 8px;
+  border: 1px solid rgba(125, 211, 252, 0.2);
+  background: transparent;
+  color: #7dd3fc;
+  text-decoration: none;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.68;
+  transition: opacity 140ms ease, border-color 140ms ease, background 140ms ease;
+}
+
+.map-ops-link:hover,
+.map-ops-link:focus-visible {
+  opacity: 1;
+  background: rgba(9, 18, 35, 0.45);
+  border-color: rgba(125, 211, 252, 0.45);
+  outline: none;
+}
+
+.map-pitch-link {
   display: inline-flex;
   align-items: center;
   min-height: 42px;
