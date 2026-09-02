@@ -1,5 +1,9 @@
 {
   "framework": "nextjs",
   "buildCommand": "npm run build",
-  "installCommand": "npm install"
+  "installCommand": "npm install",
+  "rewrites": [
+    { "source": "/tracker", "destination": "/tracker/index.html" },
+    { "source": "/tracker/", "destination": "/tracker/index.html" }
+  ]
 }
