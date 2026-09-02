@@ -2,7 +2,7 @@
 
 Copy-only kit for inviting **Albuquerque / Rio Rancho** Facebook groups to try [Verdansc](https://www.verdansc.com). These files are drafts for a human to post. **Do not treat this as proof that anything was posted to Facebook.**
 
-Primary CTA domain: `https://www.verdansc.com`  
+Primary CTA domain: `https://www.verdansc.com` (apex `verdansc.com` redirects here)  
 Brand: **VERDANSC** (wordmark) / Verdansc in sentences  
 Slogan (use sparingly): “Real estate, mapped to action.”
 
