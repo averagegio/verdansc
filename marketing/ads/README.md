@@ -14,6 +14,7 @@ Canonical product URL: `https://verdansc.com` (`app/layout.tsx` `metadataBase`).
 | `exports/verdansc-split-ad-1x1.png` (+ `.jpg` `.webp`) | Feed / carousel square (1080×1080) |
 | `exports/verdansc-split-ad-16x9.png` (+ `.jpg` `.webp`) | Landscape still / YouTube / X (1920×1080) |
 | `exports/verdansc-split-ad-30s-16x9.mp4` | Primary video, **30.00s**, 1920×1080, H.264 + silent AAC |
+| `exports/verdansc-motion-ad-30s-16x9.mp4` | LinkedIn landscape, **30.00s**, stronger Ken Burns pan/zoom (free ffmpeg) |
 | `exports/verdansc-split-ad-30s-9x16.mp4` | Reels / Stories, **30.00s**, 1080×1920 |
 
 ### Source and rebuild
@@ -25,6 +26,7 @@ Canonical product URL: `https://verdansc.com` (`app/layout.tsx` `metadataBase`).
 | `frames/16x9/` and `frames/9x16/` | Composed storyboard stills baked with captions |
 | `compose_ads.py` | PIL compositor (brand overlays, phone chrome, split layout) |
 | `export-video.sh` | ffmpeg Ken Burns + xfade assembly |
+| `export-motion-16x9.sh` | Stronger per-beat pan/zoom 16:9 (LinkedIn / Higgsfield fallback) |
 | `capture-ui.mjs` | Playwright capture helper (needs `playwright-core` + Chrome) |
 | `COPY.md` | Overlay copy, captions, suggested placements |
 
@@ -38,7 +40,7 @@ Canonical product URL: `https://verdansc.com` (`app/layout.tsx` `metadataBase`).
    - Landlord intake: `/rental-application` (Applicant Intake Setup)
 3. **Original photography** generated in-session (kitchen tenant, craftsman-house landlord, notification stills, aerial end-card). No Zillow/portal listing photos.
 4. **Composition.** `compose_ads.py` places live UI screenshots in phone/laptop chrome on top of the photos, adds TENANT / LANDLORD pills, captions, and in-app-style notification cards.
-5. **Video.** `export-video.sh` Ken-Burns each frame (~5.5–8s) then `xfade` fades to exactly 30.00 seconds.
+5. **Video.** `export-video.sh` Ken-Burns each frame (~5.5–8s) then `xfade` fades to exactly 30.00 seconds. `export-motion-16x9.sh` rebuilds the 16:9 cut with pan + stronger zoom (free local fallback when Higgsfield / other generators are paywalled).
 
 ## Video storyboard vs beats
 
@@ -79,6 +81,7 @@ npm run dev
 node marketing/ads/capture-ui.mjs
 python3 marketing/ads/compose_ads.py
 bash marketing/ads/export-video.sh
+bash marketing/ads/export-motion-16x9.sh
 ```
 
 Fictional names only: tenant **Maya Chen**, landlord **Jordan Hale**, property **Harborline Flats 2B**, 1842 Willow Ave, Portland, OR.

@@ -1,5 +1,20 @@
 # Export notes
 
+## Motion 16:9 (LinkedIn / landscape, free ffmpeg)
+
+Higgsfield and other paid web generators are not required. Rebuild the Ken Burns landscape ad:
+
+```bash
+bash marketing/ads/export-motion-16x9.sh
+```
+
+Output: `exports/verdansc-motion-ad-30s-16x9.mp4` (also copied to `/opt/cursor/artifacts/verdansc_higgsfield_ad_30s.mp4` and `verdansc_motion_ad_30s_16x9.mp4`).
+
+- Stronger per-beat pan + zoom than the original center-only `zoompan` in `export-video.sh`.
+- Same 30.00s / 1920×1080 / H.264 / silent AAC contract.
+- See `/opt/cursor/artifacts/higgsfield_ad.md` for hashes and method notes.
+
+
 ## Still ads
 - Compose: `python3 marketing/ads/compose_ads.py`
 - Outputs land in `exports/` as PNG (lossless), JPEG, and WebP.
