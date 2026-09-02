@@ -1,4 +1,4 @@
-const CACHE = "verdansc-outreach-v4";
+const CACHE = "verdansc-outreach-v5";
 const ASSETS = [
   "./",
   "./index.html",

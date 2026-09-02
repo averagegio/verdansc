@@ -193,9 +193,10 @@
     );
   }
 
-  function countdownSlot(parts, marks) {
-    const day = widgetDay(parts);
-    return queuedActionable(SLOTS.filter((s) => s.date === day), marks)[0] || null;
+  function countdownSlot(_parts, marks) {
+    // First remaining sendable slot across the week: today 7:00 AM MT
+    // while still before that window, otherwise the next unfinished slot.
+    return queuedActionable(SLOTS, marks)[0] || null;
   }
 
   function remaining(list, marks) {

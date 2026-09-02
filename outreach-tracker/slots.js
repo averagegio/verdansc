@@ -1,12 +1,13 @@
 /* Copied from origin/cursor/outreach-accounts-6306
  * marketing/schedule/queue.csv + facebook/scheduled-slots.md
- * Week: 2026-09-03 through 2026-09-09, America/Denver
+ * Week: 2026-09-02 through 2026-09-09, America/Denver
  * Times: 7:00 / 7:40 / 8:20 / 9:00 / 9:40
  * Tracker only — no send, no scrape, no login.
+ * Wed Sep 2 added so today’s tasks queue at the same 5-slot cadence.
  */
 window.OUTREACH_WEEK = {
   tz: "America/Denver",
-  start: "2026-09-03",
+  start: "2026-09-02",
   end: "2026-09-09",
   times: ["07:00", "07:40", "08:20", "09:00", "09:40"],
   windowStart: "07:00",
@@ -14,6 +15,54 @@ window.OUTREACH_WEEK = {
 };
 
 window.OUTREACH_SLOTS = [
+  {
+    id: "S-TODAY-01",
+    date: "2026-09-02",
+    time: "07:00",
+    channel: "facebook_group",
+    group: "Albuquerque Small Business Community",
+    title: "Albuquerque Small Business Community",
+    detail:
+      "Named ABQ/NM SB group · short post + 4×5 still · 30s 9×16 video if allowed · signup / credit-check / listings links · confirm live title + rules",
+  },
+  {
+    id: "S-TODAY-02",
+    date: "2026-09-02",
+    time: "07:40",
+    channel: "craigslist",
+    group: "",
+    title: "Craigslist housing-wanted",
+    detail: "Downtown ABQ, Nob Hill, Rio Rancho · day-01 variant (Post A) · 1 of 1 today",
+  },
+  {
+    id: "S-TODAY-03",
+    date: "2026-09-02",
+    time: "08:20",
+    channel: "facebook_dm",
+    group: "Albuquerque Small Business Community",
+    title: "Inbound DM (S-TODAY-01)",
+    detail: "Messenger follow-up only if they wrote first · skip if none",
+  },
+  {
+    id: "S-TODAY-04",
+    date: "2026-09-02",
+    time: "09:00",
+    channel: "facebook_first_comment",
+    group: "Albuquerque Small Business Community",
+    title: "First comment on S-TODAY-01",
+    detail:
+      "Same group as S-TODAY-01 · not a second post · pitch link · video disclaimer if the 30s clip is attached",
+  },
+  {
+    id: "S-TODAY-05",
+    date: "2026-09-02",
+    time: "09:40",
+    channel: "facebook_reply_window",
+    group: "Albuquerque Small Business Community",
+    title: "Reply window / inbound",
+    detail:
+      "Open threads or inbound only · skip if none · cold email stays blocked (no scrape, no CAN-SPAM)",
+  },
   {
     id: "S01",
     date: "2026-09-03",
