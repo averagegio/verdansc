@@ -772,7 +772,8 @@ body {
   -webkit-user-drag: none;
 }
 
-.pitch-scroller.is-dragging {
+.pitch-scroller.is-dragging,
+.pitch-scroller.is-jumping {
   cursor: grabbing;
   scroll-snap-type: none;
   scroll-behavior: auto;

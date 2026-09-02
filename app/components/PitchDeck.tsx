@@ -229,6 +229,7 @@ export default function PitchDeck() {
     moved: false,
   });
   const skipClickRef = useRef(false);
+  const jumpingRef = useRef(false);
   const [active, setActive] = useState(0);
   const [progress, setProgress] = useState(0);
   const [dragging, setDragging] = useState(false);
@@ -237,6 +238,7 @@ export default function PitchDeck() {
   const activeSlide = SLIDES[active];
 
   const syncActive = useCallback(() => {
+    if (jumpingRef.current) return;
     const el = scrollerRef.current;
     if (!el) return;
     const width = el.clientWidth || 1;
@@ -257,12 +259,26 @@ export default function PitchDeck() {
     if (!el) return;
     const next = Math.min(Math.max(index, 0), SLIDES.length - 1);
     const from = Math.round(el.scrollLeft / (el.clientWidth || 1));
-    el.scrollTo({
-      left: next * el.clientWidth,
-      behavior: Math.abs(next - from) > 1 ? "auto" : "smooth",
-    });
+    const left = next * el.clientWidth;
+    jumpingRef.current = true;
+    if (Math.abs(next - from) > 1) {
+      el.classList.add("is-jumping");
+      el.scrollLeft = left;
+      requestAnimationFrame(() => {
+        el.classList.remove("is-jumping");
+        jumpingRef.current = false;
+        syncActive();
+      });
+    } else {
+      el.scrollTo({ left, behavior: "smooth" });
+      window.setTimeout(() => {
+        jumpingRef.current = false;
+        syncActive();
+      }, 320);
+    }
     setActive(next);
-  }, []);
+    el.focus({ preventScroll: true });
+  }, [syncActive]);
 
   const goBy = useCallback(
     (delta: number) => {
@@ -385,8 +401,8 @@ export default function PitchDeck() {
         goBy(1);
       }
     };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    window.addEventListener("keydown", onKey, true);
+    return () => window.removeEventListener("keydown", onKey, true);
   }, [goBy, goTo]);
 
   return (
