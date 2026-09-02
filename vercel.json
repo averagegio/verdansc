@@ -1,9 +1,5 @@
 {
   "framework": "nextjs",
   "buildCommand": "npm run build",
-  "installCommand": "npm install",
-  "redirects": [
-    { "source": "/tracker", "destination": "/tracker/index.html", "permanent": false },
-    { "source": "/tracker/", "destination": "/tracker/index.html", "permanent": false }
-  ]
+  "installCommand": "npm install"
 }

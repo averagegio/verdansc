@@ -1,16 +1,16 @@
-const CACHE = "verdansc-outreach-v6-tracker";
+const CACHE = "verdansc-outreach-v7-tracker";
 const ASSETS = [
-  "./",
-  "./index.html",
-  "./styles.css",
-  "./app.js",
-  "./slots.js",
-  "./manifest.webmanifest",
-  "./icons/icon-192.png",
-  "./icons/icon-512.png",
-  "./icons/icon-512-maskable.png",
-  "./icons/apple-touch-icon.png",
-  "./icons/icon.svg",
+  "/tracker/",
+  "/tracker/index.html",
+  "/tracker/styles.css",
+  "/tracker/app.js",
+  "/tracker/slots.js",
+  "/tracker/manifest.webmanifest",
+  "/tracker/icons/icon-192.png",
+  "/tracker/icons/icon-512.png",
+  "/tracker/icons/icon-512-maskable.png",
+  "/tracker/icons/apple-touch-icon.png",
+  "/tracker/icons/icon.svg",
 ];
 
 self.addEventListener("install", (event) => {
@@ -39,7 +39,7 @@ self.addEventListener("fetch", (event) => {
         const copy = response.clone();
         caches.open(CACHE).then((cache) => cache.put(event.request, copy));
         return response;
-      }).catch(() => caches.match("./index.html"));
+      }).catch(() => caches.match("/tracker/index.html"));
     })
   );
 });

@@ -2,7 +2,6 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   // Serve the standalone outreach PWA from public/tracker (not an App Router page).
-  // Redirect to index.html so relative ./slots.js resolves under /tracker/.
   async redirects() {
     return [
       {

@@ -450,7 +450,7 @@
   }
 
   if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("./sw.js");
+    navigator.serviceWorker.register("/tracker/sw.js");
   }
 
   render({ forceLists: true });
