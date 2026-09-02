@@ -227,6 +227,7 @@ export default function PitchDeck() {
     startX: 0,
     startLeft: 0,
     moved: false,
+    captured: false,
   });
   const skipClickRef = useRef(false);
   const jumpingRef = useRef(false);
@@ -314,15 +315,20 @@ export default function PitchDeck() {
         startX: event.clientX,
         startLeft: el.scrollLeft,
         moved: false,
+        captured: false,
       };
-      el.setPointerCapture(event.pointerId);
-      setDragging(true);
     };
 
     const onPointerMove = (event: PointerEvent) => {
       if (dragRef.current.pointerId !== event.pointerId) return;
       const dx = event.clientX - dragRef.current.startX;
-      if (Math.abs(dx) > 8) dragRef.current.moved = true;
+      if (Math.abs(dx) <= 8 && !dragRef.current.captured) return;
+      if (!dragRef.current.captured) {
+        dragRef.current.captured = true;
+        dragRef.current.moved = true;
+        el.setPointerCapture(event.pointerId);
+        setDragging(true);
+      }
       el.scrollLeft = dragRef.current.startLeft - dx;
     };
 
@@ -330,8 +336,10 @@ export default function PitchDeck() {
       if (dragRef.current.pointerId !== event.pointerId) return;
       const moved = dragRef.current.moved;
       dragRef.current.pointerId = -1;
+      dragRef.current.captured = false;
       skipClickRef.current = moved;
       setDragging(false);
+      if (!moved) return;
       const width = el.clientWidth || 1;
       const index = Math.round(el.scrollLeft / width);
       goTo(index);
