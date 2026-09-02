@@ -20,6 +20,8 @@ python3 -m http.server 4173
 
 Then open `http://<your-laptop-ip>:4173` on the phone.
 
+Cloud VM preview for this PWA is the same port **4173**.
+
 Or drop the folder on any static host (Netlify, GitHub Pages, `npx serve`,
 Cloudflare Pages). The app is only the files in this directory.
 
