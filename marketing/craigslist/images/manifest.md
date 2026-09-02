@@ -23,6 +23,8 @@ Repo `public/` only contains Next.js default SVGs (no owned property photos). Th
 
 Use **6 photos**. First photo becomes the thumbnail.
 
+Daily rotation (start 2026-09-03) lists a 6-photo order in each `../variants/day-0N.md`. Default set:
+
 1. `nob-hill-courtyard-apartments.png` (thumbnail — area look)
 2. `downtown-abq-loft-exterior.png`
 3. `downtown-abq-loft-interior.png`
@@ -30,4 +32,4 @@ Use **6 photos**. First photo becomes the thumbnail.
 5. `rio-rancho-flat-kitchen.png`
 6. `abq-balcony-sandia-view.png`
 
-If the post is loft-specific, swap the thumbnail to `downtown-abq-loft-exterior.png`. If Rio Rancho-specific, start with `rio-rancho-apartment-exterior.png`.
+If the post is loft-specific, start with `downtown-abq-loft-exterior.png`. If Rio Rancho-specific, start with `rio-rancho-apartment-exterior.png`.
