@@ -202,12 +202,12 @@
     done.className = "done-btn";
     done.type = "button";
     done.textContent = status === "done" ? "Completed" : "Mark complete";
-    done.disabled = status === "done";
+    done.disabled = status !== "queued";
     done.addEventListener("click", () => setStatus(slot.id, "done"));
     const skip = document.createElement("button");
     skip.type = "button";
     skip.textContent = status === "skipped" ? "Skipped" : "Skip";
-    skip.disabled = status === "skipped";
+    skip.disabled = status !== "queued";
     skip.addEventListener("click", () => setStatus(slot.id, "skipped"));
     actions.append(done, skip);
     article.appendChild(actions);
@@ -286,11 +286,16 @@
 
   el.nav.home.addEventListener("click", () => {
     location.hash = "#/";
+    window.scrollTo(0, 0);
   });
   el.nav.week.addEventListener("click", () => {
     location.hash = "#/week";
+    window.scrollTo(0, 0);
   });
-  window.addEventListener("hashchange", route);
+  window.addEventListener("hashchange", () => {
+    route();
+    window.scrollTo(0, 0);
+  });
 
   if (window.matchMedia("(display-mode: standalone)").matches) {
     el.install.classList.add("hidden");
