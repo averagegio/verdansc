@@ -30,12 +30,12 @@ You can attach photos on move-in and move-out workflows (condition, utilities, n
 
 We’re inviting ABQ and Rio Rancho owners to try the live tools. We will not scrape this group. If the rules prefer no promo, ignore this and I’ll stick to answering questions.
 
-Owner path (intake): https://verdansc.com/rental-application?utm_source=facebook&utm_medium=group&utm_campaign=abq_sb_invite&utm_content=long
+Owner path (intake): https://www.verdansc.com/rental-application?utm_source=facebook&utm_medium=group&utm_campaign=abq_sb_invite&utm_content=long
 
-Create a landlord account: https://verdansc.com/signup?role=landlord&plan=landlord-growth&utm_source=facebook&utm_medium=group&utm_campaign=abq_sb_invite&utm_content=long
+Create a landlord account: https://www.verdansc.com/signup?role=landlord&plan=landlord-growth&utm_source=facebook&utm_medium=group&utm_campaign=abq_sb_invite&utm_content=long
 
-See plans: https://verdansc.com/pricing?utm_source=facebook&utm_medium=group&utm_campaign=abq_sb_invite&utm_content=long
+See plans: https://www.verdansc.com/pricing?utm_source=facebook&utm_medium=group&utm_campaign=abq_sb_invite&utm_content=long
 
-Renter map / listings if you’re sharing with applicants: https://verdansc.com/?utm_source=facebook&utm_medium=group&utm_campaign=abq_sb_invite&utm_content=long
+Renter map / listings if you’re sharing with applicants: https://www.verdansc.com/?utm_source=facebook&utm_medium=group&utm_campaign=abq_sb_invite&utm_content=long
 
 Happy to unpack intake links in the comments if that’s the part that would save you time.

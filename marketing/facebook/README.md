@@ -1,8 +1,8 @@
 # Verdansc Facebook group invitations
 
-Copy-only kit for inviting **Albuquerque / Rio Rancho** Facebook groups to try [Verdansc](https://verdansc.com). These files are drafts for a human to post. **Do not treat this as proof that anything was posted to Facebook.**
+Copy-only kit for inviting **Albuquerque / Rio Rancho** Facebook groups to try [Verdansc](https://www.verdansc.com). These files are drafts for a human to post. **Do not treat this as proof that anything was posted to Facebook.**
 
-Primary CTA domain: `https://verdansc.com`  
+Primary CTA domain: `https://www.verdansc.com`  
 Brand: **VERDANSC** (wordmark) / Verdansc in sentences  
 Slogan (use sparingly): “Real estate, mapped to action.”
 
@@ -67,4 +67,4 @@ Verified against the live app routes (see `utm-links.md`):
 ## Support
 
 Pitch / investor contact on the site: `support@verdansc.com`  
-Privacy and terms: `https://verdansc.com/privacy`, `https://verdansc.com/terms`
+Privacy and terms: `https://www.verdansc.com/privacy`, `https://www.verdansc.com/terms`

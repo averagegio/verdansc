@@ -8,9 +8,9 @@ Copy from `replies-and-dms.md`, or this shorter variant:
 
 Affiliation note: I’m with Verdansc. Concrete links (same as the post):
 
-Renters → https://verdansc.com/credit-check?utm_source=facebook&utm_medium=group&utm_campaign=abq_invite&utm_content=first_comment
-Listings → https://verdansc.com/listings?utm_source=facebook&utm_medium=group&utm_campaign=abq_invite&utm_content=first_comment
-Landlords → https://verdansc.com/rental-application?utm_source=facebook&utm_medium=group&utm_campaign=abq_invite&utm_content=first_comment
+Renters → https://www.verdansc.com/credit-check?utm_source=facebook&utm_medium=group&utm_campaign=abq_invite&utm_content=first_comment
+Listings → https://www.verdansc.com/listings?utm_source=facebook&utm_medium=group&utm_campaign=abq_invite&utm_content=first_comment
+Landlords → https://www.verdansc.com/rental-application?utm_source=facebook&utm_medium=group&utm_campaign=abq_invite&utm_content=first_comment
 
 ## Hashtags (sparing)
 

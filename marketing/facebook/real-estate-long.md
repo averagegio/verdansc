@@ -28,10 +28,10 @@ We are not claiming a full ABQ/Rio Rancho catalog, and we are not collecting gro
 
 Start on the map, or go straight to a path:
 
-- Everyone: https://verdansc.com/?utm_source=facebook&utm_medium=group&utm_campaign=abq_re_invite&utm_content=long
-- Renters — credit check: https://verdansc.com/credit-check?utm_source=facebook&utm_medium=group&utm_campaign=abq_re_invite&utm_content=long
-- Renters — listings: https://verdansc.com/listings?utm_source=facebook&utm_medium=group&utm_campaign=abq_re_invite&utm_content=long
-- Landlords — intake setup: https://verdansc.com/rental-application?utm_source=facebook&utm_medium=group&utm_campaign=abq_re_invite&utm_content=long
-- Plans: https://verdansc.com/pricing?utm_source=facebook&utm_medium=group&utm_campaign=abq_re_invite&utm_content=long
+- Everyone: https://www.verdansc.com/?utm_source=facebook&utm_medium=group&utm_campaign=abq_re_invite&utm_content=long
+- Renters — credit check: https://www.verdansc.com/credit-check?utm_source=facebook&utm_medium=group&utm_campaign=abq_re_invite&utm_content=long
+- Renters — listings: https://www.verdansc.com/listings?utm_source=facebook&utm_medium=group&utm_campaign=abq_re_invite&utm_content=long
+- Landlords — intake setup: https://www.verdansc.com/rental-application?utm_source=facebook&utm_medium=group&utm_campaign=abq_re_invite&utm_content=long
+- Plans: https://www.verdansc.com/pricing?utm_source=facebook&utm_medium=group&utm_campaign=abq_re_invite&utm_content=long
 
 Questions welcome in the comments. If a renter or owner on your team wants a walkthrough, they can also create an account from pricing — no pressure to subscribe on the first visit.

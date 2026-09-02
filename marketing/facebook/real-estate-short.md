@@ -8,6 +8,6 @@ Hi neighbors — I’m with Verdansc. We’re a rental-workflow tool for Albuque
 
 Renters can browse listings, run a $19 soft credit check (it doesn’t affect their score), and apply online. Landlords can create an applicant intake link and review paid applications in one dashboard.
 
-If that’s useful to your clients or your own units: https://verdansc.com/?utm_source=facebook&utm_medium=group&utm_campaign=abq_re_invite&utm_content=short
+If that’s useful to your clients or your own units: https://www.verdansc.com/?utm_source=facebook&utm_medium=group&utm_campaign=abq_re_invite&utm_content=short
 
 Happy to answer questions here.

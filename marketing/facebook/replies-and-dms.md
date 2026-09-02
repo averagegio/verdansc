@@ -6,9 +6,9 @@ Use after someone comments or messages. Do not cold-DM group members. Keep repli
 
 I’m with Verdansc — sharing this as a local tool, not a blast. Quick paths:
 
-- Renters: credit check ($19 soft inquiry) https://verdansc.com/credit-check?utm_source=facebook&utm_medium=group&utm_campaign=abq_invite&utm_content=first_comment
-- Browse applications: https://verdansc.com/listings?utm_source=facebook&utm_medium=group&utm_campaign=abq_invite&utm_content=first_comment
-- Landlords: set up an intake link https://verdansc.com/rental-application?utm_source=facebook&utm_medium=group&utm_campaign=abq_invite&utm_content=first_comment
+- Renters: credit check ($19 soft inquiry) https://www.verdansc.com/credit-check?utm_source=facebook&utm_medium=group&utm_campaign=abq_invite&utm_content=first_comment
+- Browse applications: https://www.verdansc.com/listings?utm_source=facebook&utm_medium=group&utm_campaign=abq_invite&utm_content=first_comment
+- Landlords: set up an intake link https://www.verdansc.com/rental-application?utm_source=facebook&utm_medium=group&utm_campaign=abq_invite&utm_content=first_comment
 
 If a group forbids links in comments, drop the URLs and say “links are in the post.”
 
@@ -45,7 +45,7 @@ The site isn’t locked to one city. This invite is for ABQ / Rio Rancho groups 
 - Landlord membership: $99/mo (Growth) or $249/mo (Pro)
 - Application fees: set by each landlord
 
-Pricing: https://verdansc.com/pricing?utm_source=facebook&utm_medium=group&utm_campaign=abq_invite&utm_content=reply
+Pricing: https://www.verdansc.com/pricing?utm_source=facebook&utm_medium=group&utm_campaign=abq_invite&utm_content=reply
 
 ### “Can you screen this person for me / pull their credit if I send a name?”
 
@@ -69,13 +69,13 @@ Hi — thanks for writing. I’m with Verdansc.
 
 If you’re **renting or buying**, the usual start is the $19 soft credit check or the listings feed:
 
-https://verdansc.com/credit-check?utm_source=facebook&utm_medium=dm&utm_campaign=abq_invite&utm_content=followup
-https://verdansc.com/listings?utm_source=facebook&utm_medium=dm&utm_campaign=abq_invite&utm_content=followup
+https://www.verdansc.com/credit-check?utm_source=facebook&utm_medium=dm&utm_campaign=abq_invite&utm_content=followup
+https://www.verdansc.com/listings?utm_source=facebook&utm_medium=dm&utm_campaign=abq_invite&utm_content=followup
 
 If you’re **listing a unit**, create a landlord account and an intake link (title, address, your fee):
 
-https://verdansc.com/signup?role=landlord&plan=landlord-growth&utm_source=facebook&utm_medium=dm&utm_campaign=abq_invite&utm_content=followup
-https://verdansc.com/rental-application?utm_source=facebook&utm_medium=dm&utm_campaign=abq_invite&utm_content=followup
+https://www.verdansc.com/signup?role=landlord&plan=landlord-growth&utm_source=facebook&utm_medium=dm&utm_campaign=abq_invite&utm_content=followup
+https://www.verdansc.com/rental-application?utm_source=facebook&utm_medium=dm&utm_campaign=abq_invite&utm_content=followup
 
 No need to subscribe just to look. If a particular step is confusing, tell me whether you’re the renter or the owner and I’ll point to that screen. I won’t keep messaging if this isn’t useful.
 
