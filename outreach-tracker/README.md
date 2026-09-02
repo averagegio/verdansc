@@ -20,10 +20,12 @@ to Home Screen.
 
 ## Open on your phone
 
-Serve this folder as static files (any host, or your laptop on the same Wi-Fi):
+The installable UI is the hosted copy in `public/tracker/` (same `slots.js`).
+Do not add a second `index.html` next to the Next app — Vercel treats that as
+another project and the Git preview fails.
 
 ```bash
-cd outreach-tracker
+cd public/tracker
 python3 -m http.server 4173
 ```
 
