@@ -1,4 +1,2 @@
-# Phone PWA copies. Hosted Next app is the rest of the repo.
-# Vercel Git previews fail immediately when these static PWA files are uploaded.
+# Duplicate standalone copy; hosted PWA is public/tracker.
 outreach-tracker
-public/tracker

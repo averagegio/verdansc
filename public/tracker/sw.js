@@ -1,7 +1,7 @@
 const CACHE = "verdansc-outreach-v8-tracker";
 const ASSETS = [
   "/tracker/",
-  "/tracker/app.html",
+  "/tracker/index.html",
   "/tracker/styles.css",
   "/tracker/app.js",
   "/tracker/slots.js",
@@ -39,7 +39,7 @@ self.addEventListener("fetch", (event) => {
         const copy = response.clone();
         caches.open(CACHE).then((cache) => cache.put(event.request, copy));
         return response;
-      }).catch(() => caches.match("/tracker/app.html"));
+      }).catch(() => caches.match("/tracker/index.html"));
     })
   );
 });

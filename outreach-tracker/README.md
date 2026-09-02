@@ -14,16 +14,15 @@ Do **not** rewrite this cadence to the PM-email kit window (Tue–Thu
 9:00–11:30am). That kit is drafts only and is not this PWA’s schedule.
 
 Hosted copy: `public/tracker/slots.js` must stay byte-identical to this
-`slots.js` (40 slots: `S-TODAY-01`…`05` + `S01`–`S35`). After merge, open https://www.verdansc.com/tracker/app.html and Add to Home Screen.
+`slots.js` (40 slots: `S-TODAY-01`…`05` + `S01`–`S35`). After merge, open https://www.verdansc.com/tracker and Add to Home Screen.
 
 ## Open on your phone
 
-The installable UI is the hosted copy in `public/tracker/` (same `slots.js`).
-Do not add a second `index.html` next to the Next app — Vercel treats that as
-another project and the Git preview fails.
+Serve the hosted copy (`public/tracker/`, absolute `/tracker/` asset paths) or
+the standalone folder (`outreach-tracker/`, relative paths):
 
 ```bash
-cd public/tracker
+cd public/tracker   # or: cd outreach-tracker
 python3 -m http.server 4173
 ```
 
