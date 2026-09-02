@@ -16,7 +16,7 @@ Copy, groups, and ads live on sibling branches until those PRs merge. Do not cop
 | Craigslist housing-wanted | `origin/cursor/craigslist-housing-ads-6306` / [PR #4](https://github.com/averagegio/verdansc/pull/4) | `marketing/craigslist/` |
 | Still + video ads | `origin/cursor/marketing-ads-6306` / [PR #5](https://github.com/averagegio/verdansc/pull/5) | `marketing/ads/exports/` |
 
-Machine-readable queue: [`queue.csv`](queue.csv) (adds `facebook_group`, `from_address`, `mail_system`, `craigslist_account`). Human calendar: [`week-2026-09-03.md`](week-2026-09-03.md). Sign-in blockers: [`login-needed.md`](login-needed.md). User checks: [`roadblocks.md`](roadblocks.md).
+Machine-readable queue: [`queue.csv`](queue.csv) (adds `facebook_group`, `from_address`, `mail_system`, `craigslist_account`). Human calendar: [`week-2026-09-03.md`](week-2026-09-03.md). Sign-in blockers: [`login-needed.md`](login-needed.md). User checks: [`roadblocks.md`](roadblocks.md). Cold email: [`email-gate.md`](email-gate.md).
 
 ## Wait for the user on roadblocks before sending
 
@@ -29,7 +29,7 @@ Confirmed identities:
 3. Craigslist **`mrigwe234@gmail.com`** on `albuquerque.craigslist.org` (do not click the magic login link from this VM)
 4. A real `[PHYSICAL_MAILING_ADDRESS]` and a working `[UNSUB_URL]` in every commercial email
 
-Until those four are true **and** roadblocks are answered, every slot stays **queued**. Agents may prepare paste buffers. They may not click Send / Post.
+Until those four are true **and** roadblocks are answered, every slot stays **queued**. Agents may prepare paste buffers. They may not click Send / Post. See [`email-gate.md`](email-gate.md): cold email stays blocked even if Facebook/Craigslist later proceed from the user’s own apps.
 
 ## How to execute (human operator)
 
@@ -91,7 +91,7 @@ Every email must include the CAN-SPAM footer from `marketing/outreach/email-sequ
 - Max **one** housing-wanted post per day. Do not also post the same text to apts/housing, rooms, or services.
 - Rotate Post A / B / C from `marketing/craigslist/ad-copy.md` and rotate neighborhood emphasis (Downtown, Nob Hill, Rio Rancho, metro).
 - Photos are **generated style samples** from `marketing/craigslist/images/`. The post body must say so. Do not attach Verdansc split-ad stills/videos to Craigslist — those read as a service ad and raise flag risk.
-- Link order is required: credit check first, then listings. Never reverse.
+- Link order is required: sign up / subscribe first, then credit check ($19), then listings. Never reverse. See `email-gate.md` — Craigslist is not email.
 - Do not use housing-offered unless you control a real unit (out of scope for this week).
 
 ## Ads to attach

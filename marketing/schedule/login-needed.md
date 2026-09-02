@@ -38,6 +38,8 @@ If Facebook login fails, **skip all Facebook slots** that day. Do not dump those
 
 ## 2. Email (Zoho Mail — `founder@verdansc.com`)
 
+**Cold email is blocked.** Read [`email-gate.md`](email-gate.md). Do not scrape or send from this VM. Opt-in replies only: `marketing/outreach/opt-in-reply.md`.
+
 Sign in before any `email` slot. **Not** Gmail / Google Workspace SMTP.
 
 - [ ] Sending as **`founder@verdansc.com`** from **Zoho Mail** (George Igwe). Reply-to reaches a human.
