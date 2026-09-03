@@ -30,8 +30,9 @@ Held unused this week: Support Small Business metro, ABQ Community Services /
 Small Business, Albuquerque Business Owners, Albuquerque Small Business Owners.
 Facebook rows attach `grok-imagine-ad.mp4` if video is allowed plus
 `grok-imagine-ad-endframe.png`. DMs: endframe still only, never the MP4.
-Post body CTA is signup + rental-application + $19 credit-check. First comment
-may mention the short deck at `/pitch`. Inbound DMs stay same-day group.
+Post body CTA is signup + rental-application + $19 credit-check only. Do not
+point Facebook rows at `/pitch`, marketplace, fill-units, 3D/escrow/broker
+APIs, or PMS replacement. Inbound DMs stay same-day group.
 
 **Thursday investor notes:** six 1:1 Zoho pastes from `founder@verdansc.com`,
 CTA `https://www.verdansc.com/pitch`, one To: per slot, rotate

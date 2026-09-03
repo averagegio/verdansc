@@ -18,6 +18,10 @@
  *   Wed ABQ SMALL BUSINESS
  * Held unused this week: Support Small Business metro, ABQ Community Services /
  * Small Business, Albuquerque Business Owners, Albuquerque Small Business Owners.
+ * Facebook rows (facebook_group / facebook_dm / first-comment): CTA only
+ * signup + rental-application + $19 credit-check. No /pitch, marketplace,
+ * fill-units, 3D/escrow/broker APIs, or PMS replacement. Investor I-slots
+ * keep https://www.verdansc.com/pitch (separate campaign).
  */
 window.OUTREACH_WEEK = {
   tz: "America/Denver",
@@ -88,7 +92,7 @@ window.OUTREACH_SLOTS = [
     group: "Albuquerque Small Business Community",
     title: "First comment on S-TODAY-01",
     detail:
-      "Same group as S-TODAY-01 · not a second post · pitch link · video disclaimer if the 30s clip is attached",
+      "Same group as S-TODAY-01 · not a second post · video disclaimer if the 30s clip is attached",
   },
   {
     id: "S-TODAY-05",
@@ -108,7 +112,7 @@ window.OUTREACH_SLOTS = [
     group: "Albuquerque Small Business Community",
     title: "Albuquerque Small Business Community",
     detail:
-      "Named ABQ/NM SB group · copy small-business · Grok Imagine 15s vertical grok-imagine-ad.mp4 if video allowed · feed still grok-imagine-ad-endframe.png · CTA signup + rental-application + $19 credit-check · first comment may mention short deck verdansc.com/pitch · 3D Home Tours is a request-stub · confirm live title + rules",
+      "Named ABQ/NM SB group · copy small-business · Grok Imagine 15s vertical grok-imagine-ad.mp4 if video allowed · feed still grok-imagine-ad-endframe.png · CTA signup + rental-application + $19 credit-check · confirm live title + rules",
   },
   {
     id: "S02",
@@ -304,7 +308,7 @@ window.OUTREACH_SLOTS = [
     channel: "facebook_first_comment",
     group: "Rio Rancho / ABQ landlords and property managers",
     title: "First comment on S12",
-    detail: "Same group as S12 · not a second post · pitch link if comments allow",
+    detail: "Same group as S12 · not a second post",
   },
   {
     id: "S14",
@@ -351,7 +355,7 @@ window.OUTREACH_SLOTS = [
     channel: "facebook_first_comment",
     group: "New Mexico Small Businesses",
     title: "First comment on S16",
-    detail: "Same New Mexico Small Businesses group · not a second post · pitch link if comments allow",
+    detail: "Same New Mexico Small Businesses group · not a second post",
   },
   {
     id: "S19",
@@ -408,7 +412,7 @@ window.OUTREACH_SLOTS = [
     channel: "facebook_first_comment",
     group: "Albuquerque landlords / property managers",
     title: "First comment on S21",
-    detail: "Same landlords / PM group as S21 · not a second post · pitch link if comments allow",
+    detail: "Same landlords / PM group as S21 · not a second post",
   },
   {
     id: "S24",
@@ -525,7 +529,7 @@ window.OUTREACH_SLOTS = [
     channel: "facebook_first_comment",
     group: "ABQ SMALL BUSINESS",
     title: "First comment on S31",
-    detail: "Same group as S31 · not a second post · pitch link if comments allow",
+    detail: "Same group as S31 · not a second post",
   },
   {
     id: "S34",
