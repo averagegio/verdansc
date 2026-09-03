@@ -1,0 +1,553 @@
+/* Copied from origin/cursor/outreach-accounts-6306
+ * marketing/schedule/queue.csv + facebook/scheduled-slots.md
+ * Week: 2026-09-02 through 2026-09-09, America/Denver
+ * Times: 7:00 / 7:40 / 8:00 (LinkedIn weekdays) / 8:20 / 9:00 / 9:40
+ * Thursday also 10:00–10:50 investor_email (I01–I06, 10 min apart)
+ * Tracker only — no send, no scrape, no login, no LinkedIn publish.
+ * Wed Sep 2 added so today’s tasks queue at the same cadence.
+ * LinkedIn: one feed post per weekday (not Sat/Sun), 8:00 AM MT.
+ * PM cold email (channel email + blocked:true) stays blocked.
+ * investor_email is sendable (mark complete / skip) — not the PM gate.
+ * CoS Facebook rotation (one unique facebook_group per day, 7:00am MT):
+ *   Thu Albuquerque Small Business Community
+ *   Fri Albuquerque Real Estate Investors (ABQREIA-adjacent; confirm live title)
+ *   Sat Rio Rancho / ABQ landlords and property managers (confirm live title)
+ *   Sun New Mexico Small Businesses
+ *   Mon Albuquerque landlords / property managers (confirm live title)
+ *   Tue Albuquerque REALTORS / agent networking (confirm live title)
+ *   Wed ABQ SMALL BUSINESS
+ * Held unused this week: Support Small Business metro, ABQ Community Services /
+ * Small Business, Albuquerque Business Owners, Albuquerque Small Business Owners.
+ * Facebook rows (facebook_group / facebook_dm / first-comment): CTA only
+ * signup + rental-application + $19 credit-check. No /pitch, marketplace,
+ * fill-units, 3D/escrow/broker APIs, or PMS replacement. Investor I-slots
+ * keep https://www.verdansc.com/pitch (separate campaign).
+ */
+window.OUTREACH_WEEK = {
+  tz: "America/Denver",
+  start: "2026-09-02",
+  end: "2026-09-09",
+  times: [
+    "07:00",
+    "07:40",
+    "08:00",
+    "08:20",
+    "09:00",
+    "09:40",
+    "10:00",
+    "10:10",
+    "10:20",
+    "10:30",
+    "10:40",
+    "10:50",
+  ],
+  windowStart: "07:00",
+  windowEnd: "11:00",
+};
+
+window.OUTREACH_SLOTS = [
+  {
+    id: "S-TODAY-01",
+    date: "2026-09-02",
+    time: "07:00",
+    channel: "facebook_group",
+    group: "Albuquerque Small Business Community",
+    title: "Albuquerque Small Business Community",
+    detail:
+      "Named ABQ/NM SB group · short post · CTA signup + rental-application + $19 credit-check · confirm live title + rules",
+  },
+  {
+    id: "S-TODAY-02",
+    date: "2026-09-02",
+    time: "07:40",
+    channel: "craigslist",
+    group: "",
+    title: "Craigslist housing-wanted",
+    detail: "Downtown ABQ, Nob Hill, Rio Rancho · day-01 variant (Post A) · 1 of 1 today",
+  },
+  {
+    id: "S-LI-01",
+    date: "2026-09-02",
+    time: "08:00",
+    channel: "linkedin",
+    group: "",
+    title: "LinkedIn feed post",
+    detail:
+      "Short professional post + 16:9 video (verdansc_higgsfield_ad_30s.mp4 / Ken Burns export) + verdansc.com/pitch",
+  },
+  {
+    id: "S-TODAY-03",
+    date: "2026-09-02",
+    time: "08:20",
+    channel: "facebook_dm",
+    group: "Albuquerque Small Business Community",
+    title: "Inbound DM (S-TODAY-01)",
+    detail: "Messenger follow-up only if they wrote first · skip if none",
+  },
+  {
+    id: "S-TODAY-04",
+    date: "2026-09-02",
+    time: "09:00",
+    channel: "facebook_first_comment",
+    group: "Albuquerque Small Business Community",
+    title: "First comment on S-TODAY-01",
+    detail:
+      "Same group as S-TODAY-01 · not a second post · video disclaimer if the 30s clip is attached",
+  },
+  {
+    id: "S-TODAY-05",
+    date: "2026-09-02",
+    time: "09:40",
+    channel: "facebook_reply_window",
+    group: "Albuquerque Small Business Community",
+    title: "Reply window / inbound",
+    detail:
+      "Open threads or inbound only · skip if none · cold email stays blocked (no scrape, no CAN-SPAM)",
+  },
+  {
+    id: "S01",
+    date: "2026-09-03",
+    time: "07:00",
+    channel: "facebook_group",
+    group: "Albuquerque Small Business Community",
+    title: "Albuquerque Small Business Community",
+    detail:
+      "Named ABQ/NM SB group · copy small-business · Grok Imagine 15s vertical grok-imagine-ad.mp4 if video allowed · feed still grok-imagine-ad-endframe.png · CTA signup + rental-application + $19 credit-check · confirm live title + rules",
+  },
+  {
+    id: "S02",
+    date: "2026-09-03",
+    time: "07:40",
+    channel: "craigslist",
+    group: "",
+    title: "Craigslist housing-wanted",
+    detail: "Downtown ABQ, Nob Hill, Rio Rancho · Post A · 1 of 1 today",
+  },
+  {
+    id: "S-LI-02",
+    date: "2026-09-03",
+    time: "08:00",
+    channel: "linkedin",
+    group: "",
+    title: "LinkedIn feed post",
+    detail:
+      "Short professional post + 16:9 video (verdansc_higgsfield_ad_30s.mp4 / Ken Burns export) + verdansc.com/pitch",
+  },
+  {
+    id: "S03",
+    date: "2026-09-03",
+    time: "08:20",
+    channel: "facebook_dm",
+    group: "Albuquerque Small Business Community",
+    title: "Inbound DM (S01)",
+    detail:
+      "Inbound only · skip if none · same-day group · attach grok-imagine-ad-endframe.png still only · never grok-imagine-ad.mp4",
+  },
+  {
+    id: "S04",
+    date: "2026-09-03",
+    time: "09:00",
+    channel: "email",
+    group: "",
+    title: "T&C Management · intro",
+    detail: "Cold email stays blocked — no scrape, no CAN-SPAM address/unsub",
+    blocked: true,
+  },
+  {
+    id: "S05",
+    date: "2026-09-03",
+    time: "09:40",
+    channel: "email",
+    group: "",
+    title: "Monarch Properties · intro",
+    detail: "Cold email stays blocked — no scrape, no CAN-SPAM address/unsub",
+    blocked: true,
+  },
+  {
+    id: "I01",
+    date: "2026-09-03",
+    time: "10:00",
+    channel: "investor_email",
+    group: "",
+    title: "Pitch deck · angel",
+    detail:
+      "Master VC list · angel variant · founder@verdansc.com · Zoho human-paste · one To: · CTA https://www.verdansc.com/pitch · no blast · do not guess emails",
+  },
+  {
+    id: "I02",
+    date: "2026-09-03",
+    time: "10:10",
+    channel: "investor_email",
+    group: "",
+    title: "Pitch deck · seed",
+    detail:
+      "Master VC list · seed variant · founder@verdansc.com · Zoho human-paste · one To: · CTA https://www.verdansc.com/pitch · no blast · do not guess emails",
+  },
+  {
+    id: "I03",
+    date: "2026-09-03",
+    time: "10:20",
+    channel: "investor_email",
+    group: "",
+    title: "Pitch deck · proptech",
+    detail:
+      "Master VC list · proptech variant · founder@verdansc.com · Zoho human-paste · one To: · CTA https://www.verdansc.com/pitch · no blast · do not guess emails",
+  },
+  {
+    id: "I04",
+    date: "2026-09-03",
+    time: "10:30",
+    channel: "investor_email",
+    group: "",
+    title: "Pitch deck · generalist",
+    detail:
+      "Master VC list · generalist variant · founder@verdansc.com · Zoho human-paste · one To: · CTA https://www.verdansc.com/pitch · no blast · do not guess emails",
+  },
+  {
+    id: "I05",
+    date: "2026-09-03",
+    time: "10:40",
+    channel: "investor_email",
+    group: "",
+    title: "Pitch deck · angel",
+    detail:
+      "Master VC list · angel variant · founder@verdansc.com · Zoho human-paste · one To: · CTA https://www.verdansc.com/pitch · no blast · do not guess emails",
+  },
+  {
+    id: "I06",
+    date: "2026-09-03",
+    time: "10:50",
+    channel: "investor_email",
+    group: "",
+    title: "Pitch deck · seed",
+    detail:
+      "Master VC list · seed variant · founder@verdansc.com · Zoho human-paste · one To: · CTA https://www.verdansc.com/pitch · no blast · do not guess emails",
+  },
+  {
+    id: "S06",
+    date: "2026-09-04",
+    time: "07:00",
+    channel: "facebook_group",
+    group: "Albuquerque Real Estate Investors",
+    title: "Albuquerque Real Estate Investors",
+    detail:
+      "ABQREIA-adjacent · confirm live title · copy real-estate-short · Grok Imagine 15s vertical grok-imagine-ad.mp4 if video allowed · feed still grok-imagine-ad-endframe.png · CTA signup + rental-application + $19 credit-check · not New Mexico Small Businesses · one unique group today",
+  },
+  {
+    id: "S07",
+    date: "2026-09-04",
+    time: "07:40",
+    channel: "craigslist",
+    group: "",
+    title: "Craigslist housing-wanted",
+    detail: "Greater Albuquerque · Post B · 1 of 1 today",
+  },
+  {
+    id: "S-LI-03",
+    date: "2026-09-04",
+    time: "08:00",
+    channel: "linkedin",
+    group: "",
+    title: "LinkedIn feed post",
+    detail:
+      "Short professional post + 16:9 video (verdansc_higgsfield_ad_30s.mp4 / Ken Burns export) + verdansc.com/pitch",
+  },
+  {
+    id: "S08",
+    date: "2026-09-04",
+    time: "08:20",
+    channel: "facebook_dm",
+    group: "Albuquerque Real Estate Investors",
+    title: "Inbound DM (S06)",
+    detail:
+      "Inbound only · skip if none · same-day group · attach grok-imagine-ad-endframe.png still only · never grok-imagine-ad.mp4",
+  },
+  {
+    id: "S09",
+    date: "2026-09-04",
+    time: "09:00",
+    channel: "email",
+    group: "",
+    title: "Country Club Lofts / Rembe · intro",
+    detail: "Cold email stays blocked — no scrape, no CAN-SPAM address/unsub",
+    blocked: true,
+  },
+  {
+    id: "S10",
+    date: "2026-09-04",
+    time: "09:40",
+    channel: "email",
+    group: "",
+    title: "Bryten · partnership intro",
+    detail: "Cold email stays blocked — no scrape, no CAN-SPAM address/unsub",
+    blocked: true,
+  },
+  {
+    id: "S12",
+    date: "2026-09-05",
+    time: "07:00",
+    channel: "facebook_group",
+    group: "Rio Rancho / ABQ landlords and property managers",
+    title: "Rio Rancho / ABQ landlords and property managers",
+    detail:
+      "Confirm live title · copy real-estate-short · Grok Imagine 15s vertical grok-imagine-ad.mp4 if video allowed · feed still grok-imagine-ad-endframe.png · CTA signup + rental-application + $19 credit-check · not ABQ SMALL BUSINESS · one unique group today",
+  },
+  {
+    id: "S11",
+    date: "2026-09-05",
+    time: "07:40",
+    channel: "craigslist",
+    group: "",
+    title: "Craigslist housing-wanted",
+    detail: "Downtown ABQ + Nob Hill loft/flat · Post C",
+  },
+  {
+    id: "S13",
+    date: "2026-09-05",
+    time: "08:20",
+    channel: "facebook_first_comment",
+    group: "Rio Rancho / ABQ landlords and property managers",
+    title: "First comment on S12",
+    detail: "Same group as S12 · not a second post",
+  },
+  {
+    id: "S14",
+    date: "2026-09-05",
+    time: "09:00",
+    channel: "facebook_dm",
+    group: "Rio Rancho / ABQ landlords and property managers",
+    title: "Inbound DM (S12)",
+    detail:
+      "Inbound only · skip if none · same-day group · attach grok-imagine-ad-endframe.png still only · never grok-imagine-ad.mp4",
+  },
+  {
+    id: "S15",
+    date: "2026-09-05",
+    time: "09:40",
+    channel: "facebook_reply_window",
+    group: "Albuquerque Small Business Community; Albuquerque Real Estate Investors; Rio Rancho / ABQ landlords and property managers",
+    title: "Reply window",
+    detail: "Open threads from S01 / S06 / S12 · inbound only",
+  },
+  {
+    id: "S16",
+    date: "2026-09-06",
+    time: "07:00",
+    channel: "facebook_group",
+    group: "New Mexico Small Businesses",
+    title: "New Mexico Small Businesses",
+    detail:
+      "Named NM SB group · copy small-business · Grok Imagine 15s vertical grok-imagine-ad.mp4 if video allowed · feed still grok-imagine-ad-endframe.png · CTA signup + rental-application + $19 credit-check · one unique group today",
+  },
+  {
+    id: "S17",
+    date: "2026-09-06",
+    time: "07:40",
+    channel: "craigslist",
+    group: "",
+    title: "Craigslist housing-wanted",
+    detail: "Rio Rancho primary · Post A",
+  },
+  {
+    id: "S18",
+    date: "2026-09-06",
+    time: "08:20",
+    channel: "facebook_first_comment",
+    group: "New Mexico Small Businesses",
+    title: "First comment on S16",
+    detail: "Same New Mexico Small Businesses group · not a second post",
+  },
+  {
+    id: "S19",
+    date: "2026-09-06",
+    time: "09:00",
+    channel: "facebook_reply_window",
+    group: "Albuquerque Small Business Community; Albuquerque Real Estate Investors; Rio Rancho / ABQ landlords and property managers; New Mexico Small Businesses",
+    title: "Reply window",
+    detail: "Open Sat–Sun Facebook threads from this week’s unique groups · inbound only",
+  },
+  {
+    id: "S20",
+    date: "2026-09-06",
+    time: "09:40",
+    channel: "facebook_dm",
+    group: "New Mexico Small Businesses",
+    title: "Inbound DM (S16)",
+    detail:
+      "Inbound only · skip if none · same-day group · attach grok-imagine-ad-endframe.png still only · never grok-imagine-ad.mp4",
+  },
+  {
+    id: "S21",
+    date: "2026-09-07",
+    time: "07:00",
+    channel: "facebook_group",
+    group: "Albuquerque landlords / property managers",
+    title: "Albuquerque landlords / property managers",
+    detail:
+      "Confirm live title · copy real-estate-long · Grok Imagine 15s vertical grok-imagine-ad.mp4 if video allowed · feed still grok-imagine-ad-endframe.png · CTA signup + rental-application + $19 credit-check · one unique group today",
+  },
+  {
+    id: "S22",
+    date: "2026-09-07",
+    time: "07:40",
+    channel: "craigslist",
+    group: "",
+    title: "Craigslist housing-wanted",
+    detail: "Metro ABQ + Rio Rancho · Post B",
+  },
+  {
+    id: "S-LI-04",
+    date: "2026-09-07",
+    time: "08:00",
+    channel: "linkedin",
+    group: "",
+    title: "LinkedIn feed post",
+    detail:
+      "Short professional post + 16:9 video (verdansc_higgsfield_ad_30s.mp4 / Ken Burns export) + verdansc.com/pitch",
+  },
+  {
+    id: "S23",
+    date: "2026-09-07",
+    time: "08:20",
+    channel: "facebook_first_comment",
+    group: "Albuquerque landlords / property managers",
+    title: "First comment on S21",
+    detail: "Same landlords / PM group as S21 · not a second post",
+  },
+  {
+    id: "S24",
+    date: "2026-09-07",
+    time: "09:00",
+    channel: "email",
+    group: "",
+    title: "T&C Management · value",
+    detail: "Cold email stays blocked — no scrape, no CAN-SPAM address/unsub",
+    blocked: true,
+  },
+  {
+    id: "S25",
+    date: "2026-09-07",
+    time: "09:40",
+    channel: "facebook_dm",
+    group: "Albuquerque landlords / property managers",
+    title: "Inbound DM (S21)",
+    detail:
+      "Inbound only · skip if none · same-day group · attach grok-imagine-ad-endframe.png still only · never grok-imagine-ad.mp4",
+  },
+  {
+    id: "S26",
+    date: "2026-09-08",
+    time: "07:00",
+    channel: "facebook_group",
+    group: "Albuquerque REALTORS / agent networking",
+    title: "Albuquerque REALTORS / agent networking",
+    detail:
+      "Confirm live title · copy real-estate-short · Grok Imagine 15s vertical grok-imagine-ad.mp4 if video allowed · feed still grok-imagine-ad-endframe.png · CTA signup + rental-application + $19 credit-check · one unique group today",
+  },
+  {
+    id: "S27",
+    date: "2026-09-08",
+    time: "07:40",
+    channel: "craigslist",
+    group: "",
+    title: "Craigslist housing-wanted",
+    detail: "Downtown + Nob Hill · Post C",
+  },
+  {
+    id: "S-LI-05",
+    date: "2026-09-08",
+    time: "08:00",
+    channel: "linkedin",
+    group: "",
+    title: "LinkedIn feed post",
+    detail:
+      "Short professional post + 16:9 video (verdansc_higgsfield_ad_30s.mp4 / Ken Burns export) + verdansc.com/pitch",
+  },
+  {
+    id: "S28",
+    date: "2026-09-08",
+    time: "08:20",
+    channel: "facebook_dm",
+    group: "Albuquerque REALTORS / agent networking",
+    title: "Inbound DM (S26)",
+    detail:
+      "Inbound only · skip if none · same-day group · attach grok-imagine-ad-endframe.png still only · never grok-imagine-ad.mp4",
+  },
+  {
+    id: "S29",
+    date: "2026-09-08",
+    time: "09:00",
+    channel: "email",
+    group: "",
+    title: "Monarch Properties · value",
+    detail: "Cold email stays blocked — no scrape, no CAN-SPAM address/unsub",
+    blocked: true,
+  },
+  {
+    id: "S30",
+    date: "2026-09-08",
+    time: "09:40",
+    channel: "email",
+    group: "",
+    title: "Country Club Lofts / Rembe · value",
+    detail: "Cold email stays blocked — no scrape, no CAN-SPAM address/unsub",
+    blocked: true,
+  },
+  {
+    id: "S31",
+    date: "2026-09-09",
+    time: "07:00",
+    channel: "facebook_group",
+    group: "ABQ SMALL BUSINESS",
+    title: "ABQ SMALL BUSINESS",
+    detail:
+      "Named ABQ SB group · copy small-business · Grok Imagine 15s vertical grok-imagine-ad.mp4 if video allowed · feed still grok-imagine-ad-endframe.png · CTA signup + rental-application + $19 credit-check · one unique group today",
+  },
+  {
+    id: "S32",
+    date: "2026-09-09",
+    time: "07:40",
+    channel: "craigslist",
+    group: "",
+    title: "Craigslist housing-wanted",
+    detail: "Rio Rancho + greater Albuquerque · Post A",
+  },
+  {
+    id: "S-LI-06",
+    date: "2026-09-09",
+    time: "08:00",
+    channel: "linkedin",
+    group: "",
+    title: "LinkedIn feed post",
+    detail:
+      "Short professional post + 16:9 video (verdansc_higgsfield_ad_30s.mp4 / Ken Burns export) + verdansc.com/pitch",
+  },
+  {
+    id: "S33",
+    date: "2026-09-09",
+    time: "08:20",
+    channel: "facebook_first_comment",
+    group: "ABQ SMALL BUSINESS",
+    title: "First comment on S31",
+    detail: "Same group as S31 · not a second post",
+  },
+  {
+    id: "S34",
+    date: "2026-09-09",
+    time: "09:00",
+    channel: "facebook_dm",
+    group: "ABQ SMALL BUSINESS",
+    title: "Inbound DM (S31)",
+    detail:
+      "Inbound only · skip if none · same-day group · attach grok-imagine-ad-endframe.png still only · never grok-imagine-ad.mp4",
+  },
+  {
+    id: "S35",
+    date: "2026-09-09",
+    time: "09:40",
+    channel: "facebook_reply_window",
+    group: "Remaining S01–S31 unique-group threads",
+    title: "Reply window",
+    detail: "Remaining week threads from this rotation · honor admin takedown · inbound only",
+  },
+];
