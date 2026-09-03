@@ -14,13 +14,24 @@ inbound only — no cold email). Property-manager cold email stays **blocked**
 unsubscribe URL) and cannot be marked sent. `investor_email` is **not** that
 gate: Mark complete / Skip.
 
-**Thursday 2026-09-03 Facebook:** Albuquerque Small Business Community. Attach
-`marketing/ads/exports/grok-imagine-ad.mp4` if the group allows video, plus
-feed still `grok-imagine-ad-endframe.png`. Do not use
-`verdansc-split-ad-4x5` / `30s-9x16` as the primary attach. Post body CTA is
-landlord signup + intake — not `/listings` as the primary Facebook CTA
-(public listings still have an Austin smoke-test row). First comment may
-mention the short deck at `/pitch`. DMs: endframe still only, never the MP4.
+**Facebook rotation (CoS lock, one unique group per day, 7:00 AM MT):**
+
+| Day | Date | Group | Copy |
+| --- | --- | --- | --- |
+| Thu | 2026-09-03 | Albuquerque Small Business Community | small-business |
+| Fri | 2026-09-04 | Albuquerque Real Estate Investors (confirm live title) | real-estate-short |
+| Sat | 2026-09-05 | Rio Rancho / ABQ landlords and property managers (confirm live title) | real-estate-short |
+| Sun | 2026-09-06 | New Mexico Small Businesses | small-business |
+| Mon | 2026-09-07 | Albuquerque landlords / property managers (confirm live title) | real-estate-long |
+| Tue | 2026-09-08 | Albuquerque REALTORS / agent networking (confirm live title) | real-estate-short |
+| Wed | 2026-09-09 | ABQ SMALL BUSINESS | small-business |
+
+Held unused this week: Support Small Business metro, ABQ Community Services /
+Small Business, Albuquerque Business Owners, Albuquerque Small Business Owners.
+Facebook rows attach `grok-imagine-ad.mp4` if video is allowed plus
+`grok-imagine-ad-endframe.png`. DMs: endframe still only, never the MP4.
+Post body CTA is signup + rental-application + $19 credit-check. First comment
+may mention the short deck at `/pitch`. Inbound DMs stay same-day group.
 
 **Thursday investor notes:** six 1:1 Zoho pastes from `founder@verdansc.com`,
 CTA `https://www.verdansc.com/pitch`, one To: per slot, rotate

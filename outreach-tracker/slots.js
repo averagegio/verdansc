@@ -8,6 +8,16 @@
  * LinkedIn: one feed post per weekday (not Sat/Sun), 8:00 AM MT.
  * PM cold email (channel email + blocked:true) stays blocked.
  * investor_email is sendable (mark complete / skip) — not the PM gate.
+ * CoS Facebook rotation (one unique facebook_group per day, 7:00am MT):
+ *   Thu Albuquerque Small Business Community
+ *   Fri Albuquerque Real Estate Investors (ABQREIA-adjacent; confirm live title)
+ *   Sat Rio Rancho / ABQ landlords and property managers (confirm live title)
+ *   Sun New Mexico Small Businesses
+ *   Mon Albuquerque landlords / property managers (confirm live title)
+ *   Tue Albuquerque REALTORS / agent networking (confirm live title)
+ *   Wed ABQ SMALL BUSINESS
+ * Held unused this week: Support Small Business metro, ABQ Community Services /
+ * Small Business, Albuquerque Business Owners, Albuquerque Small Business Owners.
  */
 window.OUTREACH_WEEK = {
   tz: "America/Denver",
@@ -40,7 +50,7 @@ window.OUTREACH_SLOTS = [
     group: "Albuquerque Small Business Community",
     title: "Albuquerque Small Business Community",
     detail:
-      "Named ABQ/NM SB group · short post + 4×5 still · 30s 9×16 video if allowed · signup / credit-check / listings links · confirm live title + rules",
+      "Named ABQ/NM SB group · short post · CTA signup + rental-application + $19 credit-check · confirm live title + rules",
   },
   {
     id: "S-TODAY-02",
@@ -98,7 +108,7 @@ window.OUTREACH_SLOTS = [
     group: "Albuquerque Small Business Community",
     title: "Albuquerque Small Business Community",
     detail:
-      "Named ABQ/NM SB group · Grok Imagine 15s vertical grok-imagine-ad.mp4 if video allowed · feed still grok-imagine-ad-endframe.png (not verdansc-split-ad-4x5 / 30s-9x16) · post body CTA landlord signup + intake (verdansc.com/signup + /rental-application) · do not primary-CTA /listings (Austin smoke-test row still live) · first comment may mention short deck verdansc.com/pitch · $19 soft credit check · 3D Home Tours is a request-stub · confirm live title + rules",
+      "Named ABQ/NM SB group · copy small-business · Grok Imagine 15s vertical grok-imagine-ad.mp4 if video allowed · feed still grok-imagine-ad-endframe.png · CTA signup + rental-application + $19 credit-check · first comment may mention short deck verdansc.com/pitch · 3D Home Tours is a request-stub · confirm live title + rules",
   },
   {
     id: "S02",
@@ -127,7 +137,7 @@ window.OUTREACH_SLOTS = [
     group: "Albuquerque Small Business Community",
     title: "Inbound DM (S01)",
     detail:
-      "Inbound only · skip if none · attach grok-imagine-ad-endframe.png still only · never grok-imagine-ad.mp4",
+      "Inbound only · skip if none · same-day group · attach grok-imagine-ad-endframe.png still only · never grok-imagine-ad.mp4",
   },
   {
     id: "S04",
@@ -214,9 +224,10 @@ window.OUTREACH_SLOTS = [
     date: "2026-09-04",
     time: "07:00",
     channel: "facebook_group",
-    group: "New Mexico Small Businesses",
-    title: "New Mexico Small Businesses",
-    detail: "Named NM SB group · not Thursday’s room · short post + 4×5 still",
+    group: "Albuquerque Real Estate Investors",
+    title: "Albuquerque Real Estate Investors",
+    detail:
+      "ABQREIA-adjacent · confirm live title · copy real-estate-short · Grok Imagine 15s vertical grok-imagine-ad.mp4 if video allowed · feed still grok-imagine-ad-endframe.png · CTA signup + rental-application + $19 credit-check · not New Mexico Small Businesses · one unique group today",
   },
   {
     id: "S07",
@@ -242,9 +253,10 @@ window.OUTREACH_SLOTS = [
     date: "2026-09-04",
     time: "08:20",
     channel: "facebook_dm",
-    group: "New Mexico Small Businesses",
+    group: "Albuquerque Real Estate Investors",
     title: "Inbound DM (S06)",
-    detail: "Inbound only · skip if none",
+    detail:
+      "Inbound only · skip if none · same-day group · attach grok-imagine-ad-endframe.png still only · never grok-imagine-ad.mp4",
   },
   {
     id: "S09",
@@ -267,58 +279,61 @@ window.OUTREACH_SLOTS = [
     blocked: true,
   },
   {
-    id: "S11",
+    id: "S12",
     date: "2026-09-05",
     time: "07:00",
+    channel: "facebook_group",
+    group: "Rio Rancho / ABQ landlords and property managers",
+    title: "Rio Rancho / ABQ landlords and property managers",
+    detail:
+      "Confirm live title · copy real-estate-short · Grok Imagine 15s vertical grok-imagine-ad.mp4 if video allowed · feed still grok-imagine-ad-endframe.png · CTA signup + rental-application + $19 credit-check · not ABQ SMALL BUSINESS · one unique group today",
+  },
+  {
+    id: "S11",
+    date: "2026-09-05",
+    time: "07:40",
     channel: "craigslist",
     group: "",
     title: "Craigslist housing-wanted",
     detail: "Downtown ABQ + Nob Hill loft/flat · Post C",
   },
   {
-    id: "S12",
-    date: "2026-09-05",
-    time: "07:40",
-    channel: "facebook_group",
-    group: "ABQ SMALL BUSINESS",
-    title: "ABQ SMALL BUSINESS",
-    detail: "Named ABQ SB group · long post + 4×5 still · confirm promo rules",
-  },
-  {
     id: "S13",
     date: "2026-09-05",
     time: "08:20",
     channel: "facebook_first_comment",
-    group: "ABQ SMALL BUSINESS",
+    group: "Rio Rancho / ABQ landlords and property managers",
     title: "First comment on S12",
-    detail: "Same group as S12 · not a second post",
+    detail: "Same group as S12 · not a second post · pitch link if comments allow",
   },
   {
     id: "S14",
     date: "2026-09-05",
     time: "09:00",
     channel: "facebook_dm",
-    group: "ABQ SMALL BUSINESS",
+    group: "Rio Rancho / ABQ landlords and property managers",
     title: "Inbound DM (S12)",
-    detail: "Inbound only · skip if none",
+    detail:
+      "Inbound only · skip if none · same-day group · attach grok-imagine-ad-endframe.png still only · never grok-imagine-ad.mp4",
   },
   {
     id: "S15",
     date: "2026-09-05",
     time: "09:40",
     channel: "facebook_reply_window",
-    group: "Albuquerque Small Business Community; New Mexico Small Businesses; ABQ SMALL BUSINESS",
+    group: "Albuquerque Small Business Community; Albuquerque Real Estate Investors; Rio Rancho / ABQ landlords and property managers",
     title: "Reply window",
-    detail: "Open threads from S01 / S06 / S12",
+    detail: "Open threads from S01 / S06 / S12 · inbound only",
   },
   {
     id: "S16",
     date: "2026-09-06",
     time: "07:00",
     channel: "facebook_group",
-    group: "Support Small Business, Albuquerque, Los Lunas, Rio Rancho, Edgewood",
-    title: "Support Small Business (ABQ / Los Lunas / Rio Rancho / Edgewood)",
-    detail: "Named metro SB group · long post + 4×5 still",
+    group: "New Mexico Small Businesses",
+    title: "New Mexico Small Businesses",
+    detail:
+      "Named NM SB group · copy small-business · Grok Imagine 15s vertical grok-imagine-ad.mp4 if video allowed · feed still grok-imagine-ad-endframe.png · CTA signup + rental-application + $19 credit-check · one unique group today",
   },
   {
     id: "S17",
@@ -334,36 +349,38 @@ window.OUTREACH_SLOTS = [
     date: "2026-09-06",
     time: "08:20",
     channel: "facebook_first_comment",
-    group: "Support Small Business, Albuquerque, Los Lunas, Rio Rancho, Edgewood",
+    group: "New Mexico Small Businesses",
     title: "First comment on S16",
-    detail: "Same Support Small Business group",
+    detail: "Same New Mexico Small Businesses group · not a second post · pitch link if comments allow",
   },
   {
     id: "S19",
     date: "2026-09-06",
     time: "09:00",
     channel: "facebook_reply_window",
-    group: "ABQ SMALL BUSINESS; Support Small Business",
+    group: "Albuquerque Small Business Community; Albuquerque Real Estate Investors; Rio Rancho / ABQ landlords and property managers; New Mexico Small Businesses",
     title: "Reply window",
-    detail: "Open Sat–Sun Facebook threads",
+    detail: "Open Sat–Sun Facebook threads from this week’s unique groups · inbound only",
   },
   {
     id: "S20",
     date: "2026-09-06",
     time: "09:40",
     channel: "facebook_dm",
-    group: "Support Small Business, Albuquerque, Los Lunas, Rio Rancho, Edgewood",
+    group: "New Mexico Small Businesses",
     title: "Inbound DM (S16)",
-    detail: "Inbound only · skip if none",
+    detail:
+      "Inbound only · skip if none · same-day group · attach grok-imagine-ad-endframe.png still only · never grok-imagine-ad.mp4",
   },
   {
     id: "S21",
     date: "2026-09-07",
     time: "07:00",
     channel: "facebook_group",
-    group: "ABQ Community Services / Small Business",
-    title: "ABQ Community Services / Small Business",
-    detail: "Named ABQ SB group · short post + 4×5 still",
+    group: "Albuquerque landlords / property managers",
+    title: "Albuquerque landlords / property managers",
+    detail:
+      "Confirm live title · copy real-estate-long · Grok Imagine 15s vertical grok-imagine-ad.mp4 if video allowed · feed still grok-imagine-ad-endframe.png · CTA signup + rental-application + $19 credit-check · one unique group today",
   },
   {
     id: "S22",
@@ -389,9 +406,9 @@ window.OUTREACH_SLOTS = [
     date: "2026-09-07",
     time: "08:20",
     channel: "facebook_first_comment",
-    group: "ABQ Community Services / Small Business",
+    group: "Albuquerque landlords / property managers",
     title: "First comment on S21",
-    detail: "Same landlords / SB group as S21",
+    detail: "Same landlords / PM group as S21 · not a second post · pitch link if comments allow",
   },
   {
     id: "S24",
@@ -408,18 +425,20 @@ window.OUTREACH_SLOTS = [
     date: "2026-09-07",
     time: "09:40",
     channel: "facebook_dm",
-    group: "ABQ Community Services / Small Business",
+    group: "Albuquerque landlords / property managers",
     title: "Inbound DM (S21)",
-    detail: "Inbound only · skip if none",
+    detail:
+      "Inbound only · skip if none · same-day group · attach grok-imagine-ad-endframe.png still only · never grok-imagine-ad.mp4",
   },
   {
     id: "S26",
     date: "2026-09-08",
     time: "07:00",
     channel: "facebook_group",
-    group: "Albuquerque Business Owners",
-    title: "Albuquerque Business Owners",
-    detail: "Named ABQ SB group · short post + 4×5 still",
+    group: "Albuquerque REALTORS / agent networking",
+    title: "Albuquerque REALTORS / agent networking",
+    detail:
+      "Confirm live title · copy real-estate-short · Grok Imagine 15s vertical grok-imagine-ad.mp4 if video allowed · feed still grok-imagine-ad-endframe.png · CTA signup + rental-application + $19 credit-check · one unique group today",
   },
   {
     id: "S27",
@@ -445,9 +464,10 @@ window.OUTREACH_SLOTS = [
     date: "2026-09-08",
     time: "08:20",
     channel: "facebook_dm",
-    group: "Albuquerque Business Owners",
+    group: "Albuquerque REALTORS / agent networking",
     title: "Inbound DM (S26)",
-    detail: "Inbound only · skip if none",
+    detail:
+      "Inbound only · skip if none · same-day group · attach grok-imagine-ad-endframe.png still only · never grok-imagine-ad.mp4",
   },
   {
     id: "S29",
@@ -474,9 +494,10 @@ window.OUTREACH_SLOTS = [
     date: "2026-09-09",
     time: "07:00",
     channel: "facebook_group",
-    group: "Albuquerque Small Business Owners",
-    title: "Albuquerque Small Business Owners",
-    detail: "Named ABQ SB group · short post + 4×5 still",
+    group: "ABQ SMALL BUSINESS",
+    title: "ABQ SMALL BUSINESS",
+    detail:
+      "Named ABQ SB group · copy small-business · Grok Imagine 15s vertical grok-imagine-ad.mp4 if video allowed · feed still grok-imagine-ad-endframe.png · CTA signup + rental-application + $19 credit-check · one unique group today",
   },
   {
     id: "S32",
@@ -502,26 +523,27 @@ window.OUTREACH_SLOTS = [
     date: "2026-09-09",
     time: "08:20",
     channel: "facebook_first_comment",
-    group: "Albuquerque Small Business Owners",
+    group: "ABQ SMALL BUSINESS",
     title: "First comment on S31",
-    detail: "Same group as S31",
+    detail: "Same group as S31 · not a second post · pitch link if comments allow",
   },
   {
     id: "S34",
     date: "2026-09-09",
     time: "09:00",
     channel: "facebook_dm",
-    group: "Albuquerque Small Business Owners",
+    group: "ABQ SMALL BUSINESS",
     title: "Inbound DM (S31)",
-    detail: "Inbound only · skip if none",
+    detail:
+      "Inbound only · skip if none · same-day group · attach grok-imagine-ad-endframe.png still only · never grok-imagine-ad.mp4",
   },
   {
     id: "S35",
     date: "2026-09-09",
     time: "09:40",
     channel: "facebook_reply_window",
-    group: "Remaining S01–S31 SB group threads",
+    group: "Remaining S01–S31 unique-group threads",
     title: "Reply window",
-    detail: "Remaining week threads · honor admin takedown",
+    detail: "Remaining week threads from this rotation · honor admin takedown · inbound only",
   },
 ];
