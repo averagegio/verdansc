@@ -1,14 +1,19 @@
 # Verdansc Outreach — phone tracker
 
 Standalone installable PWA. **Not** part of the Verdansc listings map app.
-Marks Facebook and Craigslist outreach slots on your phone. It does not send
-email, post to Facebook, post to Craigslist, or ask for a password.
+Marks Facebook, Craigslist, and LinkedIn outreach slots on your phone. It does
+not send email, post to Facebook, post to Craigslist, publish to LinkedIn, or
+ask for a password.
 
 Week copied into `slots.js`: **Sep 2–9 2026**, five slots a day at
 **7:00 / 7:40 / 8:20 / 9:00 / 9:40 America/Denver** (window **7:00–10:00 MT**).
-Wednesday Sep 2 uses the same cadence (Facebook / Craigslist / inbound only —
-no cold email). Email / cold slots stay **blocked** (no scrape, no CAN-SPAM
-address or unsubscribe URL) and cannot be marked sent.
+
+GTM this week: one unique Facebook group per day; LinkedIn organic Grok Imagine
+ads in the 9:00 / 9:40 slots (new 16:9 ad each day through 2026-09-09); Craigslist
+listed but not primary. T&C / Monarch / Country Club Lofts / Rembe / Bryten cold
+email rows are **gone** — not blocked placeholders. LinkedIn is organic only
+(no DMs, no paid). Do not CTA `/listings` while the Austin smoke-test row is
+public.
 
 Do **not** rewrite this cadence to the PM-email kit window (Tue–Thu
 9:00–11:30am). That kit is drafts only and is not this PWA’s schedule.
@@ -56,8 +61,8 @@ Marks live in this device’s `localStorage`. Clearing site data clears the week
 
 - Widget: today’s Mountain date, next due, five daily slots, remaining counts
 - Live HH:MM:SS countdown to today 7:00 AM MT when still before that window, otherwise the next remaining sendable slot (America/Denver); remaining counts and next-due update as soon as you mark complete or skip
-- Full week: all 40 slots, named ABQ / NM small-business Facebook groups
-- Facebook + Craigslist: **Mark complete** or **Skip**, with a banner alert
-- Email: stays **blocked** — no send button
+- Full week: all 40 slots, unique ABQ / NM small-business Facebook groups plus LinkedIn Grok-ad slots
+- Facebook, Craigslist, LinkedIn: **Mark complete** or **Skip**, with a banner alert
+- No PM cold-email rows on the board
 - “Due now” highlight in the 7:00–10:00am MT window
 - Offline via service worker after the first load
