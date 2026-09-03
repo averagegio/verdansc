@@ -1,15 +1,31 @@
 # Verdansc Outreach — phone tracker
 
 Standalone installable PWA. **Not** part of the Verdansc listings map app.
-Marks Facebook, Craigslist, and LinkedIn outreach slots on your phone. It does
-not send email, post to Facebook, post to Craigslist, publish to LinkedIn, or
-ask for a password.
+Marks Facebook, Craigslist, LinkedIn, and investor-email outreach slots on
+your phone. It does not send email, post to Facebook, post to Craigslist,
+publish to LinkedIn, or ask for a password.
 
 Week copied into `slots.js`: **Sep 2–9 2026**. Cadence **7:00 / 7:40 / 8:00
-(LinkedIn weekdays) / 8:20 / 9:00 / 9:40 America/Denver**. Wednesday Sep 2 uses
-the same mix (Facebook / Craigslist / LinkedIn / inbound only — no cold email).
-Email / cold slots stay **blocked** (no scrape, no CAN-SPAM address or
-unsubscribe URL) and cannot be marked sent.
+(LinkedIn weekdays) / 8:20 / 9:00 / 9:40 America/Denver**, plus Thursday
+**10:00–10:50** investor notes (`I01`–`I06`). Window **7:00–11:00 MT**.
+Wednesday Sep 2 uses the morning mix (Facebook / Craigslist / LinkedIn /
+inbound only — no cold email). Property-manager cold email stays **blocked**
+(`channel: "email"` + `blocked: true` — no scrape, no CAN-SPAM address or
+unsubscribe URL) and cannot be marked sent. `investor_email` is **not** that
+gate: Mark complete / Skip.
+
+**Thursday 2026-09-03 Facebook:** Albuquerque Small Business Community. Attach
+`marketing/ads/exports/grok-imagine-ad.mp4` if the group allows video, plus
+feed still `grok-imagine-ad-endframe.png`. Do not use
+`verdansc-split-ad-4x5` / `30s-9x16` as the primary attach. Post body CTA is
+landlord signup + intake — not `/listings` as the primary Facebook CTA
+(public listings still have an Austin smoke-test row). First comment may
+mention the short deck at `/pitch`. DMs: endframe still only, never the MP4.
+
+**Thursday investor notes:** six 1:1 Zoho pastes from `founder@verdansc.com`,
+CTA `https://www.verdansc.com/pitch`, one To: per slot, rotate
+angel / seed / proptech / generalist / angel / seed. Do not blast. Do not
+commit `contacts.extracted.json`.
 
 **LinkedIn:** one organic feed post per weekday at **8:00 AM MT** (`S-LI-01` …
 `S-LI-06`). Not Saturday or Sunday. Channel `linkedin` is sendable (Mark
@@ -17,9 +33,14 @@ complete / Skip). Attach the motion 16:9 ad `verdansc_higgsfield_ad_30s.mp4` /
 Ken Burns export; copy is a short professional post + `verdansc.com/pitch`.
 This app does not publish.
 
+Hosted copy: `public/tracker/slots.js` must stay byte-identical to this
+`slots.js`. After merge, open https://www.verdansc.com/tracker and Add to Home
+Screen.
+
 ## Open on your phone
 
-Serve this folder as static files (any host, or your laptop on the same Wi-Fi):
+Serve the hosted copy (`public/tracker/`, absolute `/tracker/` asset paths) or
+the standalone folder (`outreach-tracker/`, relative paths):
 
 ```bash
 cd outreach-tracker
@@ -58,10 +79,11 @@ Marks live in this device’s `localStorage`. Clearing site data clears the week
 - Live HH:MM:SS countdown to the next remaining sendable slot
   (America/Denver); remaining counts and next-due update as soon as you mark
   complete or skip
-- Full week: all 46 slots (40 Facebook / Craigslist / email plus 6 weekday
-  LinkedIn), named ABQ / NM small-business Facebook groups
-- Facebook + Craigslist + LinkedIn: **Mark complete** or **Skip**, with a
-  banner alert
-- Email: stays **blocked** — no send button
-- “Due now” highlight in the 7:00–10:00am MT window
+- Full week: all 52 slots (Facebook / Craigslist / blocked PM email / weekday
+  LinkedIn / Thursday investor notes), named ABQ / NM small-business Facebook
+  groups
+- Facebook + Craigslist + LinkedIn + investor email: **Mark complete** or
+  **Skip**, with a banner alert
+- PM cold email: stays **blocked** — no send button
+- “Due now” highlight in the 7:00–11:00am MT window
 - Offline via service worker after the first load

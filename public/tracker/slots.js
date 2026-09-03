@@ -2,17 +2,33 @@
  * marketing/schedule/queue.csv + facebook/scheduled-slots.md
  * Week: 2026-09-02 through 2026-09-09, America/Denver
  * Times: 7:00 / 7:40 / 8:00 (LinkedIn weekdays) / 8:20 / 9:00 / 9:40
+ * Thursday also 10:00–10:50 investor_email (I01–I06, 10 min apart)
  * Tracker only — no send, no scrape, no login, no LinkedIn publish.
  * Wed Sep 2 added so today’s tasks queue at the same cadence.
  * LinkedIn: one feed post per weekday (not Sat/Sun), 8:00 AM MT.
+ * PM cold email (channel email + blocked:true) stays blocked.
+ * investor_email is sendable (mark complete / skip) — not the PM gate.
  */
 window.OUTREACH_WEEK = {
   tz: "America/Denver",
   start: "2026-09-02",
   end: "2026-09-09",
-  times: ["07:00", "07:40", "08:00", "08:20", "09:00", "09:40"],
+  times: [
+    "07:00",
+    "07:40",
+    "08:00",
+    "08:20",
+    "09:00",
+    "09:40",
+    "10:00",
+    "10:10",
+    "10:20",
+    "10:30",
+    "10:40",
+    "10:50",
+  ],
   windowStart: "07:00",
-  windowEnd: "10:00",
+  windowEnd: "11:00",
 };
 
 window.OUTREACH_SLOTS = [
@@ -81,7 +97,8 @@ window.OUTREACH_SLOTS = [
     channel: "facebook_group",
     group: "Albuquerque Small Business Community",
     title: "Albuquerque Small Business Community",
-    detail: "Named ABQ/NM SB group · short post + 4×5 still · confirm live title + rules",
+    detail:
+      "Named ABQ/NM SB group · Grok Imagine 15s vertical grok-imagine-ad.mp4 if video allowed · feed still grok-imagine-ad-endframe.png (not verdansc-split-ad-4x5 / 30s-9x16) · post body CTA landlord signup + intake (verdansc.com/signup + /rental-application) · do not primary-CTA /listings (Austin smoke-test row still live) · first comment may mention short deck verdansc.com/pitch · $19 soft credit check · 3D Home Tours is a request-stub · confirm live title + rules",
   },
   {
     id: "S02",
@@ -109,7 +126,8 @@ window.OUTREACH_SLOTS = [
     channel: "facebook_dm",
     group: "Albuquerque Small Business Community",
     title: "Inbound DM (S01)",
-    detail: "Messenger follow-up only if they wrote first · skip if none",
+    detail:
+      "Inbound only · skip if none · attach grok-imagine-ad-endframe.png still only · never grok-imagine-ad.mp4",
   },
   {
     id: "S04",
@@ -130,6 +148,66 @@ window.OUTREACH_SLOTS = [
     title: "Monarch Properties · intro",
     detail: "Cold email stays blocked — no scrape, no CAN-SPAM address/unsub",
     blocked: true,
+  },
+  {
+    id: "I01",
+    date: "2026-09-03",
+    time: "10:00",
+    channel: "investor_email",
+    group: "",
+    title: "Pitch deck · angel",
+    detail:
+      "Master VC list · angel variant · founder@verdansc.com · Zoho human-paste · one To: · CTA https://www.verdansc.com/pitch · no blast · do not guess emails",
+  },
+  {
+    id: "I02",
+    date: "2026-09-03",
+    time: "10:10",
+    channel: "investor_email",
+    group: "",
+    title: "Pitch deck · seed",
+    detail:
+      "Master VC list · seed variant · founder@verdansc.com · Zoho human-paste · one To: · CTA https://www.verdansc.com/pitch · no blast · do not guess emails",
+  },
+  {
+    id: "I03",
+    date: "2026-09-03",
+    time: "10:20",
+    channel: "investor_email",
+    group: "",
+    title: "Pitch deck · proptech",
+    detail:
+      "Master VC list · proptech variant · founder@verdansc.com · Zoho human-paste · one To: · CTA https://www.verdansc.com/pitch · no blast · do not guess emails",
+  },
+  {
+    id: "I04",
+    date: "2026-09-03",
+    time: "10:30",
+    channel: "investor_email",
+    group: "",
+    title: "Pitch deck · generalist",
+    detail:
+      "Master VC list · generalist variant · founder@verdansc.com · Zoho human-paste · one To: · CTA https://www.verdansc.com/pitch · no blast · do not guess emails",
+  },
+  {
+    id: "I05",
+    date: "2026-09-03",
+    time: "10:40",
+    channel: "investor_email",
+    group: "",
+    title: "Pitch deck · angel",
+    detail:
+      "Master VC list · angel variant · founder@verdansc.com · Zoho human-paste · one To: · CTA https://www.verdansc.com/pitch · no blast · do not guess emails",
+  },
+  {
+    id: "I06",
+    date: "2026-09-03",
+    time: "10:50",
+    channel: "investor_email",
+    group: "",
+    title: "Pitch deck · seed",
+    detail:
+      "Master VC list · seed variant · founder@verdansc.com · Zoho human-paste · one To: · CTA https://www.verdansc.com/pitch · no blast · do not guess emails",
   },
   {
     id: "S06",

@@ -44,3 +44,9 @@ yarn-error.log*
 next-env.d.ts
 
 .vercel
+
+# Investor contact extract (compiled third-party list — never commit)
+marketing/investors/contacts.extracted.json
+marketing/investors/drafts/
+marketing/investors/*.eml
+**/master_list_of_vc*.pdf

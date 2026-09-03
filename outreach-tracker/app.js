@@ -10,6 +10,7 @@
     craigslist: "Craigslist",
     linkedin: "LinkedIn",
     email: "Email",
+    investor_email: "Investor email",
   };
 
   const el = {
@@ -149,19 +150,25 @@
   }
 
   function statusOf(slot, marks) {
-    if (slot.blocked || slot.channel === "email") return "blocked";
+    // PM cold email is blocked via slot.blocked. investor_email stays mark-complete-able.
+    if (slot.blocked) return "blocked";
     return marks[slot.id]?.status || "queued";
   }
 
   function isActionable(slot) {
-    return !slot.blocked && slot.channel !== "email";
+    return !slot.blocked;
   }
 
   function channelClass(channel) {
     if (channel === "email") return "email";
+    if (channel === "investor_email") return "inv";
     if (channel === "craigslist") return "cl";
     if (channel === "linkedin") return "li";
     return "fb";
+  }
+
+  function channelLabel(channel) {
+    return CHANNEL_LABEL[channel] || channel;
   }
 
   function queuedActionable(list, marks) {
@@ -229,7 +236,7 @@
     marks[id] = { status, at: new Date().toISOString() };
     saveMarks(marks);
     if (status === "done") {
-      toast(`${id} complete · ${CHANNEL_LABEL[slot.channel]} · ${prettyTime(slot.time)} MT`);
+      toast(`${id} complete · ${channelLabel(slot.channel)} · ${prettyTime(slot.time)} MT`);
     } else {
       toast(`${id} skipped`);
     }
@@ -244,7 +251,7 @@
     article.dataset.id = slot.id;
 
     const badges = [
-      `<span class="badge ${channelClass(slot.channel)}">${CHANNEL_LABEL[slot.channel]}</span>`,
+      `<span class="badge ${channelClass(slot.channel)}">${channelLabel(slot.channel)}</span>`,
       `<span class="badge ${status}">${status}</span>`,
     ];
     if (due) badges.push(`<span class="badge due">due now</span>`);
@@ -296,20 +303,20 @@
       el.countdownKicker.textContent = weekLeft ? "Window complete" : "Week clear";
       el.countdownTime.textContent = weekLeft ? "Done for today" : "All clear";
       el.countdownSub.textContent = weekLeft
-        ? "No remaining Facebook, Craigslist, or LinkedIn slots today."
-        : "No remaining Facebook, Craigslist, or LinkedIn slots.";
+        ? "No remaining Facebook, Craigslist, LinkedIn, or investor-email slots today."
+        : "No remaining Facebook, Craigslist, LinkedIn, or investor-email slots.";
       return;
     }
 
     const start = wallTimeMs(slot.date, slot.time);
     const delta = start - now.getTime();
-    const label = `${prettyDate(slot.date)} · ${prettyTime(slot.time)} MT · ${CHANNEL_LABEL[slot.channel]}`;
+    const label = `${prettyDate(slot.date)} · ${prettyTime(slot.time)} MT · ${channelLabel(slot.channel)}`;
 
     if (delta <= 0) {
       el.countdownCard.className = "countdown-card is-live";
       el.countdownKicker.textContent = "Due now";
       el.countdownTime.textContent = prettyTime(slot.time);
-      el.countdownSub.textContent = `${CHANNEL_LABEL[slot.channel]} · ${slot.title}`;
+      el.countdownSub.textContent = `${channelLabel(slot.channel)} · ${slot.title}`;
       return;
     }
 
@@ -328,9 +335,10 @@
     const weekLeft = remaining(SLOTS, marks);
 
     el.clockDate.textContent = parts.pretty;
+    const week = window.OUTREACH_WEEK;
     el.clockSub.textContent = showingOtherDay
       ? `${parts.time} America/Denver · showing ${prettyDate(day)} slots`
-      : `${parts.time} America/Denver · 7:00–10:00 window`;
+      : `${parts.time} America/Denver · ${prettyTime(week.windowStart)}–${prettyTime(week.windowEnd)} window`;
 
     const countKey = `${todayLeft}|${weekLeft}`;
     if (countKey !== lastCountKey) {
@@ -348,11 +356,11 @@
       el.nextCard.innerHTML = `
         <p class="kicker">${nextIsDue ? "Due now" : "Next due"}</p>
         <h2>${prettyDate(next.date)} · ${prettyTime(next.time)} MT</h2>
-        <p>${CHANNEL_LABEL[next.channel]} · ${next.title}</p>
+        <p>${channelLabel(next.channel)} · ${next.title}</p>
       `;
     } else {
       el.nextCard.className = "next-card";
-      el.nextCard.innerHTML = `<p class="kicker">Next due</p><h2>Week clear</h2><p>No remaining Facebook, Craigslist, or LinkedIn slots.</p>`;
+      el.nextCard.innerHTML = `<p class="kicker">Next due</p><h2>Week clear</h2><p>No remaining Facebook, Craigslist, LinkedIn, or investor-email slots.</p>`;
     }
 
     paintCountdown(now, parts, marks);
