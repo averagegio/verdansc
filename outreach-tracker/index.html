@@ -83,21 +83,20 @@
               inputmode="url"
               autocomplete="off"
               spellcheck="false"
-              placeholder="http://127.0.0.1:4242"
+              placeholder="same origin /charges"
             />
             <button id="stripe-proxy-save" type="button">Save</button>
           </div>
           <p class="fine">
-            Optional. Set via this field or
-            <code>?stripeProxy=http://127.0.0.1:4242</code>. See README to run
-            <code>stripe-proxy.mjs</code>.
+            Empty uses this origin’s <code>/charges</code>. Optional override:
+            <code>?stripeProxy=https://other-host</code>.
           </p>
         </div>
       </section>
     </main>
     <nav class="nav">
       <button id="nav-home" class="is-on" type="button">Widget</button>
-      <button id="nav-week" type="button">Full week</button>
+      <button id="nav-week" type="button">Week</button>
       <button id="nav-pay" type="button">Payments</button>
     </nav>
     <script src="./slots.js"></script>

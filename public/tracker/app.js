@@ -5,6 +5,8 @@
     (slot) => !HIDDEN_CHANNELS.has(slot.channel)
   );
   const STORE_KEY = "verdansc-outreach-tracker-v1";
+  const PROXY_KEY = "verdansc-stripe-proxy";
+  const STRIPE_DASHBOARD = "https://dashboard.stripe.com/payments";
   const CHANNEL_LABEL = {
     facebook_group: "FB group",
     facebook_dm: "FB DM",
@@ -18,10 +20,12 @@
     views: {
       home: document.getElementById("view-home"),
       week: document.getElementById("view-week"),
+      pay: document.getElementById("view-pay"),
     },
     nav: {
       home: document.getElementById("nav-home"),
       week: document.getElementById("nav-week"),
+      pay: document.getElementById("nav-pay"),
     },
     clockDate: document.getElementById("clock-date"),
     clockSub: document.getElementById("clock-sub"),
@@ -36,11 +40,17 @@
     countdownKicker: document.getElementById("countdown-kicker"),
     countdownTime: document.getElementById("countdown-time"),
     countdownSub: document.getElementById("countdown-sub"),
+    payEmpty: document.getElementById("pay-empty"),
+    payList: document.getElementById("pay-list"),
+    proxyInput: document.getElementById("stripe-proxy-input"),
+    proxySave: document.getElementById("stripe-proxy-save"),
   };
 
   let toastTimer = 0;
   let lastListKey = "";
   let lastCountKey = "";
+  let chargesState = { status: "idle", items: [], error: "", fetchedAt: "" };
+  let chargesInFlight = false;
 
   function loadMarks() {
     try {
@@ -398,12 +408,205 @@
     );
   }
 
+  function currentView() {
+    const hash = location.hash || "#/";
+    if (hash === "#/week") return "week";
+    if (hash === "#/payments" || hash === "#/pay") return "pay";
+    return "home";
+  }
+
+  function normalizeProxy(raw) {
+    const value = String(raw || "").trim();
+    if (!value) return "";
+    try {
+      const url = new URL(value);
+      if (url.protocol !== "http:" && url.protocol !== "https:") return "";
+      return `${url.origin}${url.pathname}`.replace(/\/$/, "");
+    } catch {
+      return "";
+    }
+  }
+
+  function persistQueryProxy() {
+    const params = new URLSearchParams(location.search);
+    if (!params.has("stripeProxy")) return;
+    const url = normalizeProxy(params.get("stripeProxy"));
+    if (url) localStorage.setItem(PROXY_KEY, url);
+    else localStorage.removeItem(PROXY_KEY);
+  }
+
+  function getProxyUrl() {
+    return normalizeProxy(localStorage.getItem(PROXY_KEY) || "");
+  }
+
+  function chargesUrl() {
+    const proxy = getProxyUrl();
+    return proxy ? `${proxy}/charges` : "/charges";
+  }
+
+  function formatChargeTime(unix) {
+    if (!unix) return "—";
+    return new Intl.DateTimeFormat("en-US", {
+      timeZone: TZ,
+      dateStyle: "medium",
+      timeStyle: "short",
+    }).format(new Date(Number(unix) * 1000));
+  }
+
+  function chargeStatusClass(status) {
+    const normalized = String(status || "").toLowerCase();
+    if (normalized === "succeeded" || normalized === "paid") return "done";
+    if (normalized === "canceled" || normalized === "failed") return "blocked";
+    if (normalized.includes("require") || normalized === "processing") return "queued";
+    return "skipped";
+  }
+
+  function esc(value) {
+    return String(value ?? "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function formatChargeAmount(charge) {
+    if (charge.amountFormatted) return charge.amountFormatted;
+    const cents = Number(charge.amount || 0);
+    const currency = (charge.currency || "usd").toUpperCase();
+    try {
+      return new Intl.NumberFormat("en-US", { style: "currency", currency }).format(cents / 100);
+    } catch {
+      return `${(cents / 100).toFixed(2)} ${currency}`;
+    }
+  }
+
+  function paintPayments() {
+    const proxy = getProxyUrl();
+    if (el.proxyInput && el.proxyInput !== document.activeElement) {
+      el.proxyInput.value = proxy;
+    }
+
+    if (chargesState.status === "idle" || chargesState.status === "loading") {
+      el.payEmpty.classList.remove("hidden");
+      el.payEmpty.innerHTML = `<p class="kicker">Payments</p><h2>Loading charges…</h2><p>Fetching PaymentIntents from <code>/charges</code>.</p>`;
+      el.payList.replaceChildren();
+      return;
+    }
+
+    if (chargesState.status === "error") {
+      const missing = chargesState.error === "STRIPE_SECRET_KEY not set";
+      el.payEmpty.classList.remove("hidden");
+      el.payEmpty.innerHTML = `
+        <p class="kicker">Payments</p>
+        <h2>${missing ? "Stripe key not set" : "Could not list charges"}</h2>
+        <p>${esc(chargesState.error || "The tracker could not list PaymentIntents.")}</p>
+        <p>${
+          missing
+            ? "Export STRIPE_SECRET_KEY in the shell that runs <code>node stripe-proxy.mjs</code>, then refresh. The key is never stored in this widget."
+            : "Retry after the tracker process can reach Stripe, or open the dashboard."
+        }</p>
+        <a class="pay-link" href="${STRIPE_DASHBOARD}" target="_blank" rel="noopener noreferrer">Open Stripe payments</a>
+      `;
+      el.payList.replaceChildren();
+      return;
+    }
+
+    const items = chargesState.items || [];
+    if (!items.length) {
+      el.payEmpty.classList.remove("hidden");
+      el.payEmpty.innerHTML = `
+        <p class="kicker">Payments</p>
+        <h2>No recent charges</h2>
+        <p>The proxy returned no PaymentIntents. Confirm the Stripe account, or open the dashboard.</p>
+        <a class="pay-link" href="${STRIPE_DASHBOARD}" target="_blank" rel="noopener noreferrer">Open Stripe payments</a>
+      `;
+      el.payList.replaceChildren();
+      return;
+    }
+
+    el.payEmpty.classList.add("hidden");
+    const when = chargesState.fetchedAt
+      ? `<p class="fine">Updated ${chargesState.fetchedAt} · ${items.length} PaymentIntents</p>`
+      : "";
+    const refresh = document.createElement("button");
+    refresh.type = "button";
+    refresh.className = "pay-refresh";
+    refresh.textContent = "Refresh charges";
+    refresh.addEventListener("click", () => loadCharges(true));
+    const cards = items.map((charge) => {
+      const article = document.createElement("article");
+      article.className = "slot pay-row";
+      const status = charge.status || "unknown";
+      article.innerHTML = `
+        <div class="slot-top">
+          <span class="slot-id">${esc(charge.id || "pi")}</span>
+          <div class="badges">
+            <span class="badge ${chargeStatusClass(status)}">${esc(status)}</span>
+          </div>
+        </div>
+        <h3 class="pay-amount">${esc(formatChargeAmount(charge))}</h3>
+        <p>${esc(charge.description || "No description")}</p>
+        <p>${esc(formatChargeTime(charge.created))} MT</p>
+      `;
+      return article;
+    });
+    const note = document.createElement("div");
+    note.innerHTML = when;
+    el.payList.replaceChildren(refresh, ...cards, note);
+  }
+
+  async function loadCharges(force = false) {
+    if (chargesInFlight) return;
+    if (!force && (chargesState.status === "ok" || chargesState.status === "error")) {
+      paintPayments();
+      return;
+    }
+    chargesInFlight = true;
+    chargesState = { ...chargesState, status: "loading", error: "" };
+    paintPayments();
+    try {
+      const response = await fetch(chargesUrl(), { cache: "no-store" });
+      const payload = await response.json().catch(() => ({}));
+      const items = Array.isArray(payload.charges) ? payload.charges : [];
+      const errorMsg =
+        (typeof payload.error === "string" && payload.error) ||
+        (!response.ok ? `Charges ${response.status}` : "");
+      if (errorMsg) {
+        chargesState = {
+          status: "error",
+          items,
+          error: errorMsg,
+          fetchedAt: "",
+        };
+      } else {
+        chargesState = {
+          status: "ok",
+          items,
+          error: "",
+          fetchedAt: denverParts(new Date()).time,
+        };
+      }
+    } catch (err) {
+      chargesState = {
+        status: "error",
+        items: [],
+        error: err && err.message ? err.message : "Charges request failed",
+        fetchedAt: "",
+      };
+    } finally {
+      chargesInFlight = false;
+      paintPayments();
+    }
+  }
+
   function route() {
-    const week = location.hash === "#/week";
-    el.views.home.classList.toggle("hidden", week);
-    el.views.week.classList.toggle("hidden", !week);
-    el.nav.home.classList.toggle("is-on", !week);
-    el.nav.week.classList.toggle("is-on", week);
+    const view = currentView();
+    el.views.home.classList.toggle("hidden", view !== "home");
+    el.views.week.classList.toggle("hidden", view !== "week");
+    el.views.pay.classList.toggle("hidden", view !== "pay");
+    el.nav.home.classList.toggle("is-on", view === "home");
+    el.nav.week.classList.toggle("is-on", view === "week");
+    el.nav.pay.classList.toggle("is-on", view === "pay");
   }
 
   function render(opts = {}) {
@@ -440,13 +643,40 @@
     location.hash = "#/week";
     window.scrollTo(0, 0);
   });
+  el.nav.pay.addEventListener("click", () => {
+    location.hash = "#/payments";
+    window.scrollTo(0, 0);
+  });
+  function saveProxyFromInput() {
+    const url = normalizeProxy(el.proxyInput.value);
+    if (el.proxyInput.value.trim() && !url) {
+      toast("Proxy URL must be http(s)");
+      return;
+    }
+    if (url) localStorage.setItem(PROXY_KEY, url);
+    else localStorage.removeItem(PROXY_KEY);
+    chargesState = { status: "idle", items: [], error: "", fetchedAt: "" };
+    toast(url ? `Proxy ${url}` : "Using same-origin /charges");
+    loadCharges(true);
+  }
+
+  el.proxySave.addEventListener("click", saveProxyFromInput);
+  el.proxyInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      saveProxyFromInput();
+    }
+  });
   window.addEventListener("hashchange", () => {
     route();
+    if (currentView() === "pay") loadCharges(false);
     window.scrollTo(0, 0);
   });
   document.addEventListener("visibilitychange", () => {
     if (document.visibilityState === "visible") render({ forceLists: true });
   });
+
+  persistQueryProxy();
 
   if (window.matchMedia("(display-mode: standalone)").matches) {
     el.install.classList.add("hidden");
@@ -457,5 +687,6 @@
   }
 
   render({ forceLists: true });
+  if (currentView() === "pay") loadCharges(false);
   setInterval(render, 1000);
 })();

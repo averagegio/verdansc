@@ -1,4 +1,4 @@
-const CACHE = "verdansc-outreach-v8";
+const CACHE = "verdansc-outreach-v9";
 const ASSETS = [
   "./",
   "./index.html",
@@ -34,6 +34,10 @@ self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
   const url = new URL(event.request.url);
   if (url.origin !== self.location.origin) return;
+  if (url.pathname === "/charges" || url.pathname === "/api/charges" || url.pathname === "/health") {
+    event.respondWith(fetch(event.request));
+    return;
+  }
   event.respondWith(
     caches.match(event.request).then((cached) => {
       if (cached) return cached;

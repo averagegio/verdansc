@@ -62,10 +62,42 @@
         <div id="week-list" class="week"></div>
         <p class="fine">39 slots · Sep 2–9 2026 · America/Denver · local marks only · no cold email</p>
       </section>
+
+      <section id="view-pay" class="pay hidden">
+        <div class="pay-intro">
+          <p class="kicker">Payments</p>
+          <h2>Recent Stripe charges</h2>
+          <p>
+            Amount, status, created time, and description from PaymentIntents.
+            This widget never stores a Stripe secret.
+          </p>
+        </div>
+        <div id="pay-empty" class="pay-empty"></div>
+        <div id="pay-list" class="slot-list"></div>
+        <div class="proxy-box">
+          <label for="stripe-proxy-input">Local proxy URL</label>
+          <div class="proxy-row">
+            <input
+              id="stripe-proxy-input"
+              type="url"
+              inputmode="url"
+              autocomplete="off"
+              spellcheck="false"
+              placeholder="same origin /charges"
+            />
+            <button id="stripe-proxy-save" type="button">Save</button>
+          </div>
+          <p class="fine">
+            Empty uses this origin’s <code>/charges</code>. Optional override:
+            <code>?stripeProxy=https://other-host</code>.
+          </p>
+        </div>
+      </section>
     </main>
     <nav class="nav">
       <button id="nav-home" class="is-on" type="button">Widget</button>
-      <button id="nav-week" type="button">Full week</button>
+      <button id="nav-week" type="button">Week</button>
+      <button id="nav-pay" type="button">Payments</button>
     </nav>
     <script src="./slots.js"></script>
     <script src="./app.js"></script>

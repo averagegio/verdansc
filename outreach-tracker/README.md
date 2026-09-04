@@ -24,19 +24,32 @@ This app does not publish.
 
 ## Open on your phone
 
-Serve this folder as static files (any host, or your laptop on the same Wi-Fi):
+`stripe-proxy.mjs` serves the PWA **and** `GET /charges` on one origin so the
+Payments tab does not need a second port or CORS:
 
 ```bash
 cd outreach-tracker
-python3 -m http.server 4173
+export STRIPE_SECRET_KEY=sk_live_or_test_from_stripe_dashboard   # never commit
+node stripe-proxy.mjs
 ```
 
-Then open `http://<your-laptop-ip>:4173` on the phone.
+Default listen: **`http://0.0.0.0:4173`**. Open `http://<host>:4173` on the
+phone. Cloud VM preview for this PWA is the same port **4173**. The widget
+calls same-origin `/charges`; `?stripeProxy=` can stay empty.
 
-Cloud VM preview for this PWA is the same port **4173**.
+If `STRIPE_SECRET_KEY` is unset, `/charges` still returns HTTP 200:
 
-Or drop the folder on any static host (Netlify, GitHub Pages, `npx serve`,
-Cloudflare Pages). The app is only the files in this directory.
+```json
+{ "error": "STRIPE_SECRET_KEY not set", "charges": [] }
+```
+
+The Payments tab shows that message instead of a dead link.
+
+Override bind with `STRIPE_PROXY_HOST` / `STRIPE_PROXY_PORT` if needed. The
+key stays in the process environment only.
+
+You can still drop the folder on a static host, but then `/charges` will not
+exist unless this process (or another same-origin proxy) is in front.
 
 ## Add to Home Screen
 
@@ -70,36 +83,8 @@ Marks live in this device’s `localStorage`. Clearing site data clears the week
 - “Due now” highlight in the 7:00–10:00am MT window
 - Offline via service worker after the first load
 - Payments tab: recent Stripe PaymentIntents (amount, status, created,
-  description) via an optional **local** proxy. No Stripe secret in the
-  widget or git. Without a proxy the tab is empty and links to
-  [Stripe payments](https://dashboard.stripe.com/payments).
+  description) via same-origin `GET /charges`. No Stripe secret in the widget
+  or git. There is no site `/ops/stripe` route for this widget.
 
-## Stripe proxy (`outreach-tracker/stripe-proxy.mjs`)
-
-The Payments tab never talks to Stripe with a secret key. The proxy is
-**`outreach-tracker/stripe-proxy.mjs`**. There is no site `/ops/stripe` route
-for this widget.
-
-1. Get a secret key from the [Stripe Dashboard](https://dashboard.stripe.com/apikeys)
-   (`sk_test_…` or `sk_live_…`).
-2. Export it in the shell that will run the proxy. **Never commit the key.**
-
-```bash
-cd outreach-tracker
-export STRIPE_SECRET_KEY=sk_live_or_test_from_stripe_dashboard
-node stripe-proxy.mjs
-```
-
-Default listen: **`http://127.0.0.1:4242`**.
-
-Open the tracker Payments tab through the proxy query string:
-
-```
-http://127.0.0.1:4173/?stripeProxy=http://127.0.0.1:4242#/payments
-```
-
-`GET http://127.0.0.1:4242/charges` lists recent PaymentIntents. You can also
-paste `http://127.0.0.1:4242` into the Payments tab (saved in `localStorage`).
-
-Override bind with `STRIPE_PROXY_HOST` / `STRIPE_PROXY_PORT` if needed. The key
-stays in the proxy process environment only.
+Optional override: paste another origin into the Payments tab (saved in
+`localStorage`) or open `?stripeProxy=https://other-host`.

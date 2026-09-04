@@ -428,14 +428,20 @@
   }
 
   function persistQueryProxy() {
-    const raw = new URLSearchParams(location.search).get("stripeProxy");
-    if (!raw) return;
-    const url = normalizeProxy(raw);
+    const params = new URLSearchParams(location.search);
+    if (!params.has("stripeProxy")) return;
+    const url = normalizeProxy(params.get("stripeProxy"));
     if (url) localStorage.setItem(PROXY_KEY, url);
+    else localStorage.removeItem(PROXY_KEY);
   }
 
   function getProxyUrl() {
     return normalizeProxy(localStorage.getItem(PROXY_KEY) || "");
+  }
+
+  function chargesUrl() {
+    const proxy = getProxyUrl();
+    return proxy ? `${proxy}/charges` : "/charges";
   }
 
   function formatChargeTime(unix) {
@@ -480,36 +486,25 @@
       el.proxyInput.value = proxy;
     }
 
-    if (!proxy) {
+    if (chargesState.status === "idle" || chargesState.status === "loading") {
       el.payEmpty.classList.remove("hidden");
-      el.payEmpty.innerHTML = `
-        <p class="kicker">No local proxy</p>
-        <h2>Charges stay in Stripe</h2>
-        <p>
-          This tracker does not embed a Stripe secret. Open the dashboard, or
-          run <code>node stripe-proxy.mjs</code> with
-          <code>STRIPE_SECRET_KEY</code> in the environment and save
-          <code>http://127.0.0.1:4242</code> here.
-        </p>
-        <a class="pay-link" href="${STRIPE_DASHBOARD}" target="_blank" rel="noopener noreferrer">Open Stripe payments</a>
-      `;
-      el.payList.replaceChildren();
-      return;
-    }
-
-    if (chargesState.status === "loading") {
-      el.payEmpty.classList.remove("hidden");
-      el.payEmpty.innerHTML = `<p class="kicker">Payments</p><h2>Loading charges…</h2><p>Fetching PaymentIntents from the local proxy.</p>`;
+      el.payEmpty.innerHTML = `<p class="kicker">Payments</p><h2>Loading charges…</h2><p>Fetching PaymentIntents from <code>/charges</code>.</p>`;
       el.payList.replaceChildren();
       return;
     }
 
     if (chargesState.status === "error") {
+      const missing = chargesState.error === "STRIPE_SECRET_KEY not set";
       el.payEmpty.classList.remove("hidden");
       el.payEmpty.innerHTML = `
-        <p class="kicker">Proxy error</p>
-        <h2>Could not list charges</h2>
-        <p>${esc(chargesState.error || "The local proxy did not return PaymentIntents.")}</p>
+        <p class="kicker">Payments</p>
+        <h2>${missing ? "Stripe key not set" : "Could not list charges"}</h2>
+        <p>${esc(chargesState.error || "The tracker could not list PaymentIntents.")}</p>
+        <p>${
+          missing
+            ? "Export STRIPE_SECRET_KEY in the shell that runs <code>node stripe-proxy.mjs</code>, then refresh. The key is never stored in this widget."
+            : "Retry after the tracker process can reach Stripe, or open the dashboard."
+        }</p>
         <a class="pay-link" href="${STRIPE_DASHBOARD}" target="_blank" rel="noopener noreferrer">Open Stripe payments</a>
       `;
       el.payList.replaceChildren();
@@ -561,12 +556,6 @@
   }
 
   async function loadCharges(force = false) {
-    const proxy = getProxyUrl();
-    if (!proxy) {
-      chargesState = { status: "idle", items: [], error: "", fetchedAt: "" };
-      paintPayments();
-      return;
-    }
     if (chargesInFlight) return;
     if (!force && (chargesState.status === "ok" || chargesState.status === "error")) {
       paintPayments();
@@ -576,23 +565,32 @@
     chargesState = { ...chargesState, status: "loading", error: "" };
     paintPayments();
     try {
-      const response = await fetch(`${proxy}/charges`, { cache: "no-store" });
+      const response = await fetch(chargesUrl(), { cache: "no-store" });
       const payload = await response.json().catch(() => ({}));
-      if (!response.ok || payload.ok === false) {
-        throw new Error(payload.error || `Proxy ${response.status}`);
-      }
       const items = Array.isArray(payload.charges) ? payload.charges : [];
-      chargesState = {
-        status: "ok",
-        items,
-        error: "",
-        fetchedAt: denverParts(new Date()).time,
-      };
+      const errorMsg =
+        (typeof payload.error === "string" && payload.error) ||
+        (!response.ok ? `Charges ${response.status}` : "");
+      if (errorMsg) {
+        chargesState = {
+          status: "error",
+          items,
+          error: errorMsg,
+          fetchedAt: "",
+        };
+      } else {
+        chargesState = {
+          status: "ok",
+          items,
+          error: "",
+          fetchedAt: denverParts(new Date()).time,
+        };
+      }
     } catch (err) {
       chargesState = {
         status: "error",
         items: [],
-        error: err && err.message ? err.message : "Proxy request failed",
+        error: err && err.message ? err.message : "Charges request failed",
         fetchedAt: "",
       };
     } finally {
@@ -658,7 +656,7 @@
     if (url) localStorage.setItem(PROXY_KEY, url);
     else localStorage.removeItem(PROXY_KEY);
     chargesState = { status: "idle", items: [], error: "", fetchedAt: "" };
-    toast(url ? `Proxy ${url}` : "Proxy cleared");
+    toast(url ? `Proxy ${url}` : "Using same-origin /charges");
     loadCharges(true);
   }
 
