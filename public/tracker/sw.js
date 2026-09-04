@@ -1,10 +1,10 @@
-const CACHE = "verdansc-outreach-v9";
+const CACHE = "verdansc-outreach-v10";
 const ASSETS = [
   "./",
   "./index.html",
-  "./styles.css",
-  "./app.js",
-  "./slots.js",
+  "./styles.css?v=10",
+  "./app.js?v=10",
+  "./slots.js?v=10",
   "./manifest.webmanifest",
   "./icons/icon-192.png",
   "./icons/icon-512.png",
@@ -12,6 +12,28 @@ const ASSETS = [
   "./icons/apple-touch-icon.png",
   "./icons/icon.svg",
 ];
+
+function bypassNetworkOnly(url) {
+  const path = url.pathname;
+  return (
+    path === "/charges" ||
+    path === "/api/charges" ||
+    path === "/health" ||
+    path.endsWith("/sw.js")
+  );
+}
+
+function isAppShell(request, url) {
+  if (request.mode === "navigate") return true;
+  const path = url.pathname;
+  return (
+    path.endsWith(".html") ||
+    path.endsWith(".js") ||
+    path.endsWith(".css") ||
+    path.endsWith("/tracker") ||
+    path.endsWith("/")
+  );
+}
 
 self.addEventListener("install", (event) => {
   event.waitUntil(
@@ -34,8 +56,24 @@ self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
   const url = new URL(event.request.url);
   if (url.origin !== self.location.origin) return;
-  if (url.pathname === "/charges" || url.pathname === "/api/charges" || url.pathname === "/health") {
-    event.respondWith(fetch(event.request));
+  if (bypassNetworkOnly(url)) {
+    event.respondWith(fetch(event.request, { cache: "no-store" }));
+    return;
+  }
+  if (isAppShell(event.request, url)) {
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          if (response && response.ok) {
+            const copy = response.clone();
+            caches.open(CACHE).then((cache) => cache.put(event.request, copy));
+          }
+          return response;
+        })
+        .catch(() =>
+          caches.match(event.request).then((cached) => cached || caches.match("./index.html"))
+        )
+    );
     return;
   }
   event.respondWith(
@@ -45,7 +83,7 @@ self.addEventListener("fetch", (event) => {
         const copy = response.clone();
         caches.open(CACHE).then((cache) => cache.put(event.request, copy));
         return response;
-      }).catch(() => caches.match("./index.html"));
+      });
     })
   );
 });

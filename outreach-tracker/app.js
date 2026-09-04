@@ -1,9 +1,66 @@
 (() => {
   const TZ = window.OUTREACH_WEEK.tz;
   const HIDDEN_CHANNELS = new Set(["email", "investor_email"]);
+  function isHiddenChannel(channel) {
+    return HIDDEN_CHANNELS.has(String(channel || "").toLowerCase());
+  }
   const SLOTS = (window.OUTREACH_SLOTS || []).filter(
-    (slot) => !HIDDEN_CHANNELS.has(slot.channel)
+    (slot) => !isHiddenChannel(slot.channel)
   );
+
+  function ensurePayUi() {
+    const nav = document.querySelector("nav.nav");
+    if (nav) {
+      nav.style.gridTemplateColumns = "1fr 1fr 1fr";
+      const weekBtn = document.getElementById("nav-week");
+      if (weekBtn && /full\s*week/i.test(weekBtn.textContent || "")) {
+        weekBtn.textContent = "Week";
+      }
+      if (!document.getElementById("nav-pay")) {
+        const btn = document.createElement("button");
+        btn.id = "nav-pay";
+        btn.type = "button";
+        btn.textContent = "Payments";
+        nav.appendChild(btn);
+      }
+    }
+    if (!document.getElementById("view-pay")) {
+      const section = document.createElement("section");
+      section.id = "view-pay";
+      section.className = "pay hidden";
+      section.innerHTML = `
+        <div class="pay-intro">
+          <p class="kicker">Payments</p>
+          <h2>Recent Stripe charges</h2>
+          <p>
+            Amount, status, created time, and description from PaymentIntents.
+            This widget never stores a Stripe secret.
+          </p>
+        </div>
+        <div id="pay-empty" class="pay-empty"></div>
+        <div id="pay-list" class="slot-list"></div>
+        <div class="proxy-box">
+          <label for="stripe-proxy-input">Local proxy URL</label>
+          <div class="proxy-row">
+            <input
+              id="stripe-proxy-input"
+              type="url"
+              inputmode="url"
+              autocomplete="off"
+              spellcheck="false"
+              placeholder="same origin /charges"
+            />
+            <button id="stripe-proxy-save" type="button">Save</button>
+          </div>
+          <p class="fine">
+            Empty uses this origin’s <code>/charges</code>. Optional override:
+            <code>?stripeProxy=https://other-host</code>.
+          </p>
+        </div>`;
+      document.querySelector("main.app")?.appendChild(section);
+    }
+  }
+  ensurePayUi();
   const STORE_KEY = "verdansc-outreach-tracker-v1";
   const PROXY_KEY = "verdansc-stripe-proxy";
   const STRIPE_DASHBOARD = "https://dashboard.stripe.com/payments";
@@ -161,12 +218,12 @@
   }
 
   function statusOf(slot, marks) {
-    if (slot.blocked || HIDDEN_CHANNELS.has(slot.channel)) return "blocked";
+    if (slot.blocked || isHiddenChannel(slot.channel)) return "blocked";
     return marks[slot.id]?.status || "queued";
   }
 
   function isActionable(slot) {
-    return !slot.blocked && !HIDDEN_CHANNELS.has(slot.channel);
+    return !slot.blocked && !isHiddenChannel(slot.channel);
   }
 
   function channelClass(channel) {
@@ -481,6 +538,7 @@
   }
 
   function paintPayments() {
+    if (!el.payEmpty || !el.payList) return;
     const proxy = getProxyUrl();
     if (el.proxyInput && el.proxyInput !== document.activeElement) {
       el.proxyInput.value = proxy;
@@ -601,12 +659,12 @@
 
   function route() {
     const view = currentView();
-    el.views.home.classList.toggle("hidden", view !== "home");
-    el.views.week.classList.toggle("hidden", view !== "week");
-    el.views.pay.classList.toggle("hidden", view !== "pay");
-    el.nav.home.classList.toggle("is-on", view === "home");
-    el.nav.week.classList.toggle("is-on", view === "week");
-    el.nav.pay.classList.toggle("is-on", view === "pay");
+    el.views.home?.classList.toggle("hidden", view !== "home");
+    el.views.week?.classList.toggle("hidden", view !== "week");
+    el.views.pay?.classList.toggle("hidden", view !== "pay");
+    el.nav.home?.classList.toggle("is-on", view === "home");
+    el.nav.week?.classList.toggle("is-on", view === "week");
+    el.nav.pay?.classList.toggle("is-on", view === "pay");
   }
 
   function render(opts = {}) {
@@ -632,18 +690,18 @@
     setStatus(btn.dataset.id, btn.dataset.act);
   }
 
-  el.todayList.addEventListener("click", onActionClick);
-  el.weekList.addEventListener("click", onActionClick);
+  el.todayList?.addEventListener("click", onActionClick);
+  el.weekList?.addEventListener("click", onActionClick);
 
-  el.nav.home.addEventListener("click", () => {
+  el.nav.home?.addEventListener("click", () => {
     location.hash = "#/";
     window.scrollTo(0, 0);
   });
-  el.nav.week.addEventListener("click", () => {
+  el.nav.week?.addEventListener("click", () => {
     location.hash = "#/week";
     window.scrollTo(0, 0);
   });
-  el.nav.pay.addEventListener("click", () => {
+  el.nav.pay?.addEventListener("click", () => {
     location.hash = "#/payments";
     window.scrollTo(0, 0);
   });
@@ -660,8 +718,8 @@
     loadCharges(true);
   }
 
-  el.proxySave.addEventListener("click", saveProxyFromInput);
-  el.proxyInput.addEventListener("keydown", (event) => {
+  el.proxySave?.addEventListener("click", saveProxyFromInput);
+  el.proxyInput?.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
       event.preventDefault();
       saveProxyFromInput();
@@ -679,11 +737,18 @@
   persistQueryProxy();
 
   if (window.matchMedia("(display-mode: standalone)").matches) {
-    el.install.classList.add("hidden");
+    el.install?.classList.add("hidden");
   }
 
   if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("./sw.js");
+    navigator.serviceWorker.register("./sw.js", { updateViaCache: "none" }).then((reg) => {
+      reg.update();
+    });
+    navigator.serviceWorker.addEventListener("controllerchange", () => {
+      if (sessionStorage.getItem("verdansc-sw-v10") === "1") return;
+      sessionStorage.setItem("verdansc-sw-v10", "1");
+      location.reload();
+    });
   }
 
   render({ forceLists: true });
