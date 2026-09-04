@@ -1,0 +1,60 @@
+Subject: Listing apartments and lofts in greater Albuquerque — a Verdansc member invite
+
+Preview: Set up intake, share an apply link, and let renters find your listings.
+
+---
+
+Hi [PM_NAME],
+
+I'm [SENDER_NAME] at Verdansc (https://verdansc.com/). We built a map-first rental workspace for landlords and property managers in Albuquerque and Rio Rancho.
+
+This note is an invitation for [COMPANY] to become a landlord member and list properties — apartments, lofts, flats, or scattered rentals — so applicants can find you, apply in one flow, and complete a payment-gated credit check.
+
+What you can do today (these pages are live):
+
+1. Create a landlord membership
+   Landlord Growth is $99/month (applicant pipeline, intake links, member-rate credit-check volume).
+   Landlord Pro is $249/month (higher limits and priority onboarding).
+   Signup: https://verdansc.com/signup?role=landlord&plan=landlord-growth
+   Pricing: https://verdansc.com/pricing
+
+2. List a property / set up applicant intake
+   Enter property title, address, application fee, and screening requirements, then copy a shareable apply link.
+   Intake: https://verdansc.com/rental-application
+
+3. Get tenants in front of the listing
+   Renters browse active listings and compare application fees before they apply.
+   Listings: https://verdansc.com/listings
+
+4. Screen applicants
+   Renters submit a structured rental application. Credit check is $19.
+   Credit check: https://verdansc.com/credit-check
+   Review paid applications after login: https://verdansc.com/login?role=landlord
+
+Optional extras (not required to list):
+   3D Home Tours for walkthrough-ready unit media: https://verdansc.com/3d-home-tour
+   Move-out tracker with photo evidence for condition files: https://verdansc.com/move-out-tracker
+
+Verdansc is not a replacement for your property-management software, lockbox vendor, or on-site leasing office. It is a membership layer for intake, renter discovery, applications, and screening in the greater Albuquerque and Rio Rancho market.
+
+If this is useful, create the account here:
+https://verdansc.com/signup?role=landlord&plan=landlord-growth
+
+If it is not, reply "unsubscribe" or use the link below and we will stop.
+
+Thank you for housing this region.
+
+[SENDER_NAME]
+[SENDER_TITLE]
+Verdansc
+support@verdansc.com
+https://verdansc.com/
+
+---
+VERDANSC 2026 INC
+[PHYSICAL_MAILING_ADDRESS]
+
+This email is sent to a published company contact or someone who asked to hear from us. It is a business invitation, not an existing-customer billing notice.
+
+Unsubscribe: [UNSUB_URL]
+Or email [UNSUB_EMAIL] with the subject unsubscribe.
