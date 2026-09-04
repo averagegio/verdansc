@@ -267,7 +267,14 @@
     // Same target as next-due: currently due today (time reached, still
     // queued), else the next future queued slot. Do not aim at an earlier
     // day's leftover just because it is first in the week list.
-    return nextDue(parts, marks) || null;
+    const slot = nextDue(parts, marks);
+    if (!slot || slot.date >= parts.date) return slot || null;
+    return (
+      SLOTS.find((s) => {
+        if (!isActionable(s) || statusOf(s, marks) !== "queued") return false;
+        return s.date > parts.date || (s.date === parts.date && minutesOf(s.time) >= parts.minutes);
+      }) || null
+    );
   }
 
   function remaining(list, marks) {
@@ -358,22 +365,13 @@
 
   function paintCountdown(now, parts, marks) {
     const slot = countdownSlot(parts, marks);
-    const weekLeft = remaining(SLOTS, marks);
-    const todayLeft = remaining(
-      SLOTS.filter((s) => s.date === parts.date),
-      marks
-    );
-    const inWeek =
-      parts.date >= window.OUTREACH_WEEK.start &&
-      parts.date <= window.OUTREACH_WEEK.end;
 
     if (!slot) {
       el.countdownCard.className = "countdown-card is-done";
-      el.countdownKicker.textContent = weekLeft ? "Window complete" : "Week clear";
-      el.countdownTime.textContent = weekLeft ? "Done for today" : "All clear";
-      el.countdownSub.textContent = weekLeft
-        ? "No remaining Facebook, Craigslist, or LinkedIn slots today."
-        : "No remaining Facebook, Craigslist, or LinkedIn slots.";
+      el.countdownKicker.textContent = "Week clear";
+      el.countdownTime.textContent = "All clear";
+      el.countdownSub.textContent =
+        "No remaining Facebook, Craigslist, or LinkedIn slots.";
       return;
     }
 
@@ -381,17 +379,10 @@
     const delta = start - now.getTime();
     const label = `${prettyDate(slot.date)} · ${prettyTime(slot.time)} MT · ${CHANNEL_LABEL[slot.channel]}`;
 
-    // After today's sendable slots are done, do not run an overnight
-    // STARTS IN to tomorrow 7:00 — that reads like a broken 18h timer.
-    if (inWeek && todayLeft === 0 && slot.date > parts.date) {
-      el.countdownCard.className = "countdown-card is-done";
-      el.countdownKicker.textContent = "Window complete";
-      el.countdownTime.textContent = "Done for today";
-      el.countdownSub.textContent = `Next ${label}`;
-      return;
-    }
-
-    if (delta <= 0) {
+    // Always keep the large timer. Due now only for a remaining slot whose
+    // time has been reached today; otherwise STARTS IN HH:MM:SS to the next
+    // future queued slot (including overnight to tomorrow 7:00).
+    if (delta <= 0 && slot.date === parts.date) {
       el.countdownCard.className = "countdown-card is-live";
       el.countdownKicker.textContent = "Due now";
       el.countdownTime.textContent = prettyTime(slot.time);
@@ -402,7 +393,7 @@
     el.countdownCard.className = "countdown-card";
     el.countdownKicker.textContent = "Starts in";
     el.countdownTime.textContent = formatHMS(delta);
-    el.countdownSub.textContent = label;
+    el.countdownSub.textContent = slot.date > parts.date ? `Next ${label}` : label;
   }
 
   function paintChrome(now, parts, marks, dueId) {
@@ -763,8 +754,8 @@
       reg.update();
     });
     navigator.serviceWorker.addEventListener("controllerchange", () => {
-      if (sessionStorage.getItem("verdansc-sw-v11") === "1") return;
-      sessionStorage.setItem("verdansc-sw-v11", "1");
+      if (sessionStorage.getItem("verdansc-sw-v12") === "1") return;
+      sessionStorage.setItem("verdansc-sw-v12", "1");
       location.reload();
     });
   }
