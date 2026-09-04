@@ -5,6 +5,7 @@
  * Tracker only — no send, no scrape, no login, no LinkedIn publish.
  * Wed Sep 2 added so today’s tasks queue at the same cadence.
  * LinkedIn: one feed post per weekday (not Sat/Sun), 8:00 AM MT.
+ * No cold email / investor_email rows (PM blasts and VC blasts stay off the PWA).
  */
 window.OUTREACH_WEEK = {
   tz: "America/Denver",
@@ -71,8 +72,7 @@ window.OUTREACH_SLOTS = [
     channel: "facebook_reply_window",
     group: "Albuquerque Small Business Community",
     title: "Reply window / inbound",
-    detail:
-      "Open threads or inbound only · skip if none · cold email stays blocked (no scrape, no CAN-SPAM)",
+    detail: "Open threads or inbound only · skip if none",
   },
   {
     id: "S01",
@@ -112,26 +112,6 @@ window.OUTREACH_SLOTS = [
     detail: "Messenger follow-up only if they wrote first · skip if none",
   },
   {
-    id: "S04",
-    date: "2026-09-03",
-    time: "09:00",
-    channel: "email",
-    group: "",
-    title: "T&C Management · intro",
-    detail: "Cold email stays blocked — no scrape, no CAN-SPAM address/unsub",
-    blocked: true,
-  },
-  {
-    id: "S05",
-    date: "2026-09-03",
-    time: "09:40",
-    channel: "email",
-    group: "",
-    title: "Monarch Properties · intro",
-    detail: "Cold email stays blocked — no scrape, no CAN-SPAM address/unsub",
-    blocked: true,
-  },
-  {
     id: "S06",
     date: "2026-09-04",
     time: "07:00",
@@ -167,26 +147,6 @@ window.OUTREACH_SLOTS = [
     group: "New Mexico Small Businesses",
     title: "Inbound DM (S06)",
     detail: "Inbound only · skip if none",
-  },
-  {
-    id: "S09",
-    date: "2026-09-04",
-    time: "09:00",
-    channel: "email",
-    group: "",
-    title: "Country Club Lofts / Rembe · intro",
-    detail: "Cold email stays blocked — no scrape, no CAN-SPAM address/unsub",
-    blocked: true,
-  },
-  {
-    id: "S10",
-    date: "2026-09-04",
-    time: "09:40",
-    channel: "email",
-    group: "",
-    title: "Bryten · partnership intro",
-    detail: "Cold email stays blocked — no scrape, no CAN-SPAM address/unsub",
-    blocked: true,
   },
   {
     id: "S11",
@@ -316,16 +276,6 @@ window.OUTREACH_SLOTS = [
     detail: "Same landlords / SB group as S21",
   },
   {
-    id: "S24",
-    date: "2026-09-07",
-    time: "09:00",
-    channel: "email",
-    group: "",
-    title: "T&C Management · value",
-    detail: "Cold email stays blocked — no scrape, no CAN-SPAM address/unsub",
-    blocked: true,
-  },
-  {
     id: "S25",
     date: "2026-09-07",
     time: "09:40",
@@ -370,26 +320,6 @@ window.OUTREACH_SLOTS = [
     group: "Albuquerque Business Owners",
     title: "Inbound DM (S26)",
     detail: "Inbound only · skip if none",
-  },
-  {
-    id: "S29",
-    date: "2026-09-08",
-    time: "09:00",
-    channel: "email",
-    group: "",
-    title: "Monarch Properties · value",
-    detail: "Cold email stays blocked — no scrape, no CAN-SPAM address/unsub",
-    blocked: true,
-  },
-  {
-    id: "S30",
-    date: "2026-09-08",
-    time: "09:40",
-    channel: "email",
-    group: "",
-    title: "Country Club Lofts / Rembe · value",
-    detail: "Cold email stays blocked — no scrape, no CAN-SPAM address/unsub",
-    blocked: true,
   },
   {
     id: "S31",

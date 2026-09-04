@@ -1,6 +1,9 @@
 (() => {
   const TZ = window.OUTREACH_WEEK.tz;
-  const SLOTS = window.OUTREACH_SLOTS;
+  const HIDDEN_CHANNELS = new Set(["email", "investor_email"]);
+  const SLOTS = (window.OUTREACH_SLOTS || []).filter(
+    (slot) => !HIDDEN_CHANNELS.has(slot.channel)
+  );
   const STORE_KEY = "verdansc-outreach-tracker-v1";
   const PROXY_KEY = "verdansc-stripe-proxy";
   const STRIPE_DASHBOARD = "https://dashboard.stripe.com/payments";
@@ -11,7 +14,6 @@
     facebook_reply_window: "FB reply",
     craigslist: "Craigslist",
     linkedin: "LinkedIn",
-    email: "Email",
   };
 
   const el = {
@@ -159,16 +161,15 @@
   }
 
   function statusOf(slot, marks) {
-    if (slot.blocked || slot.channel === "email") return "blocked";
+    if (slot.blocked || HIDDEN_CHANNELS.has(slot.channel)) return "blocked";
     return marks[slot.id]?.status || "queued";
   }
 
   function isActionable(slot) {
-    return !slot.blocked && slot.channel !== "email";
+    return !slot.blocked && !HIDDEN_CHANNELS.has(slot.channel);
   }
 
   function channelClass(channel) {
-    if (channel === "email") return "email";
     if (channel === "craigslist") return "cl";
     if (channel === "linkedin") return "li";
     return "fb";

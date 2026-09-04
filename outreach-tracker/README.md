@@ -7,9 +7,14 @@ ask for a password.
 
 Week copied into `slots.js`: **Sep 2–9 2026**. Cadence **7:00 / 7:40 / 8:00
 (LinkedIn weekdays) / 8:20 / 9:00 / 9:40 America/Denver**. Wednesday Sep 2 uses
-the same mix (Facebook / Craigslist / LinkedIn / inbound only — no cold email).
-Email / cold slots stay **blocked** (no scrape, no CAN-SPAM address or
-unsubscribe URL) and cannot be marked sent.
+the same mix (Facebook / Craigslist / LinkedIn / inbound only).
+
+**Cold email is not in this app.** Property-manager cold outreach (`channel:
+email`) and investor / VC blast slots (`investor_email`) are omitted from the
+PWA. Drafts under `marketing/investors/` stay on disk; they are not queued
+here. Facebook group posts, Craigslist, LinkedIn, first-comment, DM, and
+reply-window slots remain. LEFT TODAY / LEFT THIS WEEK count only those
+sendable rows.
 
 **LinkedIn:** one organic feed post per weekday at **8:00 AM MT** (`S-LI-01` …
 `S-LI-06`). Not Saturday or Sunday. Channel `linkedin` is sendable (Mark
@@ -58,11 +63,10 @@ Marks live in this device’s `localStorage`. Clearing site data clears the week
 - Live HH:MM:SS countdown to the next remaining sendable slot
   (America/Denver); remaining counts and next-due update as soon as you mark
   complete or skip
-- Full week: all 46 slots (40 Facebook / Craigslist / email plus 6 weekday
-  LinkedIn), named ABQ / NM small-business Facebook groups
+- Full week: 39 Facebook / Craigslist / LinkedIn / inbound slots (no cold
+  email), named ABQ / NM small-business Facebook groups
 - Facebook + Craigslist + LinkedIn: **Mark complete** or **Skip**, with a
   banner alert
-- Email: stays **blocked** — no send button
 - “Due now” highlight in the 7:00–10:00am MT window
 - Offline via service worker after the first load
 - Payments tab: recent Stripe PaymentIntents (amount, status, created,
@@ -70,19 +74,32 @@ Marks live in this device’s `localStorage`. Clearing site data clears the week
   widget or git. Without a proxy the tab is empty and links to
   [Stripe payments](https://dashboard.stripe.com/payments).
 
-## Payments (optional local Stripe proxy)
+## Stripe proxy (`outreach-tracker/stripe-proxy.mjs`)
 
-The tracker never talks to Stripe with a secret key. On your laptop:
+The Payments tab never talks to Stripe with a secret key. The proxy is
+**`outreach-tracker/stripe-proxy.mjs`**. There is no site `/ops/stripe` route
+for this widget.
+
+1. Get a secret key from the [Stripe Dashboard](https://dashboard.stripe.com/apikeys)
+   (`sk_test_…` or `sk_live_…`).
+2. Export it in the shell that will run the proxy. **Never commit the key.**
 
 ```bash
 cd outreach-tracker
-export STRIPE_SECRET_KEY=sk_test_your_key_from_the_dashboard
+export STRIPE_SECRET_KEY=sk_live_or_test_from_stripe_dashboard
 node stripe-proxy.mjs
 ```
 
-`GET http://127.0.0.1:4242/charges` lists recent PaymentIntents. Open the
-widget with `?stripeProxy=http://127.0.0.1:4242` (saved in `localStorage`)
-or paste that URL into the Payments tab. Do not commit `STRIPE_SECRET_KEY`.
+Default listen: **`http://127.0.0.1:4242`**.
 
-Default bind is `127.0.0.1:4242`. Override with `STRIPE_PROXY_HOST` /
-`STRIPE_PROXY_PORT` if needed. The key stays in the proxy process environment.
+Open the tracker Payments tab through the proxy query string:
+
+```
+http://127.0.0.1:4173/?stripeProxy=http://127.0.0.1:4242#/payments
+```
+
+`GET http://127.0.0.1:4242/charges` lists recent PaymentIntents. You can also
+paste `http://127.0.0.1:4242` into the Payments tab (saved in `localStorage`).
+
+Override bind with `STRIPE_PROXY_HOST` / `STRIPE_PROXY_PORT` if needed. The key
+stays in the proxy process environment only.
