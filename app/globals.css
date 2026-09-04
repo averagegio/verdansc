@@ -51,7 +51,7 @@ body {
   left: 0.9rem;
   right: 0.9rem;
   display: grid;
-  grid-template-columns: auto 1fr auto;
+  grid-template-columns: auto 1fr;
   align-items: center;
   z-index: 10;
 }
@@ -93,29 +93,6 @@ body {
   width: 18px;
   height: 2px;
   background: #d8f9ff;
-}
-
-.map-pitch-link {
-  justify-self: end;
-  display: inline-flex;
-  align-items: center;
-  min-height: 42px;
-  padding: 0.35rem 0.8rem;
-  border-radius: 10px;
-  border: 1px solid rgba(125, 211, 252, 0.55);
-  background: rgba(9, 18, 35, 0.75);
-  color: #e0f2fe;
-  text-decoration: none;
-  font-size: 0.82rem;
-  letter-spacing: 0.04em;
-  transition: background 140ms ease, border-color 140ms ease;
-}
-
-.map-pitch-link:hover,
-.map-pitch-link:focus-visible {
-  background: rgba(14, 60, 98, 0.9);
-  border-color: rgba(125, 211, 252, 0.9);
-  outline: none;
 }
 
 .api-carousel {
@@ -548,7 +525,7 @@ body {
     top: 0.7rem;
     left: 0.7rem;
     right: 0.7rem;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto 1fr;
   }
 
   .verdansc-header h1 {
@@ -1735,12 +1712,6 @@ body {
 
   .pitch-funnel-step strong {
     grid-column: 2;
-  }
-
-  .map-pitch-link {
-    font-size: 0.74rem;
-    padding-inline: 0.55rem;
-    min-height: 44px;
   }
 }
 
