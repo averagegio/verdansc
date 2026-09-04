@@ -1,10 +1,10 @@
-const CACHE = "verdansc-outreach-v10";
+const CACHE = "verdansc-outreach-v11";
 const ASSETS = [
   "./",
   "./index.html",
-  "./styles.css?v=10",
-  "./app.js?v=10",
-  "./slots.js?v=10",
+  "./styles.css?v=11",
+  "./app.js?v=11",
+  "./slots.js?v=11",
   "./manifest.webmanifest",
   "./icons/icon-192.png",
   "./icons/icon-512.png",

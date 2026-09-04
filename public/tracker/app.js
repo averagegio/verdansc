@@ -263,10 +263,11 @@
     );
   }
 
-  function countdownSlot(_parts, marks) {
-    // First remaining sendable slot across the week: today 7:00 AM MT
-    // while still before that window, otherwise the next unfinished slot.
-    return queuedActionable(SLOTS, marks)[0] || null;
+  function countdownSlot(parts, marks) {
+    // Same target as next-due: currently due today (time reached, still
+    // queued), else the next future queued slot. Do not aim at an earlier
+    // day's leftover just because it is first in the week list.
+    return nextDue(parts, marks) || null;
   }
 
   function remaining(list, marks) {
@@ -358,6 +359,13 @@
   function paintCountdown(now, parts, marks) {
     const slot = countdownSlot(parts, marks);
     const weekLeft = remaining(SLOTS, marks);
+    const todayLeft = remaining(
+      SLOTS.filter((s) => s.date === parts.date),
+      marks
+    );
+    const inWeek =
+      parts.date >= window.OUTREACH_WEEK.start &&
+      parts.date <= window.OUTREACH_WEEK.end;
 
     if (!slot) {
       el.countdownCard.className = "countdown-card is-done";
@@ -372,6 +380,16 @@
     const start = wallTimeMs(slot.date, slot.time);
     const delta = start - now.getTime();
     const label = `${prettyDate(slot.date)} · ${prettyTime(slot.time)} MT · ${CHANNEL_LABEL[slot.channel]}`;
+
+    // After today's sendable slots are done, do not run an overnight
+    // STARTS IN to tomorrow 7:00 — that reads like a broken 18h timer.
+    if (inWeek && todayLeft === 0 && slot.date > parts.date) {
+      el.countdownCard.className = "countdown-card is-done";
+      el.countdownKicker.textContent = "Window complete";
+      el.countdownTime.textContent = "Done for today";
+      el.countdownSub.textContent = `Next ${label}`;
+      return;
+    }
 
     if (delta <= 0) {
       el.countdownCard.className = "countdown-card is-live";
@@ -745,8 +763,8 @@
       reg.update();
     });
     navigator.serviceWorker.addEventListener("controllerchange", () => {
-      if (sessionStorage.getItem("verdansc-sw-v10") === "1") return;
-      sessionStorage.setItem("verdansc-sw-v10", "1");
+      if (sessionStorage.getItem("verdansc-sw-v11") === "1") return;
+      sessionStorage.setItem("verdansc-sw-v11", "1");
       location.reload();
     });
   }
