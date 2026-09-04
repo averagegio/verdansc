@@ -151,10 +151,6 @@ export default function Home() {
             <h1>VERDANSC</h1>
             <p>Intelligent Real Estate API Map</p>
           </header>
-
-          <Link href="/pitch" className="map-pitch-link">
-            Pitch deck
-          </Link>
         </div>
 
         <article
