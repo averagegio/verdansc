@@ -49,6 +49,22 @@ Stripe Checkout session. Without a key, it falls back to mock mode.
 6. Confirm dashboard status changes after webhook events
    (`checkout_completed`, `active`, `canceled`).
 
+### Internal Stripe monitor
+
+Internal-only transaction list at `/ops/stripe` (also `GET /api/ops/stripe`).
+The page is `noindex` and is not linked from marketing surfaces.
+
+Protect it in the hosting environment (never commit secrets or paste them into
+a pull request):
+
+- `STRIPE_OPS_SECRET` — unlock with that value (httpOnly cookie, 12 hours)
+- or `STRIPE_OPS_EMAIL` — a signed-in founder session whose email matches
+
+If neither is set, the monitor stays locked and does not list customer emails
+or charges. Rows come from the Stripe PaymentIntents + Checkout Sessions list
+API when `STRIPE_SECRET_KEY` is present. The existing webhook also records
+successful payments idempotently (`event.id`) without changing Checkout.
+
 ## Vercel deployment
 
 Preview deploy:

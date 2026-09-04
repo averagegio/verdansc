@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 import { updateIntakeApplicationById } from "../../../lib/intakeApplications";
 import { findUserByStripeRefs, updateUserByEmail } from "../../../lib/mockUsers";
+import { recordStripePaymentEvent } from "../../../lib/stripePaymentLog";
 
 const SUBSCRIPTION_EVENTS = new Set([
   "checkout.session.completed",
@@ -37,6 +38,12 @@ export async function POST(request: NextRequest) {
       { ok: false, message: "Invalid webhook signature." },
       { status: 400 },
     );
+  }
+
+  try {
+    await recordStripePaymentEvent(event);
+  } catch {
+    // Logging must never fail Checkout, application, or subscription handling.
   }
 
   if (!SUBSCRIPTION_EVENTS.has(event.type)) {
