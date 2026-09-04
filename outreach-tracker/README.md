@@ -65,3 +65,24 @@ Marks live in this device’s `localStorage`. Clearing site data clears the week
 - Email: stays **blocked** — no send button
 - “Due now” highlight in the 7:00–10:00am MT window
 - Offline via service worker after the first load
+- Payments tab: recent Stripe PaymentIntents (amount, status, created,
+  description) via an optional **local** proxy. No Stripe secret in the
+  widget or git. Without a proxy the tab is empty and links to
+  [Stripe payments](https://dashboard.stripe.com/payments).
+
+## Payments (optional local Stripe proxy)
+
+The tracker never talks to Stripe with a secret key. On your laptop:
+
+```bash
+cd outreach-tracker
+export STRIPE_SECRET_KEY=sk_test_your_key_from_the_dashboard
+node stripe-proxy.mjs
+```
+
+`GET http://127.0.0.1:4242/charges` lists recent PaymentIntents. Open the
+widget with `?stripeProxy=http://127.0.0.1:4242` (saved in `localStorage`)
+or paste that URL into the Payments tab. Do not commit `STRIPE_SECRET_KEY`.
+
+Default bind is `127.0.0.1:4242`. Override with `STRIPE_PROXY_HOST` /
+`STRIPE_PROXY_PORT` if needed. The key stays in the proxy process environment.

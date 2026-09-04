@@ -378,7 +378,7 @@ a {
   transform: translateX(-50%);
   width: min(430px, 100%);
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 0.45rem;
   padding: 0.55rem 1rem calc(0.7rem + var(--safe-bottom));
   background: linear-gradient(180deg, transparent, #0a0806 28%);
@@ -390,6 +390,7 @@ a {
   border: 1px solid var(--line);
   background: #1b140e;
   color: var(--muted);
+  font-size: 0.82rem;
 }
 
 .nav button.is-on {
@@ -432,6 +433,120 @@ a {
   color: var(--muted);
   font-size: 0.72rem;
   text-align: center;
+}
+
+.pay-intro {
+  margin: 1rem 0 0.7rem;
+  padding: 0.95rem 1rem;
+  border-radius: 18px;
+  border: 1px solid rgba(34, 211, 238, 0.28);
+  background: rgba(8, 22, 42, 0.45);
+}
+
+.pay-intro h2 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.pay-intro p {
+  margin: 0.28rem 0 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.pay-empty {
+  margin-top: 0.85rem;
+  padding: 0.95rem 1rem;
+  border-radius: 18px;
+  border: 1px dashed rgba(245, 185, 66, 0.35);
+  background: var(--panel);
+}
+
+.pay-empty h2 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.pay-empty p {
+  margin: 0.28rem 0 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+.pay-empty code,
+.proxy-box code {
+  color: var(--gold);
+  font-size: 0.78em;
+}
+
+.pay-link,
+.pay-refresh {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--tap);
+  margin-top: 0.75rem;
+  padding: 0 0.9rem;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, #1d3a2c, #14261d);
+  border-color: rgba(125, 206, 160, 0.45);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.pay-refresh {
+  width: 100%;
+  margin: 0 0 0.2rem;
+  background: #24180f;
+  border-color: var(--line);
+}
+
+.pay-amount {
+  margin: 0.45rem 0 0;
+  font-size: 1.15rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.proxy-box {
+  margin-top: 0.9rem;
+  padding: 0.85rem 0.9rem;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+}
+
+.proxy-box label {
+  display: block;
+  color: var(--muted);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.proxy-row {
+  display: flex;
+  gap: 0.45rem;
+  margin-top: 0.45rem;
+}
+
+.proxy-row input {
+  flex: 1;
+  min-height: var(--tap);
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: #24180f;
+  color: var(--ink);
+  padding: 0 0.7rem;
+}
+
+.proxy-row button {
+  min-height: var(--tap);
+  padding: 0 0.85rem;
+  border-radius: 12px;
+  border: 1px solid var(--gold);
+  background: var(--gold);
+  color: #1a1208;
 }
 
 .hidden {
