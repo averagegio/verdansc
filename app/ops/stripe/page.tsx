@@ -182,8 +182,8 @@ export default async function StripeOpsPage({ searchParams }: PageProps) {
               Product mix
             </p>
             <p className="mt-2 text-sm text-slate-300">
-              Credit check {byProduct.credit_check} · Apps {byProduct.rental_application} ·
-              Memberships {byProduct.membership}
+              Credit check {byProduct.credit_check} · Rental apps{" "}
+              {byProduct.rental_application} · Memberships {byProduct.membership}
             </p>
           </article>
           <article className="rounded-2xl border border-cyan-400/30 bg-slate-900/65 p-5">
